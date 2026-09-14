@@ -1,0 +1,611 @@
+:root {
+  --navy: #131c30;
+  --navy-deep: #0e1524;
+  --grid-line: rgba(255,255,255,0.06);
+  --white: #fdfdfd;
+  --off-white: #dfe6f0;
+  --gray: #8b96a8;
+  --ink: #171a1f;
+  --accent-blue: #7db4e6;
+  --accent-blue-deep: #4a7fb5;
+  --tint-blue: #e8f1fb;
+  --border: #d7dde6;
+  /* .site-nav's rendered height (fixed rem vertical padding, so this is
+     stable across viewport widths — verified 55px at both 390px and
+     1440px). Single source of truth so .slide's letterboxing and the nav
+     never drift apart. */
+  --nav-h: 55px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+/* Slideshow paging (opt-in via <html class="slideshow">): the page is a
+   stack of full-viewport slides the viewer pages through, each locked to
+   fill the screen. Used by hub/utility pages (landing, contact) where a
+   quick, glanceable format fits. Reading pages (the six theme pages) do NOT
+   use this — they use the .article-* components below instead, which flow
+   naturally at whatever height the content needs. Don't apply scroll-snap
+   globally; that's what forced every page into "PowerPoint" pacing. */
+html.slideshow { scroll-snap-type: y mandatory; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+h1, h2, h3, .headline {
+  font-family: 'Anton', 'Inter', sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+  margin: 0;
+}
+
+/* ---------- Shared slide component ----------
+   Reusable full-viewport "slide" building block. Every page in this site is
+   built as one or more `.slide` elements plus a color modifier
+   (`.slide--navy` / `.slide--white`), using the `.slide-top` / `.slide-main`
+   / `.slide-footer` three-part skeleton below — copy this structure and swap
+   content, don't hand-build a new full-viewport section per page. `.slide`
+   owns every part of "does this fit the screen": 100dvh (with svh/vh
+   fallbacks for browsers that don't support dvh), box-sizing:border-box, the
+   top-row / flex-1-middle / bottom-row flex skeleton, vh-aware clamp()
+   spacing so content compacts on short viewports instead of overflowing, the
+   short-viewport decorative-compaction hook (`.slide-decorative`, see the
+   media query below), and scroll-snap-align for slideshow paging. That
+   mechanics layer can never drift between slides because there's only one
+   copy of it. Modifiers stay scoped to what legitimately varies per slide:
+   background/text/border color, and — for `.slide--white` only — the
+   deliberate content-width cap that a full-bleed navy slide intentionally
+   goes without. Minor content-arrangement differences (e.g. a stacked intro
+   row vs. a horizontal label/tag row) are also scoped to the modifier;
+   they're layout choices about that slide's own content, not fit-to-viewport
+   mechanics, so they don't threaten the shared guarantee. */
+.slide {
+  box-sizing: border-box;
+  min-height: calc(100vh - var(--nav-h));
+  min-height: calc(100svh - var(--nav-h));
+  min-height: calc(100dvh - var(--nav-h));
+  position: relative;
+  padding: clamp(1.4rem, 2vw + 1.5vh, 2.5rem) clamp(1.4rem, 4vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(0.75rem, 2vh, 2rem);
+  scroll-snap-align: start;
+  /* Inert during continuous scroll (no snap container is active — see
+     html.slideshow below), kept as cheap insurance for anchor links and
+     any future snap: reserves the sticky nav's height so a slide's start
+     edge doesn't land underneath it. */
+  scroll-margin-top: var(--nav-h);
+}
+/* Corrected 2026-09-14 (real user report: scroll-inside-scroll on
+   contact.html's hero, and no visible cue that there's more content below
+   any given slide). Previously `height:100vh` + `overflow:hidden`, with
+   .slide-main's own overflow-y:auto as the fallback for content that didn't
+   fit the fixed box (see that rule's comment for the original overlap bug
+   this was fixing). That fixed-box approach is what CAUSED both new
+   problems: locking the slide to exactly one viewport height is what makes
+   an inner scrollbar necessary in the first place, and it hides the next
+   slide completely off-screen with no partial peek to suggest scrolling.
+   min-height instead of height removes the fit constraint at its source —
+   a slide simply grows to fit its content, the page scrolls normally past
+   it like every other page on this site (matching the article pages'
+   .article-hero, which never had this problem), and the next slide
+   naturally peeks into view on any viewport taller than the content. This
+   supersedes the .slide-main overflow-y:auto fallback below, which is now
+   dead weight kept only as a safety net (see that rule). */
+.slide--navy {
+  background: var(--navy);
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  color: var(--white);
+}
+.slide--white { background: var(--white); color: var(--ink); }
+/* .slide--white keeps its content column capped and centered, contrasting
+   deliberately with a full-bleed navy slide — a content-width choice, not a
+   fit mechanic, so it lives here rather than in the shared base. */
+.slide--white > .slide-top,
+.slide--white > .slide-main,
+.slide--white > .slide-footer {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.slide-top {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+/* A white slide's top row is commonly a stacked eyebrow+heading intro rather
+   than a horizontal label/tag pair — content arrangement, scoped to the
+   modifier. Individual pages may override further as their content needs. */
+.slide--white .slide-top {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(0.5rem, 1vh, 0.9rem);
+}
+.slide--navy .eyebrow { color: var(--off-white); line-height: 1.5; }
+.slide--white .eyebrow { color: var(--accent-blue-deep); }
+.status-tag {
+  border: 1px solid rgba(255,255,255,0.35);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--off-white);
+  white-space: nowrap;
+}
+/* Middle zone: the slide's actual content. flex:1 lets it absorb/give up the
+   slack between the top row and the footer, and centers its own content
+   vertically so short viewports compact toward the middle instead of
+   colliding with the footer. min-height:0 is required so this flex child can
+   shrink below its content size rather than forcing the slide to overflow.
+   overflow-y:auto is load-bearing, not decorative: min-height:0 only lets
+   slide-main's own BOX shrink below its content's natural height — it does
+   NOT stop that content from rendering past the shrunk box into the
+   slide-top/slide-footer siblings above and below (flex siblings don't clip
+   each other by default). Without an overflow rule here, centered content
+   taller than the available space overflows symmetrically in both
+   directions and visually collides with neighboring text. `hidden` fixes
+   the collision but silently deletes whichever content sits above/below the
+   visible band (tried first, rejected: it clipped off the first line of the
+   hero h1 entirely with no indication anything was missing) — `auto` keeps
+   every collision-fix guarantee while never discarding content: worst case
+   is a scrollbar inside this one slide's content zone, not lost text.
+   Found 2026-08-30: real user report of "overlapping text" on the hero,
+   reproduced only once viewport HEIGHT (not width) was swept below ~640px —
+   every earlier audit pass tested width breakpoints thoroughly but reused
+   only a handful of heights (667/768/800/900/1080), missing the 500-800px
+   band a real browser window sits in once toolbars/bookmarks bars are
+   accounted for. Test any future change to this rule across a height sweep,
+   not just widths.
+   Superseded 2026-09-14: .slide is now min-height, not height, so this box
+   can simply grow when content needs more room instead of being forced to
+   choose between clipping and scrolling within a fixed ceiling. That was
+   the actual cause of both the original overlap bug and a newer,
+   independently reported "scroll inside scroll" complaint (an inner
+   scrollbar appearing inside a slide while the page itself also scrolls).
+   overflow-y:auto is left here as an inert safety net for a pathological
+   case (a single line of content wider/taller than the viewport itself,
+   where even growing the box can't help) — it should not engage in normal
+   use. If it ever visibly engages again, that means content genuinely
+   doesn't fit even an unconstrained box, which is a content problem to fix
+   on that page, not a reason to reintroduce the fixed-height/overflow:hidden
+   pattern this replaced. */
+.slide-main {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: safe center;
+}
+/* `safe center` (not plain `center`): when centered flex content overflows
+   its container, plain `center` combined with overflow:auto creates
+   unreachable negative-offset scroll region — the browser only lets you
+   scroll toward the far/end side, so whatever sits "before" the centered
+   midpoint (here: the first line of the h1) is invisible AND unscrollable.
+   `safe center` is the standard CSS fix: center while it fits, fall back to
+   start-alignment (fully scrollable, nothing hidden) once it doesn't. Found
+   2026-08-30 by screenshotting the actual overflow case, not just measuring
+   bounding rects — a geometry-only overlap check can't see clipping/scroll
+   behavior, only a real render can. */
+
+/* Soften how often the scrollbar above actually engages in the realistic
+   500-800px window-height band by tightening the hero's own vertical rhythm
+   and type scale before scrolling is needed at all. */
+@media (max-height: 760px) {
+  .slide--navy h1 {
+    font-size: clamp(1.5rem, 3vw + 3vh, 5rem);
+    margin-top: clamp(0.3rem, 1vh, 0.7rem);
+  }
+  .slide--navy .subhead { margin-top: clamp(0.35rem, 1vh, 0.9rem); }
+  .slide--navy blockquote.claim { font-size: clamp(0.95rem, 0.8vw + 1vh, 1.6rem); }
+  .slide-main { gap: clamp(0.35rem, 0.9vh, 1rem); }
+}
+.slide--white .slide-main { gap: clamp(0.8rem, 1.6vh, 1.8rem); }
+
+.slide-footer {
+  flex: 0 0 auto;
+  margin-top: clamp(0.75rem, 3vh, 3rem);
+  padding-top: clamp(0.7rem, 1.6vh, 1.6rem);
+  border-top: 1px solid;
+  display: flex;
+  justify-content: space-between;
+}
+.slide--navy .slide-footer {
+  border-top-color: rgba(255,255,255,0.18);
+  align-items: flex-end;
+  font-size: 0.85rem;
+  color: var(--off-white);
+}
+.slide--white .slide-footer {
+  border-top-color: var(--border);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+.slide-footer a { color: inherit; text-decoration: none; }
+.slide-footer a:hover { text-decoration: underline; }
+.byline-name { font-weight: 600; }
+.byline-org { color: var(--gray); font-size: 0.8rem; }
+
+/* Scroll-down cue: added 2026-09-14 per real user feedback, strengthened
+   same day (first version read as decorative, not a hint — too faint, too
+   small, and "Scroll" doesn't say what's worth scrolling for). A slide
+   that fills the viewport gave no visible signal that more content sits
+   below it, unlike the article pages' normal flowing layout where the
+   next section naturally peeks into view. Used only on a page's first
+   slide (the hero); every other slide is followed by nothing worth cueing
+   toward. Purely decorative — aria-hidden, no interactive role — the real
+   navigation is normal scrolling. */
+.scroll-cue {
+  flex: 0 0 auto;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  animation: scroll-cue-bounce 1.8s ease-in-out infinite;
+}
+.slide--navy .scroll-cue { color: var(--off-white); }
+.scroll-cue svg { width: 22px; height: 22px; display: block; }
+@keyframes scroll-cue-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+@media (max-height: 480px) {
+  .scroll-cue { display: none; }
+}
+
+/* Short-viewport compaction: below this height, drop purely decorative
+   elements (any slide's `.slide-decorative` content) so headline/footer
+   content never has to fight them for room. Generic hook on the shared
+   component so any slide's own decorative flourish can opt in. */
+@media (max-height: 480px) {
+  .slide-decorative { display: none; }
+}
+
+/* ---------- Roadmap nav device: Tokens -> Loop -> Yield -> ? ----------
+   Persistent device carried across pages per the site plan (§1). Use on the
+   landing page and optionally as a compact footer strip on theme pages. */
+.roadmap {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.4rem, 1vw, 0.8rem);
+  flex-wrap: wrap;
+  font-family: 'Anton', 'Inter', sans-serif;
+  font-size: clamp(0.9rem, 1.2vw, 1.3rem);
+}
+.roadmap .roadmap-step { opacity: 0.55; }
+.roadmap .roadmap-step.is-current { opacity: 1; color: var(--accent-blue); }
+.roadmap .roadmap-arrow { opacity: 0.35; font-family: 'Inter', sans-serif; }
+
+/* ---------- Shared content components: panels, callout ---------- */
+.panel-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 1.5vw + 1vh, 2.5rem);
+}
+.panel-row.panel-row--3 { grid-template-columns: repeat(3, 1fr); }
+.panel {
+  position: relative;
+  border: 1px solid var(--border);
+  padding: clamp(1rem, 1vw + 1.2vh, 1.8rem) clamp(1rem, 1.5vw, 1.6rem);
+}
+.cross {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  color: var(--border);
+}
+.cross::before, .cross::after {
+  content: '';
+  position: absolute;
+  background: var(--border);
+}
+.cross::before { width: 11px; height: 1px; top: 5px; left: 0; }
+.cross::after { width: 1px; height: 11px; left: 5px; top: 0; }
+.cross.tl { top: -6px; left: -6px; }
+.cross.tr { top: -6px; right: -6px; }
+.cross.bl { bottom: -6px; left: -6px; }
+.cross.br { bottom: -6px; right: -6px; }
+
+.panel .eyebrow { margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem); }
+.panel .num { font-family: 'Anton', sans-serif; font-size: clamp(1.2rem, 0.8vw + 0.8vh, 1.6rem); color: var(--accent-blue-deep); margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem); }
+.panel h3 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: clamp(1rem, 0.6vw + 0.6vh, 1.2rem); margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem); }
+.panel p { font-size: clamp(0.82rem, 0.2vw + 0.3vh, 0.95rem); line-height: 1.5; color: #3a4152; margin: 0; }
+
+.callout {
+  position: relative;
+  background: var(--tint-blue);
+  border: 1px solid #c7dcf1;
+  padding: clamp(1rem, 1vw + 1.2vh, 1.8rem) clamp(1.2rem, 1.6vw, 2rem);
+}
+.callout .cross::before, .callout .cross::after { background: #b7cde5; }
+.callout .eyebrow { margin-bottom: clamp(0.4rem, 1vh, 0.8rem); }
+.callout p { font-size: clamp(0.9rem, 0.2vw + 0.4vh, 1.02rem); line-height: 1.5; margin: 0; color: #1a2438; }
+
+/* Progressive-disclosure "go deeper" block (site plan §2/§3) — collapsed by
+   default via <details>, no JS required. */
+details.go-deeper {
+  border: 1px solid var(--border);
+  padding: clamp(0.8rem, 1vw + 0.8vh, 1.2rem) clamp(1rem, 1.5vw, 1.5rem);
+}
+details.go-deeper summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--accent-blue-deep);
+}
+details.go-deeper .go-deeper-body {
+  margin-top: 0.8rem;
+  font-size: clamp(0.85rem, 0.2vw + 0.4vh, 0.95rem);
+  line-height: 1.55;
+  color: #3a4152;
+}
+details.go-deeper .go-deeper-body code,
+details.go-deeper .go-deeper-body .formula {
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.9em;
+}
+
+/* ---------- Slide-specific headline/subhead scaling ---------- */
+.slide--navy h1 {
+  font-size: clamp(2rem, 4vw + 4vh, 5rem);
+  margin-top: clamp(0.5rem, 2vh, 1.2rem);
+  max-width: 16ch;
+}
+.slide--navy .subhead {
+  margin-top: clamp(0.6rem, 2vh, 1.6rem);
+  max-width: 46ch;
+  font-size: clamp(0.9rem, 0.6vw + 0.8rem, 1.05rem);
+  line-height: 1.55;
+  color: var(--off-white);
+  font-weight: 400;
+}
+.slide--white h2 { font-size: clamp(1.4rem, 1.6vw + 1.6vh, 2.6rem); max-width: 22ch; }
+blockquote.claim {
+  margin: 0;
+  font-family: 'Anton', 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.1rem, 1vw + 1.2vh, 1.6rem);
+  line-height: 1.25;
+  max-width: 32ch;
+}
+.slide--navy blockquote.claim { color: var(--white); }
+.slide--white blockquote.claim { color: var(--ink); }
+
+@media (max-width: 720px) {
+  /* .slide padding/sizing is handled by its own clamp() rules above, which
+     already account for narrow widths; only multi-column grids need an
+     explicit override to stack on narrow viewports. */
+  .panel-row,
+  .panel-row.panel-row--3 { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Reading-format components (theme pages)
+   ==========================================================================
+   The six theme pages are articles, not slides — natural height, no
+   scroll-snap, no forced one-screen fit. A page is built as one
+   `.article-hero` (short navy intro band, sets the theme and its claim) plus
+   one `.article-body` (white reading area: real paragraphs, an illustration,
+   pull-out panels/callouts/citations where useful, prev/next at the end).
+   The `.panel` / `.callout` / `details.go-deeper` / `blockquote.claim`
+   components above are still used here as pull-outs *within* the flowing
+   text, not as the whole page. Landing and Contact stay on the `.slide`
+   slideshow mechanic (opt in via `<html class="slideshow">`) — they're
+   navigational hubs, not reading content, and don't need this. */
+
+.article-hero {
+  background: var(--navy);
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  color: var(--white);
+  padding: clamp(2rem, 4vw, 4rem) clamp(1.4rem, 4vw, 3rem) clamp(2.5rem, 5vw, 4.5rem);
+}
+.article-hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+  max-width: 760px;
+  margin: 0 auto clamp(1.5rem, 4vw, 3rem);
+}
+.article-hero-top .eyebrow { color: var(--off-white); }
+.article-hero .inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.article-hero h1 {
+  font-size: clamp(2.2rem, 3vw + 1.5rem, 3.6rem);
+  max-width: 18ch;
+}
+.article-hero blockquote.claim {
+  margin-top: clamp(1rem, 2vw, 1.6rem);
+  color: var(--white);
+  font-size: clamp(1.1rem, 1vw + 1rem, 1.5rem);
+  max-width: 34ch;
+}
+.article-hero .subhead {
+  margin-top: clamp(1rem, 2vw, 1.6rem);
+  max-width: 56ch;
+  font-size: clamp(0.95rem, 0.3vw + 0.9rem, 1.1rem);
+  line-height: 1.6;
+  color: var(--off-white);
+}
+
+.article-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.4rem, 4vw, 1.6rem) clamp(2rem, 4vw, 3rem);
+}
+/* Real reading typography — this is the point of the whole format: prose
+   sized and spaced for sustained reading, not compressed to fit a screen. */
+.article-body p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin: 0 0 1.3rem;
+  color: #2a3142;
+}
+.article-body h2 {
+  font-size: clamp(1.5rem, 1vw + 1.3rem, 1.9rem);
+  margin: clamp(2.2rem, 4vw, 3rem) 0 1rem;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 1.8rem 0 0.7rem;
+}
+.article-body .eyebrow { color: var(--accent-blue-deep); margin-bottom: 0.8rem; }
+.article-body ul, .article-body ol {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: #2a3142;
+  padding-left: 1.3rem;
+  margin: 0 0 1.3rem;
+}
+.article-body li { margin-bottom: 0.5rem; }
+.article-body strong { color: var(--ink); }
+
+/* Illustration slot — one simple inline-SVG diagram per theme, restrained
+   line-art style (thin strokes, the shared accent-blue/navy palette, no
+   bitmap images), with a small-caps caption. Sits inside .article-body,
+   breaking up the prose rather than decorating a title slide. */
+.illustration {
+  margin: clamp(2rem, 4vw, 2.8rem) 0;
+  text-align: center;
+}
+.illustration svg { width: 100%; height: auto; max-width: 560px; }
+.illustration figcaption {
+  margin-top: 0.7rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+/* Citations — real, verified public sources (not category placeholders).
+   A simple numbered list; each entry names the source and links out. */
+.citation-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #3a4152;
+}
+.citation-list li {
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 0.6rem;
+}
+.citation-list li:first-child { border-top: none; }
+.citation-list .cite-num { color: var(--accent-blue-deep); font-weight: 700; flex: 0 0 auto; }
+.citation-list a { color: var(--ink); }
+.citation-list a:hover { color: var(--accent-blue-deep); }
+
+/* Persistent site nav — now on every page, including index.html/contact.html.
+   Originally article-pages-only: this comment used to argue that adding it
+   to the .slide-based hub pages would eat into a `height:100vh` budget
+   already tuned to avoid the overlap bug fixed 2026-08-30. That reasoning
+   is stale as of 2026-09-14 — .slide moved from `height:100vh` to
+   `min-height: calc(100vh - var(--nav-h))` specifically so the nav's space
+   is reserved rather than competing for the same budget, which resolved a
+   second real user report (nav truncating hero content, and overlapping
+   the second slide's top content during scroll) the same day. Original
+   rationale for the nav itself, still valid: with no nav but the
+   bottom-of-page prev/next strip, pages 2-6 had no way back to Home and
+   only page 6 linked to Contact — a reader landing mid-article via a shared
+   link or search had no way out except the browser back button. `position:
+   sticky` (not `fixed`) needs no body padding-top compensation and can't
+   overlay content on first paint. */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem clamp(1.2rem, 4vw, 2rem);
+  background: rgba(19, 28, 48, 0.94);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  font-family: 'Inter', sans-serif;
+}
+.site-nav-home {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+.site-nav-home:hover { color: var(--accent-blue); }
+.site-nav-cta {
+  color: var(--navy);
+  background: var(--white);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.1rem;
+  border-radius: 3px;
+  white-space: nowrap;
+  transition: opacity .15s ease;
+}
+.site-nav-cta:hover { opacity: 0.82; }
+
+.article-nav {
+  max-width: 720px;
+  margin: 2rem auto 0;
+  padding: 1.4rem 1.4rem 2.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+.article-nav a { color: inherit; text-decoration: none; }
+.article-nav a:hover { text-decoration: underline; }
+
+@media (max-width: 720px) {
+  .article-hero { padding: 1.6rem 1.4rem 2rem; }
+  .article-body { padding: 2rem 1.2rem 1.6rem; }
+}

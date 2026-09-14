@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>People &amp; Contact — Token Yield Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/slides.css">
+<style>
+  /* Grid items default to a min-width based on their content's min-content
+     size, which lets a long unbreakable line push a single-column grid
+     wider than the viewport even after white-space is fixed. min-width: 0
+     lets the panel shrink to the column's actual available width instead. */
+  .panel { min-width: 0; }
+  /* Consolidated 2026-09-14 to a single navy screen — Gareth wanted the
+     whole page reachable at a glance: heading, one line, the two people.
+     No separate white "reading" slide anymore, so the panels/buttons below
+     need navy-appropriate colors — the shared .panel/.contact-link rules in
+     slides.css assume a white background (dark text, navy-on-transparent
+     buttons), both illegible on navy without an override. */
+  .slide--navy .panel { border-color: rgba(255,255,255,0.28); }
+  .slide--navy .panel .cross::before,
+  .slide--navy .panel .cross::after { background: rgba(255,255,255,0.4); }
+  .slide--navy .panel h3 { color: var(--white); }
+  .slide--navy .panel p { color: var(--off-white); }
+  .slide--navy .contact-link--primary { background: var(--white); color: var(--navy); }
+  /* Headshot + name row — real photos make a "who to contact" card feel like
+     an actual person, not a form. Sourced from each person's own LinkedIn
+     profile photo, hosted locally (assets/img/) rather than hotlinked — the
+     LinkedIn CDN URL carries an expiring access token, so hotlinking would
+     eventually break the image on a page meant to keep working unattended. */
+  .panel-person {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.7rem;
+  }
+  .panel-person img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex: 0 0 auto;
+  }
+  .panel-person h3 { margin: 0; }
+  /* Real, working contact mechanism for each card — previously a TODO
+     placeholder with no actual channel, which was the real reason this page
+     read as underdeveloped: the site's whole purpose is to get people in
+     touch, and the contact page couldn't. LinkedIn is the sole/primary
+     contact mechanism — no email address appears anywhere on the site.
+     Both buttons use the same primary (solid) style — an earlier version
+     gave David's a lighter/outlined treatment to imply Gareth-as-site-owner
+     hierarchy, which read as an inconsistency rather than a deliberate
+     signal. Equal weight, equal style. */
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(0.6rem, 1.5vw, 1rem);
+    margin-top: clamp(0.8rem, 1.6vh, 1.2rem);
+  }
+  .contact-link {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 0.55rem 1.1rem;
+    border-radius: 3px;
+    transition: opacity .15s ease;
+  }
+  .contact-link--primary {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .contact-link:hover { opacity: 0.8; }
+  /* Tighter vertical rhythm than the shared .slide defaults — this page has
+     to fit two full bio cards in the same one-screen budget that elsewhere
+     only holds a headline, and needed to keep working at common 16:9
+     laptop/monitor heights (1366x768, 1280x720), not just a MacBook's taller
+     aspect ratio. Scoped to this page; index.html's hero is short enough
+     not to need it. */
+  .slide--navy h1 { font-size: clamp(1.8rem, 2.4vw + 2.2vh, 3.1rem); margin-top: clamp(0.3rem, 1vh, 0.8rem); }
+  .slide--navy .subhead { margin-top: clamp(0.4rem, 1vh, 0.8rem); max-width: 50ch; }
+  .panel-row { margin-top: clamp(0.8rem, 2vh, 1.6rem); }
+  .panel {
+    padding: clamp(0.8rem, 0.7vw + 0.8vh, 1.3rem) clamp(0.9rem, 1.2vw, 1.3rem);
+  }
+  .panel p { font-size: clamp(0.8rem, 0.15vw + 0.3vh, 0.9rem); line-height: 1.42; }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="site-nav-home" href="index.html">Token Yield Hub</a>
+  <a class="site-nav-cta" href="contact.html">Get in Touch</a>
+</nav>
+
+<header class="slide slide--navy">
+  <div class="slide-top">
+    <div class="eyebrow">TOKEN YIELD HUB<br>PEOPLE / CONTACT</div>
+  </div>
+
+  <div class="slide-main">
+    <h1>Get in Touch.</h1>
+    <p class="subhead">
+      Reach out to either of us, depending on what you need.
+    </p>
+
+    <div class="panel-row">
+      <div class="panel">
+        <span class="cross tl"></span><span class="cross tr"></span>
+        <span class="cross bl"></span><span class="cross br"></span>
+        <div class="panel-person">
+          <img src="assets/img/gareth-bland.jpg" alt="Gareth Bland" width="64" height="64">
+          <h3>Gareth Bland</h3>
+        </div>
+        <p>
+          Talk to Gareth about the tokenomics framework itself &mdash; he
+          built the metrics and shadow-price work behind all six segments.
+          Chief Data Scientist, Industry Solutions Delivery, Microsoft
+          Frontier Company; the views and analysis on this site are his own,
+          not Microsoft's.
+        </p>
+        <div class="contact-links">
+          <a class="contact-link contact-link--primary" href="https://www.linkedin.com/in/gareth-bland/" target="_blank" rel="noopener">Connect on LinkedIn &rarr;</a>
+        </div>
+      </div>
+      <div class="panel">
+        <span class="cross tl"></span><span class="cross tr"></span>
+        <span class="cross bl"></span><span class="cross br"></span>
+        <div class="panel-person">
+          <img src="assets/img/david-stoker.jpg" alt="David Stoker" width="64" height="64">
+          <h3>David Stoker</h3>
+        </div>
+        <p>
+          Talk to David about putting this into practice inside a live
+          Microsoft engagement &mdash; he leads a global team of architects
+          and engineers in Microsoft's Frontier Transformation Group. Their
+          work connects AI architecture, telemetry, and economics to
+          measurable outcomes.
+        </p>
+        <div class="contact-links">
+          <a class="contact-link contact-link--primary" href="https://www.linkedin.com/in/david-stoker/" target="_blank" rel="noopener">Connect on LinkedIn &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div>
+      <div class="byline-name">Token Yield Hub</div>
+      <div class="byline-org">Personal site — views are his own, not Microsoft's.</div>
+    </div>
+  </div>
+</header>
+
+</body>
+</html>
