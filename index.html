@@ -3,172 +3,217 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tokenomicon 2026</title>
+<title>Token Yield Hub — Unit Economics of Agentic AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/slides.css">
 <style>
-  :root {
-    --navy: #131c30;
-    --navy-deep: #0e1524;
-    --grid-line: rgba(255,255,255,0.06);
-    --white: #fdfdfd;
-    --off-white: #dfe6f0;
-    --gray: #8b96a8;
-    --accent-blue: #7db4e6;
-    --accent-blue-deep: #4a7fb5;
+  /* index.html-only: panels double as links here, so undo default anchor
+     styling and add a light hover cue. Scoped to this page, slides.css
+     itself is untouched. */
+  a.panel { display: block; text-decoration: none; color: inherit; transition: border-color .15s ease, background .15s ease; }
+  a.panel:hover { border-color: var(--accent-blue-deep); background: var(--tint-blue); }
+  /* Six panels is more content than the shared .slide-main's default
+     justify-content:center safely centers on a short/narrow viewport — with
+     center, overflow spills both up (into slide-top) and down evenly.
+     space-evenly keeps that same safety property (no risk of overlapping
+     slide-top: it only ever adds slack, never pushes content past its
+     natural bounds) while — unlike flex-start — actually using the slack on
+     taller viewports instead of dumping all of it below the second row.
+     Scoped to this page only. */
+  .slide--white .slide-main { justify-content: space-evenly; }
+  /* Narrow viewports: two stacked 3-panel grids are tall enough to clip
+     ~6px against the shared .slide's fixed height once .slide-top/.footer
+     chrome is subtracted. Tighten panel spacing slightly, only below
+     480px width, only on this page's panels — closes the clip without
+     touching the shared .panel/.panel-row rules other pages rely on. */
+  @media (max-width: 480px) {
+    .slide--white .panel-row { gap: 0.65rem; }
+    .slide--white .panel { padding: 0.7rem 0.85rem; }
   }
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
+  /* Hero: two-column layout splits lead copy (headline+hook) from the
+     pull-quote instead of stacking four text blocks vertically. The old
+     single-column stack needed .slide-main's overflow-y:auto scroll
+     fallback even at realistic desktop window heights (500-800px once
+     browser chrome is subtracted) — a visible scrollbar inside a hero is
+     a real design defect, not just a safety net working as intended.
+     Splitting the content horizontally roughly halves the vertical space
+     either column needs, so the fallback should now essentially never
+     engage in practice while still existing for genuinely extreme cases.
+     Overrides slide-main's shared `display:flex` for this instance only —
+     scoped to this page's hero, the shared single-column component is
+     untouched for contact.html and any future slide that doesn't need it. */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    column-gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+    /* align-items only positions each column's own content within the
+       row; on tall viewports the row itself was left top-anchored inside
+       slide-main's full flex-1 height, dumping all the slack below the
+       content as one lopsided gap. align-content centers the row itself
+       within that height instead, so leftover space (an intentional,
+       expected side effect of a two-column layout using less total height
+       than the old single-column stack) reads as balanced breathing room
+       on either side, not a mistake. safe center: same reasoning as
+       .slide-main's own fix — falls back to start-alignment rather than
+       an unreachable overflow if content ever exceeds the box. */
+    align-content: safe center;
   }
-  body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  .eyebrow {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--off-white);
-  }
-  h1 {
-    font-family: 'Anton', 'Inter', sans-serif;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    line-height: 1.04;
-    margin: 0;
-  }
-
-  .hero {
-    height: 100vh;
-    height: 100svh;
-    background: var(--navy);
-    background-image:
-      linear-gradient(var(--grid-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-    background-size: 56px 56px;
-    color: var(--white);
-    padding: clamp(1rem, 4vh, 2.5rem) clamp(1.2rem, 4vw, 3rem);
+  .hero-quote {
+    border-left: 2px solid rgba(255,255,255,0.22);
+    padding-left: clamp(1.1rem, 2vw, 2rem);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: clamp(0.5rem, 1.5vh, 0.9rem);
   }
-
-  .hero-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    flex-wrap: wrap;
+  .hero-formal {
+    font-size: clamp(0.8rem, 0.5vw + 0.7rem, 0.9rem);
+    line-height: 1.5;
+    opacity: 0.85;
+    margin: 0;
   }
-  .hero-top .eyebrow { line-height: 1.5; }
-  .status-tag {
-    border: 1px solid rgba(255,255,255,0.35);
-    padding: 0.4rem 0.9rem;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
+  .hero-formal a { color: inherit; }
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; row-gap: clamp(1rem, 3vh, 1.5rem); }
+    .hero-quote {
+      border-left: none;
+      padding-left: 0;
+      border-top: 1px solid rgba(255,255,255,0.18);
+      padding-top: clamp(1rem, 3vh, 1.5rem);
+    }
+  }
+  /* Home-page contact CTA — the site's core purpose (getting people in
+     touch) needs to be immediately visible here, not just a small text link
+     buried in a footer. Styled as a real button, present in both slides'
+     footers so it's visible without scrolling past the hero. */
+  .hero-cta {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--off-white);
+    text-decoration: none;
+    padding: 0.55rem 1.1rem;
+    border-radius: 3px;
     white-space: nowrap;
+    transition: opacity .15s ease;
   }
-
-  .hero-mid {
-    max-width: min(640px, 92vw);
+  .hero-cta:hover { opacity: 0.82; }
+  .slide--navy .hero-cta {
+    background: var(--white);
+    color: var(--navy);
   }
-  .hero-bars { max-width: 320px; margin-bottom: clamp(0.6rem, 2.4vh, 1.6rem); }
-  .hero-bars div { height: 5px; margin-bottom: 6px; }
-  .bar-1 { background: var(--accent-blue); width: 100%; }
-  .bar-2 { background: rgba(255,255,255,0.28); width: 100%; }
-  .bar-3 { background: rgba(255,255,255,0.18); width: 100%; }
-
-  .hero h1 {
-    font-size: clamp(1.4rem, min(4.4vw, 6.5vh), 3.4rem);
-  }
-  .hero .subhead {
-    margin-top: clamp(0.7rem, 2.2vh, 1.5rem);
-    max-width: 52ch;
-    font-size: clamp(0.82rem, min(1.6vw, 2.4vh), 1.08rem);
-    line-height: 1.55;
-    color: var(--off-white);
-    font-weight: 400;
-  }
-  .hero .invite {
-    margin-top: clamp(0.6rem, 1.8vh, 1.4rem);
-    max-width: 52ch;
-    font-size: clamp(0.82rem, min(1.6vw, 2.4vh), 1.08rem);
-    line-height: 1.55;
+  .hero-cta--dark {
+    background: var(--navy);
     color: var(--white);
-    font-weight: 600;
-  }
-
-  .hero-footer {
-    padding-top: clamp(0.7rem, 2.2vh, 1.6rem);
-    border-top: 1px solid rgba(255,255,255,0.18);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    font-size: 0.85rem;
-    color: var(--off-white);
-    flex-wrap: wrap;
-    gap: 0.8rem;
-  }
-  .hero-footer .byline-name { font-weight: 600; color: var(--white); }
-  .hero-footer .byline-org { color: var(--gray); font-size: 0.8rem; margin-top: 0.15rem; }
-  .hero-footer .dates {
-    text-align: right;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gray);
-  }
-
-  @media (max-width: 720px) {
-    .hero-footer { flex-direction: column; align-items: flex-start; }
-    .hero-footer .dates { text-align: left; }
   }
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="hero-top">
-    <div class="eyebrow">TOKENOMICON + FINOPS X AMSTERDAM</div>
-    <div class="status-tag">STATUS &middot; COMING SOON</div>
-  </div>
+<nav class="site-nav">
+  <a class="site-nav-home" href="index.html">Token Yield Hub</a>
+  <a class="site-nav-cta" href="contact.html">Get in Touch</a>
+</nav>
 
-  <div class="hero-mid">
-    <div class="hero-bars">
-      <div class="bar-1"></div>
-      <div class="bar-2"></div>
-      <div class="bar-3"></div>
+<header class="slide slide--navy">
+  <div class="slide-top">
+    <div class="eyebrow">TOKEN YIELD HUB<br>TOKENOMICS</div>
+    <div class="roadmap">
+      <span class="roadmap-step">Tokens</span>
+      <span class="roadmap-arrow">&rarr;</span>
+      <span class="roadmap-step">Loop</span>
+      <span class="roadmap-arrow">&rarr;</span>
+      <span class="roadmap-step">Yield</span>
+      <span class="roadmap-arrow">&rarr;</span>
+      <span class="roadmap-step">?</span>
     </div>
-
-    <h1>Preparing for Tokenomicon 2026.</h1>
-    <p class="subhead">
-      This site will accompany the talk on unit economics and AI agent yield,
-      presented in Amsterdam, September 22&ndash;23, 2026. The full content goes
-      live ahead of the talk.
-    </p>
-    <p class="invite">
-      Heading to Tokenomicon? Come find me there. I'd love to talk.
-    </p>
   </div>
 
-  <div class="hero-footer">
+  <div class="slide-main hero-grid">
+    <div class="hero-lead">
+      <h1>Unit Economics of Agentic AI</h1>
+      <p class="subhead">You're paying for AI work and you can't tell whether it was worth it — a structural problem, not a tooling gap.</p>
+    </div>
+    <div class="hero-quote">
+      <blockquote class="claim">
+        &ldquo;TokenOps maximizes the fraction of spend that converts into accepted, valuable, autonomously-completed outcomes. That composite conversion rate is token yield &mdash; the metric this hub tracks.&rdquo;
+      </blockquote>
+      <div class="eyebrow">— THE THROUGHLINE THIS SITE IS BUILT AROUND</div>
+      <p class="hero-formal">Formally: token yield = <strong>Agent Efficiency Score (AES)</strong> = TER &times; VGR &times; ACR, not raw acceptance. See <a href="page-3-agentic-loop.html">The Agentic Loop</a> for why accepted output still isn't enough.</p>
+    </div>
+  </div>
+
+  <div class="scroll-cue" aria-hidden="true">
+    <span>Pick a starting point</span>
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5l6 6 6-6"/></svg>
+  </div>
+
+  <div class="slide-footer">
     <div>
-      <div class="byline-name">See you there</div>
-      <div class="byline-org">Details on the full site, coming soon</div>
+      <div class="byline-name">Gareth Bland</div>
+      <div class="byline-org">Personal site — views are his own, not Microsoft's.</div>
     </div>
-    <div class="dates">Sept 22&ndash;23, 2026 &middot; Amsterdam</div>
+    <div>01</div>
   </div>
 </header>
+
+<div class="slide slide--white">
+  <div class="slide-top">
+    <div class="eyebrow">SIX SEGMENTS · SAME THROUGHLINE</div>
+    <h2>Pick a starting point.</h2>
+  </div>
+
+  <main class="slide-main">
+    <div class="panel-row panel-row--3">
+      <a class="panel" href="page-1-macro-hook.html">
+        <span class="cross tl"></span><span class="cross tr"></span>
+        <span class="cross bl"></span><span class="cross br"></span>
+        <h3>01 &middot; Macro Hook</h3>
+        <p>You're paying for AI work and you can't tell whether it was worth it.</p>
+      </a>
+      <a class="panel" href="page-2-tokens.html">
+        <span class="cross tl"></span><span class="cross tr"></span>
+        <span class="cross bl"></span><span class="cross br"></span>
+        <h3>02 &middot; Tokens &amp; the Price You Can't See</h3>
+        <p>A token is not a token. Five types, five prices.</p>
+      </a>
+      <a class="panel" href="page-3-agentic-loop.html">
+        <span class="cross tl"></span><span class="cross tr"></span>
+        <span class="cross bl"></span><span class="cross br"></span>
+        <h3>03 &middot; The Agentic Loop</h3>
+        <p>The loop is the cost multiplier.</p>
+      </a>
+    </div>
+    <div class="panel-row panel-row--3">
+      <a class="panel" href="page-4-reframe.html">
+        <span class="cross tl"></span><span class="cross tr"></span>
+        <span class="cross bl"></span><span class="cross br"></span>
+        <h3>04 &middot; The Reframe</h3>
+        <p>Cost isn't the thing you're optimizing — it's a fence.</p>
+      </a>
+      <a class="panel" href="page-5-instruments.html">
+        <span class="cross tl"></span><span class="cross tr"></span>
+        <span class="cross bl"></span><span class="cross br"></span>
+        <h3>05 &middot; The Instruments You Never Had</h3>
+        <p>There&rsquo;s a live number for &ldquo;is one more attempt worth it&rdquo; &mdash; most teams don&rsquo;t know it exists.</p>
+      </a>
+      <a class="panel" href="page-6-open-problem.html">
+        <span class="cross tl"></span><span class="cross tr"></span>
+        <span class="cross bl"></span><span class="cross br"></span>
+        <h3>06 &middot; The Open Problem</h3>
+        <p>I can tell you what to measure and why.</p>
+      </a>
+    </div>
+  </main>
+
+  <footer class="slide-footer">
+    <a class="hero-cta hero-cta--dark" href="contact.html">Who to talk to &rarr;</a>
+    <div>02</div>
+  </footer>
+</div>
 
 </body>
 </html>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Reframe — Token Yield Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/slides.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="site-nav-home" href="index.html">Token Yield Hub</a>
+  <a class="site-nav-cta" href="contact.html">Get in Touch</a>
+</nav>
+
+<header class="article-hero">
+  <div class="article-hero-top">
+    <div class="eyebrow">SEGMENT 3 · ADVANCED I</div>
+    <div class="status-tag">COST VS. YIELD</div>
+  </div>
+  <div class="inner">
+    <h1>The Reframe</h1>
+    <blockquote class="claim">&ldquo;Cost isn&rsquo;t the thing you&rsquo;re optimizing. It&rsquo;s a
+      fence. The real question is what your tokens yielded &mdash; and that&rsquo;s structurally
+      harder to observe.&rdquo;</blockquote>
+    <p class="subhead">
+      Cost, quality, and time are constraints on the work, not the objective of it. Confusing the
+      two produces a specific, expensive mistake: cutting price while yield keeps leaking, and
+      calling it optimization.
+    </p>
+  </div>
+</header>
+
+<main class="article-body">
+
+  <h2>Cost is a fence, not the goal</h2>
+  <p>
+    The correct objective is to maximize the value a customer actually operates. Cost, quality,
+    and time are <strong>constraints</strong> on that pursuit: fences around the field, not
+    the crop growing inside it. Treating a constraint as the objective is like minimizing the
+    height of the fence instead of growing what&rsquo;s inside it: the fence gets shorter, and
+    nobody notices the field went fallow.
+  </p>
+  <p>
+    That confusion is easy to fall into because the two risks it conflates don&rsquo;t behave the
+    same way. <strong>Price risk</strong> (what did each token cost?) is metered
+    today, though not simply: the five-class, multi-surface billing structure on the previous
+    page means &ldquo;observable&rdquo; still takes real work to reconcile. <strong>Yield
+    risk</strong> (did those tokens produce the outcome? did the code ship, get adopted,
+    work correctly?) is harder still: structurally deferred, and partially inaccessible at
+    the moment spend happens. FinOps&rsquo;s own <em>Quantify Business Value</em> capability
+    already reaches toward this at the workload level. What&rsquo;s genuinely new here is
+    resolving it at the grain an agentic loop actually operates at (per task class, per
+    loop iteration, before the outcome is known), which is where TokenOps picks up the
+    thread FinOps already started.
+  </p>
+
+  <div class="illustration">
+    <svg viewBox="0 0 560 240" role="img" aria-labelledby="reframe-illust-title reframe-illust-desc">
+      <title id="reframe-illust-title">Price risk versus yield risk</title>
+      <desc id="reframe-illust-desc">Two panels side by side. The left panel, Price Risk, is solid-bordered and marked observable, with a checkmark. The right panel, Yield Risk, is dashed-bordered and marked partially inaccessible, with a faint question mark.</desc>
+      <g font-family="Inter, sans-serif">
+        <rect x="20" y="20" width="240" height="180" fill="#e8f1fb" stroke="#4a7fb5" stroke-width="1.5"></rect>
+        <text x="140" y="56" text-anchor="middle" font-size="11" letter-spacing="2" font-weight="700" fill="#4a7fb5">OBSERVABLE</text>
+        <text x="140" y="82" text-anchor="middle" font-size="19" font-weight="700" fill="#171a1f">PRICE RISK</text>
+        <text x="140" y="110" text-anchor="middle" font-size="12.5" fill="#3a4152">
+          <tspan x="140" dy="0">what did each token</tspan>
+          <tspan x="140" dy="16">cost? &mdash; metered,</tspan>
+          <tspan x="140" dy="16">reconcilable with work</tspan>
+        </text>
+        <circle cx="140" cy="178" r="14" fill="#4a7fb5"></circle>
+        <path d="M133 178 L138 184 L148 171" fill="none" stroke="#fdfdfd" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+
+        <rect x="300" y="20" width="240" height="180" fill="none" stroke="#8b96a8" stroke-width="1.5" stroke-dasharray="5,5"></rect>
+        <text x="420" y="56" text-anchor="middle" font-size="11" letter-spacing="2" font-weight="700" fill="#8b96a8">PARTIALLY INACCESSIBLE</text>
+        <text x="420" y="82" text-anchor="middle" font-size="19" font-weight="700" fill="#171a1f">YIELD RISK</text>
+        <text x="420" y="110" text-anchor="middle" font-size="12.5" fill="#3a4152">
+          <tspan x="420" dy="0">did it ship, get adopted,</tspan>
+          <tspan x="420" dy="16">work correctly? &mdash; known</tspan>
+          <tspan x="420" dy="16">only after the fact</tspan>
+        </text>
+        <text x="420" y="192" text-anchor="middle" font-size="28" font-weight="700" fill="#8b96a8" opacity="0.55">?</text>
+      </g>
+    </svg>
+    <figcaption>Price risk is metered today. Yield risk resolves later, if at all.</figcaption>
+  </div>
+
+  <h2>Why cheaper tokens don&rsquo;t fix a yield problem</h2>
+  <p>
+    Cutting price does not fix yield. A cheaper model can save 40% on
+    tokens and still produce output that fails review and gets reworked: net cost goes
+    <em>up</em>, not down, because the saved tokens were never the expensive part. The expensive
+    part was always the spend that didn&rsquo;t convert.
+  </p>
+  <p>
+    That&rsquo;s what <strong>token yield</strong> names directly: the conversion rate of spend
+    into accepted, operated outcomes. A model that&rsquo;s 40% cheaper per token and
+    converts at half the rate has made the fence shorter and the field smaller at the same time.
+  </p>
+
+  <div class="callout">
+    <span class="cross tl"></span><span class="cross tr"></span>
+    <span class="cross bl"></span><span class="cross br"></span>
+    <div class="eyebrow">TIMING, NOT MEASUREMENT, IS THE PROBLEM</div>
+    <p>
+      Spend is committed before yield is known, like a commodity bought before the
+      harvest. That&rsquo;s structural, not a dashboard gap: no amount of better instrumentation
+      after the fact changes the fact that the money went out the door first. The only lever
+      available at spend time is a leading indicator good enough to act on before the outcome
+      resolves.
+    </p>
+  </div>
+
+  <h2>A candidate leading indicator: the token mix</h2>
+  <p>
+    Cost per outcome is only available after the fact. The <strong>mix</strong> of token classes
+    &mdash; cached versus fresh input, tool-result input versus output, utilization against
+    provisioned capacity &mdash; is available at the current turn, before the outcome is known.
+    My own working research proposes reading specific mix signatures as candidate
+    diagnostics of yield risk, on exactly that basis: none of them requires an outcome label to compute, which
+    is what makes them viable as leading indicators rather than post-hoc analysis.
+  </p>
+
+  <div style="overflow-x:auto;">
+    <table style="width:100%; border-collapse:collapse; font-size:0.92rem; line-height:1.55; margin: 0 0 1rem;">
+      <thead>
+        <tr>
+          <th style="text-align:left; padding:0.6rem 0.8rem 0.6rem 0; border-bottom:2px solid #d7dde6; font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#8b96a8;">Observed signature</th>
+          <th style="text-align:left; padding:0.6rem 0 0.6rem 0.8rem; border-bottom:2px solid #d7dde6; font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#8b96a8;">Proposed reading</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:0.7rem 0.8rem 0.7rem 0; border-bottom:1px solid #d7dde6; color:#171a1f;">High cached-token share</td>
+          <td style="padding:0.7rem 0 0.7rem 0.8rem; border-bottom:1px solid #d7dde6; color:#3a4152;">Stable prefix; loop working as designed</td>
+        </tr>
+        <tr>
+          <td style="padding:0.7rem 0.8rem 0.7rem 0; border-bottom:1px solid #d7dde6; color:#171a1f;">Falling cached tokens, rising fresh input</td>
+          <td style="padding:0.7rem 0 0.7rem 0.8rem; border-bottom:1px solid #d7dde6; color:#3a4152;">Prefix churn: config changes, rotating context, mutating tool lists</td>
+        </tr>
+        <tr>
+          <td style="padding:0.7rem 0.8rem 0.7rem 0; border-bottom:1px solid #d7dde6; color:#171a1f;">Tool-result input growing faster than output</td>
+          <td style="padding:0.7rem 0 0.7rem 0.8rem; border-bottom:1px solid #d7dde6; color:#3a4152;">The agent is searching, not building</td>
+        </tr>
+        <tr>
+          <td style="padding:0.7rem 0.8rem 0.7rem 0; border-bottom:1px solid #d7dde6; color:#171a1f;">Output rising with no state change in the environment</td>
+          <td style="padding:0.7rem 0 0.7rem 0.8rem; border-bottom:1px solid #d7dde6; color:#3a4152;">Grinding</td>
+        </tr>
+        <tr>
+          <td style="padding:0.7rem 0.8rem 0.7rem 0; color:#171a1f;">PTU utilization near ceiling with rising 429s</td>
+          <td style="padding:0.7rem 0 0.7rem 0.8rem; color:#3a4152;">Capacity-bound, not cost-bound: a different intervention entirely</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    <strong>Claim status.</strong> These signatures are proposed diagnostics. They have not been
+    characterised against outcome data, and no thresholds are asserted here. They&rsquo;re offered
+    as candidates for specification, not as a measurement already in production. That's the same
+    honesty I try to apply to my own formalism elsewhere.
+  </p>
+
+  <details class="go-deeper">
+    <summary>GO DEEPER &mdash; the shadow price &mu; and token yield&rsquo;s formal definition</summary>
+    <div class="go-deeper-body">
+      <p>
+        Token yield&rsquo;s public framing stops at one symbol: &mu;. My own
+        underlying optimization framework formalizes the rest as a constrained optimization
+        over spend allocation.
+        <strong>Specified, not validated</strong>: the model below describes the framework as
+        designed, not a result confirmed against production data.
+      </p>
+      <p>
+        <strong>Shadow price &mu;.</strong> &mu; is the dual variable (Lagrange multiplier) on the
+        budget constraint &mdash; it prices the marginal value of one more unit of spend at the
+        current allocation, and is the one symbol carried into the simplified public framing.
+        <strong>Value of a Token (VoT)</strong>, <code class="formula">VoT = &Delta;&Pi;&#7522; / &Delta;c&#7522;</code>,
+        is the ratio of incremental engagement value to incremental cost when upgrading an
+        item&rsquo;s configuration; an upgrade is accepted only if VoT clears the hurdle
+        <code class="formula">h&#7522; = (1 + &mu;) &times; &Delta;c&#7522;</code>, which tightens
+        automatically as &mu; rises.
+      </p>
+      <p>
+        <strong>Conversion framing.</strong> TER, VGR, ACR, and AES (defined on the Agentic Loop
+        page) sit downstream of this: they measure whether spend converted to accepted,
+        value-generating, autonomously-completed outcomes. That's the same spend-to-yield
+        conversion &mu; is pricing at the margin.
+      </p>
+    </div>
+  </details>
+
+  <h3>Sources</h3>
+  <ul class="citation-list">
+    <li><span class="cite-num">1</span><span>Ali et al. &mdash; 41% cost reduction from harness-layer optimization alone, no model change &mdash; <a href="https://arxiv.org/abs/2607.06906" target="_blank" rel="noopener">arXiv:2607.06906</a></span></li>
+  </ul>
+</main>
+
+<nav class="article-nav">
+  <a href="page-3-agentic-loop.html">&larr; The Agentic Loop</a>
+  <a href="page-5-instruments.html">The Instruments You Never Had &rarr;</a>
+</nav>
+
+</body>
+</html>
