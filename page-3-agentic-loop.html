@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Agentic Loop — Token Yield Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/slides.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="site-nav-home" href="index.html">Token Yield Hub</a>
+  <a class="site-nav-cta" href="contact.html">Get in Touch</a>
+</nav>
+
+<header class="article-hero">
+  <div class="article-hero-top">
+    <div class="eyebrow">SEGMENT 2 · FUNDAMENTALS II</div>
+    <div class="status-tag">THE AGENTIC LOOP</div>
+  </div>
+  <div class="inner">
+    <h1>The Agentic Loop</h1>
+    <blockquote class="claim">&ldquo;The loop is the cost multiplier. Most token spend is invisible &mdash; like an iceberg.&rdquo;</blockquote>
+    <p class="subhead">
+      A single model call already carries five priced token classes. An agentic task doesn&rsquo;t
+      make one call and stop: it cycles <strong>Read &rarr; Generate &rarr; Execute &rarr;
+      Evaluate</strong>, and repeats until the work passes or a limit is hit. That repetition
+      multiplies cost rather than adding it, and most of the multiplication never reaches the
+      screen.
+    </p>
+  </div>
+</header>
+
+<main class="article-body">
+
+  <h2>Cost multiplies. It doesn&rsquo;t add.</h2>
+  <p>
+    The loop itself is simple: read the current state, generate a step, execute it, evaluate the
+    result, and go again if the work isn&rsquo;t done. Each pass around that cycle is a full model
+    call with its own five-part cost structure: input, reasoning, output, cache-write,
+    cache-read.
+  </p>
+
+  <div class="callout">
+    <span class="cross tl"></span><span class="cross tr"></span>
+    <span class="cross bl"></span><span class="cross br"></span>
+    <div class="eyebrow">THE MULTIPLIER</div>
+    <p><code>cost &asymp; per-call cost &times; &#8467; (iterations) &times; f (fan-out)</code></p>
+    <p>
+      A one-dollar call looped 10 times is $10; add 3-way fan-out (parallel sub-agents) and the
+      same work item becomes $30. That compounds across every item in a backlog.
+    </p>
+  </div>
+
+  <div class="panel-row panel-row--3">
+    <div class="panel">
+      <span class="cross tl"></span><span class="cross tr"></span>
+      <span class="cross bl"></span><span class="cross br"></span>
+      <div class="num">01</div>
+      <h3>The mechanics</h3>
+      <p>Agentic systems cycle <strong>Read &rarr; Generate &rarr; Execute &rarr; Evaluate</strong>
+        &rarr; repeat, until the work passes or a limit is hit. Every iteration is a full call,
+        not a cheap increment.</p>
+    </div>
+    <div class="panel">
+      <span class="cross tl"></span><span class="cross tr"></span>
+      <span class="cross bl"></span><span class="cross br"></span>
+      <div class="num">02</div>
+      <h3>The safety valve</h3>
+      <p>A halt-and-escalate mechanism (a monotonic cost detector) stops the loop and
+        escalates to a human before the next iteration would exceed the remaining budget, rather
+        than looping blind.</p>
+    </div>
+    <div class="panel">
+      <span class="cross tl"></span><span class="cross tr"></span>
+      <span class="cross bl"></span><span class="cross br"></span>
+      <div class="num">03</div>
+      <h3>Two-layer policy</h3>
+      <p>Allocation policy (triage: which tier, which model, how many loops) is separate from
+        execution policy (doing the work). A cheap token spent on triage prevents expensive
+        tokens spent on rework.</p>
+    </div>
+  </div>
+
+  <h2>Why looping multiplies cost</h2>
+  <p>
+    The multiplier tracks a real asymmetry between prefill
+    and decode in how the accelerator does the work, which is what makes output price around
+    5&times; input and a cache read price so far below a fresh input token (see the prefill/decode
+    mechanics and Foundry's cache-pricing regimes on the Tokens page). What that page doesn&rsquo;t
+    cover is what this asymmetry does specifically inside a loop. The part that actually
+    bites is the <strong>KV cache</strong>: during
+    prefill, each layer computes a key/value vector per token so later tokens can attend to
+    earlier ones without recomputing them. That tensor has to be read every decode step, by every
+    token in context, with no sharing across sequences. That&rsquo;s why continuous batching
+    amortizes the model&rsquo;s weights but not this. And because most agent harnesses re-send the
+    entire conversation history on every turn rather than diffing it, that KV traffic compounds
+    with every iteration of the loop. The loop re-pays for everything already said, every time
+    it says something new.
+  </p>
+
+  <h2>What actually happens in a loop</h2>
+  <p>
+    In a single-shot completion, spend is roughly determined by the size of the input. In a loop
+    it isn&rsquo;t: the agent decides how many tokens to spend, and the outcome is
+    undetermined before the run starts. Four scenarios show what that looks like in practice.
+  </p>
+
+  <h3>The clean run</h3>
+  <p>
+    Stable prefix, a handful of turns, no churn: the best case. But the structural fact
+    underneath even the best case is that each turn re-sends the whole history, so uncached input
+    accumulates as <strong>O(N&sup2;)</strong> in turn count. <strong>Forty turns costs roughly
+    sixteen times what ten turns costs on the input side, not four times.</strong> Caching
+    multiplies that curve by 0.1 but does not change its order. Most intuitions about loop cost
+    assume linear growth.
+  </p>
+
+  <div class="illustration">
+    <svg viewBox="0 0 560 300" role="img" aria-labelledby="loop-illust-title loop-illust-desc">
+      <title id="loop-illust-title">Cumulative uncached input grows quadratically with turn count</title>
+      <desc id="loop-illust-desc">A line chart with turns on the x-axis and cumulative uncached input on the y-axis. The curve stays low through 10 turns, then bends sharply upward, reaching roughly sixteen times the 10-turn value by turn 40.</desc>
+      <g font-family="Inter, sans-serif" font-size="12" fill="#3a4152">
+        <!-- axes -->
+        <line x1="40" y1="260" x2="520" y2="260" stroke="#d7dde6" stroke-width="1.5"></line>
+        <line x1="40" y1="260" x2="40" y2="20" stroke="#d7dde6" stroke-width="1.5"></line>
+        <text x="40" y="284" font-size="11" font-weight="600" letter-spacing="0.06em" fill="#8b96a8">TURNS &rarr;</text>
+        <text x="40" y="14" font-size="11" font-weight="600" letter-spacing="0.06em" fill="#8b96a8">CUMULATIVE UNCACHED INPUT &uarr;</text>
+
+        <!-- area under curve -->
+        <path d="M 40,260 L 64,259.4 L 88,257.6 L 112,254.6 L 136,250.4 L 160,245 L 184,238.4 L 208,230.6 L 232,221.6 L 256,211.4 L 280,200 L 304,187.4 L 328,173.6 L 352,158.6 L 376,142.4 L 400,125 L 424,106.4 L 448,86.6 L 472,65.6 L 496,43.4 L 520,20 L 520,260 Z" fill="#7db4e6" opacity="0.16"></path>
+
+        <!-- curve -->
+        <path d="M 40,260 L 64,259.4 L 88,257.6 L 112,254.6 L 136,250.4 L 160,245 L 184,238.4 L 208,230.6 L 232,221.6 L 256,211.4 L 280,200 L 304,187.4 L 328,173.6 L 352,158.6 L 376,142.4 L 400,125 L 424,106.4 L 448,86.6 L 472,65.6 L 496,43.4 L 520,20" fill="none" stroke="#4a7fb5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+
+        <!-- guide lines + markers at turn 10 and turn 40 -->
+        <line x1="160" y1="245" x2="160" y2="260" stroke="#b7cde5" stroke-width="1" stroke-dasharray="3,3"></line>
+        <line x1="520" y1="20" x2="520" y2="260" stroke="#b7cde5" stroke-width="1" stroke-dasharray="3,3"></line>
+        <circle cx="160" cy="245" r="4" fill="#4a7fb5"></circle>
+        <circle cx="520" cy="20" r="4" fill="#131c30"></circle>
+
+        <text x="160" y="278" text-anchor="middle" font-size="11">10 turns</text>
+        <text x="520" y="278" text-anchor="end" font-size="11">40 turns</text>
+        <text x="150" y="240" text-anchor="end" font-weight="700" fill="#4a7fb5">1&times;</text>
+        <text x="500" y="30" text-anchor="end" font-weight="700" fill="#131c30">&asymp;16&times;</text>
+      </g>
+    </svg>
+    <figcaption>Uncached input accumulates as O(N&sup2;) in turn count, not linearly</figcaption>
+  </div>
+
+  <h3>The failed edit</h3>
+  <p>
+    An agent makes a bad change, tests fail, it reads the error and retries. The wasted tokens
+    are not a one-time loss, sunk and forgotten: the failed attempt is now sitting in the
+    context, and on current models so is the reasoning
+    that produced it. Every subsequent turn re-reads that failure at input or cache-read rates,
+    and the same quadratic accumulation applies to the failed work exactly as it does to the
+    successful work.
+  </p>
+  <div class="callout">
+    <span class="cross tl"></span><span class="cross tr"></span>
+    <span class="cross bl"></span><span class="cross br"></span>
+    <div class="eyebrow">THE CAPITALISATION PROBLEM</div>
+    <p>
+      Failed work is not expensed. It is capitalised into the context and charged as rent for the
+      remainder of the session. That&rsquo;s arithmetic, not a behavioral claim: it follows
+      directly from how the loop re-sends history on every turn.
+    </p>
+  </div>
+
+  <h3>The exploratory read</h3>
+  <p>
+    The agent greps, lists, opens files. Every tool result is input the agent chose to incur
+    without knowing its size in advance: reading one large file can inject more tokens
+    than the entire preceding conversation. Two runs of an identical task against differently
+    organized repositories can differ by an order of magnitude in spend with no difference in
+    model, prompt, or outcome.
+  </p>
+
+  <h3>The compaction event</h3>
+  <p>
+    The context window fills and the harness compacts it. Three things happen at once: a large
+    summarization generation billed at output rates, cache invalidation (the next turn writes
+    rather than reads), and lossy information loss that can cause the agent to redo work it has
+    already done. Where the cache keys on an exact prefix, that invalidation is total rather than
+    partial. A compaction is a step function in both cost and risk, and telemetry that only
+    samples averages won&rsquo;t see it coming until it already dominates the bill.
+  </p>
+
+  <details class="go-deeper">
+    <summary>GO DEEPER &mdash; fan-out and the early stop</summary>
+    <div class="go-deeper-body">
+      <p>
+        <strong>Fan-out</strong> (spawning parallel sub-agents) duplicates the prefix (each
+        sub-agent carries its own system prompt and tool definitions), but their transcripts
+        never enter the parent&rsquo;s history; only the returned summaries do. The trade is
+        explicit: N&times; duplicated prefix cost in exchange for keeping the main thread&rsquo;s
+        quadratic term small. Below some task length, fan-out is pure overhead; above it, it&rsquo;s
+        the cheaper topology. Where that crossover sits is an empirical question per harness.
+      </p>
+      <p>
+        <strong>The early stop</strong> cuts both ways: an agent decides for itself when it&rsquo;s
+        done, and that under-determination can either grind past the point of marginal value, or
+        stop at 80% and hand a human the remaining 20%, usually the expensive 20%.
+        Minimizing cost per token and minimizing cost per outcome are different objectives, and
+        beyond a point they&rsquo;re opposed.
+      </p>
+    </div>
+  </details>
+
+  <h2>The iceberg</h2>
+  <div class="callout">
+    <span class="cross tl"></span><span class="cross tr"></span>
+    <span class="cross bl"></span><span class="cross br"></span>
+    <div class="eyebrow">WHERE THE SPEND ACTUALLY GOES</div>
+    <p>
+      What ships (accepted output) is the visible tip. Below the waterline: reasoning tokens,
+      intermediate context per iteration, tool-call results fed back in, discarded-and-regenerated
+      rework, fan-out and cache-write overhead. Most of the spend is submerged.
+    </p>
+  </div>
+
+  <h2>The funnel: how work becomes yield</h2>
+  <p>
+    Getting from agent effort to token yield is a down-select, not a single measurement.
+    Three questions, asked in order: did the agent finish the work on its own? Of what it
+    finished, how much was actually kept? Of what was kept, how much mattered to the
+    outcome? Each question narrows the field &mdash; and multiplying the three answers
+    together, so strength in two dimensions can&rsquo;t hide weakness in the third, is what
+    I call the Agent Efficiency Score.
+  </p>
+
+  <div class="illustration">
+    <svg viewBox="0 0 1200 780" role="img" aria-labelledby="funnel-illust-title funnel-illust-desc">
+      <title id="funnel-illust-title">The funnel from all work started to Agent Efficiency Score</title>
+      <desc id="funnel-illust-desc">An inverted funnel narrowing through three stages: Autonomous Completion Rate at the top (widest), Token Efficiency Ratio in the middle, and Value Generation Ratio at the bottom (narrowest), with an arrow pointing down to the Agent Efficiency Score.</desc>
+      <text x="600" y="40" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="700" letter-spacing="2" fill="#8b96a8">ALL WORK STARTED</text>
+
+      <polygon points="0,70 1200,70 1070.7,230 129.3,230" fill="#7db4e6"></polygon>
+      <text x="600" y="116.88" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" font-weight="700" letter-spacing="2.5" fill="#1a2438">ACR</text>
+      <text x="600" y="169.32" text-anchor="middle" font-family="Inter, sans-serif" font-size="46" font-weight="700" fill="#131c30">Autonomous Completion Rate</text>
+
+      <polygon points="145.4,250 1054.6,250 925.3,410 274.7,410" fill="#4a7fb5"></polygon>
+      <text x="600" y="299.76" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" font-weight="700" letter-spacing="2.5" fill="rgba(253,253,253,0.75)">TER</text>
+      <text x="600" y="347.64" text-anchor="middle" font-family="Inter, sans-serif" font-size="42" font-weight="700" fill="#fdfdfd">Token Efficiency Ratio</text>
+
+      <polygon points="290.8,430 909.2,430 780,590 420,590" fill="#131c30"></polygon>
+      <text x="600" y="482.64" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" font-weight="700" letter-spacing="2.5" fill="rgba(253,253,253,0.75)">VGR</text>
+      <text x="600" y="525.96" text-anchor="middle" font-family="Inter, sans-serif" font-size="38" font-weight="700" fill="#fdfdfd">Value Generation Ratio</text>
+
+      <text x="600" y="660" text-anchor="middle" font-family="Inter, sans-serif" font-size="48" font-weight="700" fill="#4a7fb5">&darr;</text>
+      <text x="600" y="705" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" font-weight="700" letter-spacing="2.5" fill="#4a7fb5">AES</text>
+      <text x="600" y="750" text-anchor="middle" font-family="Inter, sans-serif" font-size="52" font-weight="700" fill="#171a1f">Agent Efficiency Score</text>
+    </svg>
+    <figcaption>Three down-select questions, multiplied into one score</figcaption>
+  </div>
+
+  <p>
+    Each stage above is a question in plain language. Below are the same three stages as
+    precise, measurable ratios &mdash; what each one counts, and the fourth,
+    multiplicative measure they produce together.
+  </p>
+
+  <div class="callout">
+    <span class="cross tl"></span><span class="cross tr"></span>
+    <span class="cross bl"></span><span class="cross br"></span>
+    <div class="eyebrow">ILLUSTRATIVE TARGETS, NOT YET VALIDATED</div>
+    <p>
+      The numeric targets below carry over from my own earlier drafts of this framework as
+      directional guidance, not as thresholds derived from production outcome data. What
+      counts as a normal TER or AES in practice is still open: my own working numbers are
+      not yet measured against production outcomes. Treat them as a starting point for
+      instrumentation, not a pass/fail bar to report against today.
+    </p>
+  </div>
+
+  <div class="panel-row">
+    <div class="panel">
+      <span class="cross tl"></span><span class="cross tr"></span>
+      <span class="cross bl"></span><span class="cross br"></span>
+      <div class="num">01</div>
+      <h3>Autonomous Completion Rate (ACR)</h3>
+      <p><code>ACR = completed autonomously / started</code></p>
+      <p>What fraction of work finished without a human bailout or escalation. Low ACR means the
+        agent is technically "working," but a person is quietly doing the last mile on most
+        items.</p>
+    </div>
+    <div class="panel">
+      <span class="cross tl"></span><span class="cross tr"></span>
+      <span class="cross bl"></span><span class="cross br"></span>
+      <div class="num">02</div>
+      <h3>Token Efficiency Ratio (TER)</h3>
+      <p><code>TER = accepted / total spend &middot; illustrative target &ge; 0.70</code></p>
+      <p>What fraction of spend produced output that was kept, not reworked or discarded.
+        Below 0.70 would indicate more than 30% of capacity going to rework (a candidate
+        reading, not a validated one).</p>
+    </div>
+    <div class="panel">
+      <span class="cross tl"></span><span class="cross tr"></span>
+      <span class="cross bl"></span><span class="cross br"></span>
+      <div class="num">03</div>
+      <h3>Value Generation Ratio (VGR)</h3>
+      <p><code>VGR = value-generating / accepted</code></p>
+      <p>Of what you kept, how much actually mattered to the customer&rsquo;s outcome. Accepted
+        output can still be low-value: VGR catches the difference between "shipped" and
+        "worth shipping," which is why token yield is defined against AES rather than raw
+        acceptance (see the hub page).</p>
+    </div>
+    <div class="panel">
+      <span class="cross tl"></span><span class="cross tr"></span>
+      <span class="cross bl"></span><span class="cross br"></span>
+      <div class="num">04</div>
+      <h3>Agent Efficiency Score (AES)</h3>
+      <p><code>AES = TER &times; VGR &times; ACR &middot; illustrative target &ge; 0.50</code></p>
+      <p>The composite is multiplied, not averaged, so it&rsquo;s the site's formal name for
+        "token yield." Below 0.35 would signal a structural problem rather than something a
+        tuning pass fixes (again, a directional reading pending validation).</p>
+    </div>
+  </div>
+
+  <h2>Accountability: what happens when the loop hits its limit</h2>
+  <p>
+    The safety valve and two-layer policy above (panels 02 and 03) aren&rsquo;t just cost
+    controls: they&rsquo;re the mechanism the governance argument here rests
+    on. When the monotonic cost detector fires, the loop doesn&rsquo;t fail silently and it
+    doesn&rsquo;t keep going on the assumption a human will notice eventually: it stops before
+    the next iteration would exceed budget, and hands a human reviewer the accumulated state
+    (what&rsquo;s been tried, what failed, current spend against remaining budget)
+    rather than a bare "over budget" alert with no context to act on.
+  </p>
+  <p>
+    The same discipline applies to every iteration, not just the ones that trip the safety valve.
+    Each pass through the loop produces an accept/reject decision (was that iteration&rsquo;s
+    output kept, or discarded and reworked) and that decision is what TER is
+    counting. Recorded per iteration rather than inferred after the fact from a final diff, it
+    becomes a literal, timestamped ledger of what was tried, what was kept, and why, not just a
+    single aggregate ratio.
+  </p>
+
+  <div class="callout">
+    <span class="cross tl"></span><span class="cross tr"></span>
+    <span class="cross bl"></span><span class="cross br"></span>
+    <div class="eyebrow">WHAT THE AUDIT TRAIL ATTRIBUTES</div>
+    <p>
+      Because spend is metered per task through the billing and usage telemetry on the platform
+      surfaces covered on the previous page (Copilot, Azure OpenAI, Claude on Foundry), the
+      accept/reject ledger and the escalation record above are attributable at the task-class
+      level, not only as one site-wide average. That's what lets an oversight review ask "which
+      class of work has poor ACR or TER" and act on that class specifically, rather than reading
+      a single blended number and guessing where the problem sits.
+    </p>
+  </div>
+  <p>
+    This describes the escalation and audit-trail mechanism as specified in the project's design,
+    not a claim that any specific deployment already logs, retains, or surfaces this data in a
+    given tool. Retention policy and dashboarding for this ledger are deployment decisions
+    this page doesn't prescribe.
+  </p>
+
+  <h3>Sources</h3>
+  <ul class="citation-list">
+    <li><span class="cite-num">1</span><span>Bai et al. &mdash; 30&times; run-to-run cost variance under a fixed architecture, consistent with the scenario variance described above &mdash; <a href="https://arxiv.org/abs/2604.22750" target="_blank" rel="noopener">arXiv:2604.22750</a></span></li>
+    <li><span class="cite-num">2</span><span>Rutgers &mdash; ~7&times; error rate on contaminated context, and ~21% more tasks resolved simply by clearing it, consistent with the capitalisation problem described above &mdash; <a href="https://arxiv.org/abs/2605.08563" target="_blank" rel="noopener">arXiv:2605.08563</a></span></li>
+  </ul>
+
+</main>
+
+<nav class="article-nav">
+  <a href="page-2-tokens.html">&larr; Tokens &amp; the Price You Can&rsquo;t See</a>
+  <a href="page-4-reframe.html">The Reframe &rarr;</a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tokens &amp; the Price You Can't See — Token Yield Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/slides.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="site-nav-home" href="index.html">Token Yield Hub</a>
+  <a class="site-nav-cta" href="contact.html">Get in Touch</a>
+</nav>
+
+<header class="article-hero">
+  <div class="article-hero-top">
+    <div class="eyebrow">SEGMENT 1 · FUNDAMENTALS I</div>
+    <div class="status-tag">TOKENS &amp; PRICING</div>
+  </div>
+  <div class="inner">
+    <h1>Tokens &amp; the Price You Can&rsquo;t See</h1>
+    <blockquote class="claim">&ldquo;A token is not a token. Five types, five prices, and the most expensive ones are invisible.&rdquo;</blockquote>
+    <p class="subhead">
+      Counting tokens tells you nothing about cost. What the meter actually charges depends
+      on which of several priced classes a token falls into, which surface it's billed
+      through, and a set of deployment choices made before a single token is spent.
+    </p>
+  </div>
+</header>
+
+<main class="article-body">
+
+  <h2>Three surfaces, three billing units</h2>
+  <p>
+    Enterprise AI spend today runs through three metered surfaces a large organization
+    typically uses at once: <strong>GitHub Copilot</strong> (billed in AI Credits, 1 credit = $0.01),
+    <strong>Microsoft Foundry&rsquo;s Azure OpenAI models</strong> (billed in USD per million
+    tokens), and <strong>Microsoft Foundry&rsquo;s Claude models</strong> (billed in Claude
+    Consumption Units, 100 CCU = $1.00). All three ultimately resolve to the same underlying
+    commodity (a priced token), but the credit and CCU wrappers exist for
+    marketplace invoicing, not economics, and nothing reconciles them automatically. A cost
+    model that treats these as one number is already wrong before it accounts for a single
+    token class.
+  </p>
+
+  <h2>Five classes, five prices</h2>
+  <p>
+    Every model call bills across up to five distinct token types (input, reasoning,
+    output, cache-write, cache-read), each priced independently, and priced differently
+    again by model tier. Two patterns hold across the catalogue: <strong>cached input prices
+    consistently around 0.1&times; base input</strong> on every vendor except Grok (0.25&times;),
+    and <strong>cache write prices around 1.25&times; base input</strong>, but only on the
+    newest model families &mdash; older models carry no cache-write charge at all. Long-context
+    tiering (roughly doubling the input rate above a 200K&ndash;272K token threshold) applies
+    to GPT, Gemini and Grok models, but not to Anthropic&rsquo;s.
+  </p>
+
+  <div class="illustration">
+    <svg viewBox="0 0 560 230" role="img" aria-labelledby="tok-illust-title tok-illust-desc">
+      <title id="tok-illust-title">Relative token price by class</title>
+      <desc id="tok-illust-desc">A horizontal bar chart showing cached input at 0.1x, base input at 1x, cache write at 1.25x, and output at roughly 5x the base input price.</desc>
+      <g font-family="Inter, sans-serif" font-size="13" fill="#3a4152">
+        <text x="0" y="20">Cached input</text>
+        <rect x="140" y="6" width="8" height="18" fill="#dfe6f0"></rect>
+        <text x="156" y="20" font-weight="700">0.1&times;</text>
+
+        <text x="0" y="70">Base input</text>
+        <rect x="140" y="56" width="80" height="18" fill="#7db4e6"></rect>
+        <text x="228" y="70" font-weight="700">1&times;</text>
+
+        <text x="0" y="120">Cache write</text>
+        <rect x="140" y="106" width="100" height="18" fill="#4a7fb5"></rect>
+        <text x="248" y="120" font-weight="700">1.25&times;</text>
+
+        <text x="0" y="170">Output</text>
+        <rect x="140" y="156" width="400" height="18" fill="#131c30"></rect>
+        <text x="528" y="170" font-weight="700" text-anchor="end" fill="#fdfdfd">5&times;</text>
+      </g>
+    </svg>
+    <figcaption>Approximate price per token, relative to base input &mdash; directional, not a quoted rate</figcaption>
+  </div>
+
+  <div class="callout">
+    <span class="cross tl"></span><span class="cross tr"></span>
+    <span class="cross bl"></span><span class="cross br"></span>
+    <div class="eyebrow">THE HIDDEN LINE ITEM</div>
+    <p>
+      Reasoning tokens (chain-of-thought / extended-thinking content) are billed
+      at the full output rate but never shown in the visible response. This is the single
+      biggest cost most teams don&rsquo;t know they&rsquo;re paying, and it doesn&rsquo;t stay
+      put: on current-generation Claude models, a reasoning token bills as output when
+      generated, then as ordinary input on every later turn it survives in context, then at
+      the cache-read rate if it's ever read back from cache. A single semantic token can carry up
+      to four different prices, set by model choice and harness design rather than by anything
+      the user did.
+    </p>
+  </div>
+
+  <h2>The real cost formula</h2>
+  <p>
+    Cost is a sum across all five token classes and every model tier used in a pipeline,
+    not <code class="formula">token count &times; one price</code>. A single call already
+    carries five moving cost parts; an agentic task can make 10&ndash;200+ calls, each one
+    repeating that same structure. This is the first thing a real cost model has to formalize,
+    and it's why a vendor's single "total spend" line hides exactly the structure you'd need to
+    optimize it.
+  </p>
+
+  <details class="go-deeper">
+    <summary>GO DEEPER &mdash; Foundry runs two different cache-pricing regimes at once</summary>
+    <div class="go-deeper-body">
+      <p>
+        Claude on Microsoft Foundry prices cache writes by <em>retention duration</em>:
+        1.25&times; base input for a 5-minute write, 2&times; for a 1-hour write. Azure OpenAI
+        charges the same cache-write price regardless of retention, with retention set as a
+        separate deployment parameter. A FinOps model that assumes one cache economics across
+        a mixed Foundry estate will misprice half of it. Retention pricing exists because a
+        longer hold is rent on scarce accelerator memory, not extra compute &mdash; the
+        underlying operation is identical either way.
+      </p>
+      <p>
+        Underneath all of this, the multipliers track physically different resources rather
+        than being arbitrary: <strong>prefill</strong> (processing a prompt) runs the
+        accelerator near peak because every token is available at once; <strong>decode</strong>
+        (generating one token at a time) is memory-bandwidth bound by roughly two orders of
+        magnitude, because producing each token means streaming the whole model's weights out
+        of memory again. That asymmetry is why output prices sit around 5&times; input rather than
+        something far worse (continuous batching lets many sequences share one pass over
+        the weights), and why a cache read, which skips prefill entirely, is priced so far
+        below a fresh input token.
+      </p>
+    </div>
+  </details>
+
+  <div class="callout">
+    <span class="cross tl"></span><span class="cross tr"></span>
+    <span class="cross bl"></span><span class="cross br"></span>
+    <div class="eyebrow">RATES MOVE FASTER THAN THIS PAGE</div>
+    <p>
+      Every figure above was checked against Microsoft, GitHub and Anthropic documentation as
+      of <strong>27 August 2026</strong>. Pricing increases for EU Data Zone and non-US
+      regional deployments take effect <strong>1 September 2026</strong>. Treat every rate,
+      multiplier and threshold here as directional, not a quoted price — verify current
+      figures in the Azure pricing calculator before relying on them.
+    </p>
+  </div>
+
+  <p>
+    These three surfaces (Copilot, Azure OpenAI, and Claude on Foundry) aren&rsquo;t
+    only where spend happens; they&rsquo;re also where it's <em>seen</em>. Each one's billing
+    and usage telemetry is what makes per-task-class cost accounting possible in the first
+    place, which is the same telemetry surface that downstream accountability and governance
+    controls run on &mdash; covered on the Agentic Loop page and closed out on the final page.
+  </p>
+
+  <h3>Sources</h3>
+  <ul class="citation-list">
+    <li><span class="cite-num">1</span><span>Azure OpenAI pricing — <a href="https://azure.microsoft.com/en-us/pricing/details/azure-openai/" target="_blank" rel="noopener">azure.microsoft.com/en-us/pricing/details/azure-openai</a></span></li>
+    <li><span class="cite-num">2</span><span>Prompt caching with Azure OpenAI in Microsoft Foundry Models — <a href="https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/prompt-caching" target="_blank" rel="noopener">learn.microsoft.com</a></span></li>
+    <li><span class="cite-num">3</span><span>Claude models in Microsoft Foundry — <a href="https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/claude-models" target="_blank" rel="noopener">learn.microsoft.com</a></span></li>
+    <li><span class="cite-num">4</span><span>GitHub Copilot models and pricing — <a href="https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing" target="_blank" rel="noopener">docs.github.com</a></span></li>
+  </ul>
+</main>
+
+<nav class="article-nav">
+  <a href="page-1-macro-hook.html">&larr; Macro Hook</a>
+  <a href="page-3-agentic-loop.html">The Agentic Loop &rarr;</a>
+</nav>
+
+</body>
+</html>
