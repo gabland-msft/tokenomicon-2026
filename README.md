@@ -1,7 +1,11 @@
-# hello-pages-spike
+# Token Yield Hub
 
-Public GitHub Pages site. Nothing reaches the live site without going through the
-promotion gate below.
+Landing page for the talk "Unit Economics and the Limits of Cost-Based AI Governance"
+at Tokenomicon + FinOps X Amsterdam. Live at
+https://gabland-msft.github.io/tokenomicon-2026/ (aka.ms/tokenomicon-2026). Personal
+site — views and analysis are the author's own, not Microsoft's.
+
+Nothing reaches the live site without going through the promotion gate below.
 
 ## Structure
 
@@ -9,12 +13,12 @@ promotion gate below.
 - **`prod`** — the only branch GitHub Pages deploys from. Protected: no direct pushes
   or force-pushes, only merges via a pull request that has passed the `content-check`
   CI workflow (`.github/workflows/content-check.yml`).
-- Draft/local work happens in the separate private repo `hello-pages-spike-drafts`,
-  never in this one, until it's ready to promote.
+- Content is drafted and reviewed privately, never directly in this repo, until it's
+  ready to promote.
 
 ## Promotion flow
 
-1. Finish and review content in `hello-pages-spike-drafts` (private, local-only).
+1. Finish and review content privately.
 2. Copy the finished files into a new branch of this repo, off `prod`.
 3. Open a PR into `prod`.
 4. `content-check` runs automatically: gitleaks generic secret scan, plus a denylist
