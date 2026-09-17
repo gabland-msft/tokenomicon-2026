@@ -3,7 +3,8 @@
 Landing page for the talk "Unit Economics and the Limits of Cost-Based AI Governance"
 at Tokenomicon + FinOps X Amsterdam. Live at
 https://gabland-msft.github.io/tokenomicon-2026/ (aka.ms/tokenomicon-2026). Personal
-site — views and analysis are the author's own, not Microsoft's.
+site — views and analysis are the author's own, not Microsoft's. Built with AI
+assistance; the ideas and the thinking behind them are the author's own.
 
 Nothing reaches the live site without going through the promotion gate below.
 
