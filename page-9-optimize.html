@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Optimize — Token Yield Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/slides.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="site-nav-home" href="index.html">Token Yield Hub</a>
+  <a class="site-nav-cta" href="contact.html">Get in Touch</a>
+</nav>
+
+<header class="article-hero">
+  <div class="article-hero-top">
+    <div class="eyebrow">SEGMENT 9 · OPTIMIZE</div>
+    <div class="status-tag">PART C · RUN IT</div>
+  </div>
+  <div class="inner">
+    <h1>More Outcomes per Dollar</h1>
+    <blockquote class="claim">&ldquo;Optimizing agentic work means more accepted outcomes for each dollar spent. Fewer tokens is sometimes the route there, and sometimes the way to miss it.&rdquo;</blockquote>
+    <p class="subhead">
+      With spend attributed and signals owned, the next step is to change things. The order you
+      change them in, and how you check each change, decides whether yield goes up or only the
+      bill goes down.
+    </p>
+  </div>
+</header>
+
+<main class="article-body">
+
+  <h2>The wrong scoreboard</h2>
+  <p>
+    The easiest number to improve is token count. Shorter prompts, a smaller model, a lower cap
+    on retries: each reduces spend immediately and shows up on the next report. None of them
+    says anything about whether the work still gets done. The Reframe page gave the failure
+    case: a model 40% cheaper per token that converts at half the rate leaves you paying more
+    per accepted outcome than before.
+  </p>
+  <p>
+    The scoreboard for this stage is accepted outcomes per dollar, per task class, before and
+    after a change. In the terms used across this hub, that is AES set against spend. If a change
+    lowers spend and AES holds, it is a saving. If it lowers spend and AES falls further, it is
+    a loss that happens to look good on the invoice.
+  </p>
+
+  <h2>A ladder of levers</h2>
+  <p>
+    The levers available are familiar engineering practice. What is less familiar is ordering
+    them by effect on yield rather than by ease. The order below is my proposal, reasoned from
+    the earlier pages rather than measured across workloads.
+  </p>
+  <ol>
+    <li><strong>Stop work that does not convert.</strong> The cheapest token is the one spent
+      on a task class you decided not to run. If a class sits below its yield floor and the
+      Manage signals call it a yield event, pausing it beats tuning it.</li>
+    <li><strong>Fix the loop.</strong> Stop rules, context hygiene, cleaner tool outputs and
+      sub-agents that return summaries rather than transcripts. This changes how many
+      iterations a task needs and how much each one carries. One published result found a 41%
+      cost reduction from harness changes alone, with no change of model.</li>
+    <li><strong>Cache the stable prefix.</strong> Keep system instructions and tool
+      definitions fixed in order and content so that repeated input is billed at the cached
+      rate. This lowers price without touching what the model sees.</li>
+    <li><strong>Route by task class.</strong> Send each class to the cheapest model tier that
+      holds its yield, using the Value of a Token test to decide when an upgrade is worth it.</li>
+    <li><strong>Batch what can wait.</strong> Work that does not need an answer in seconds can
+      often run asynchronously at a lower rate.</li>
+    <li><strong>Set quotas and negotiate rates.</strong> Useful, and the furthest from yield.
+      These change what each token costs and nothing about what it produces.</li>
+  </ol>
+  <p>
+    The top of the ladder acts on yield risk. The bottom acts on price risk. Teams under cost
+    pressure tend to start at the bottom because those levers need no change to the work. That is
+    why they so often produce a smaller bill and an unchanged yield.
+  </p>
+
+  <figure class="illustration"><img src="assets/part-c/fig-c7-lever-ladder.svg" alt="Six levers ordered from acting on yield to acting on price" style="width:100%;height:auto;max-width:760px;"><figcaption>The lever ladder, ordered by proposed effect on yield. Ordering illustrative, not measured</figcaption></figure>
+
+  <h2>One lever, one class, one comparison</h2>
+  <p>
+    Each change should be small enough that its effect can be read. Pick one task class, pull
+    one lever, and compare yield per dollar for that class over a period long enough to cover
+    its normal variation. Changing three things at once across all classes produces a number
+    nobody can explain, and the Review stage will have nothing to decide with.
+  </p>
+
+  <h2>The first 30 days</h2>
+  <p>
+    For a team starting from an invoice and nothing else, a month is enough to complete one turn
+    of the loop on a small scale.
+  </p>
+  <ul>
+    <li><strong>Week 1.</strong> Add attribution tags to every call. Pick two or three task
+      classes and write a baseline card for each.</li>
+    <li><strong>Week 2.</strong> Read the token mix and the accept/reject record per class.
+      Find the class with the lowest yield per dollar.</li>
+    <li><strong>Week 3.</strong> Apply one lever to that class, starting as high on the ladder
+      as you can.</li>
+    <li><strong>Week 4.</strong> Compare yield per dollar against the baseline card and write
+      the result down, whichever way it went. That record is the input to Review.</li>
+  </ul>
+
+  <figure class="illustration"><img src="assets/part-c/fig-c8-first-30-days.svg" alt="Four weeks: tag, find, pull one lever, compare" style="width:100%;height:auto;max-width:960px;"><figcaption>The first 30 days: one small turn of the loop</figcaption></figure>
+
+  <div class="callout">
+    <span class="cross tl"></span><span class="cross tr"></span>
+    <span class="cross bl"></span><span class="cross br"></span>
+    <div class="eyebrow">DO NOT OPTIMIZE THE WEAKEST LINK AWAY</div>
+    <p>
+      The Instruments page described quality as an O-ring: adoption tips on the worst-covered
+      piece of work, not the average. A saving that thins out review or test effort on the one
+      story that was already weakest can lower spend and collapse adoption at the same time.
+      Cut gold-plating, where the quality curve has flattened, and protect spend in the
+      leverage zone, where it is steep.
+    </p>
+  </div>
+
+  <details class="go-deeper">
+    <summary>GO DEEPER: why the order puts price levers last</summary>
+    <div class="go-deeper-body">
+      <p>
+        A price lever scales every token by the same factor, so its best case is a
+        proportional saving on spend that was already converting at whatever rate it converted
+        at. A yield lever changes the conversion rate itself: fewer iterations rejected, fewer
+        tasks handed back to a human, less output that ships and goes unused. Because AES is a
+        product of three ratios, a modest improvement in the weakest ratio can move it more
+        than a large discount moves spend. That argument is arithmetic about the structure of the
+        measure. <strong>Specified, not yet measured</strong>: how large the effect is for a
+        given task class is an empirical question.
+      </p>
+    </div>
+  </details>
+
+  <h3>Sources</h3>
+  <ul class="citation-list">
+    <li><span class="cite-num">1</span><span>Ali et al. &ndash; 41% cost reduction from harness-layer optimization alone, no model change &ndash; <a href="https://arxiv.org/abs/2607.06906" target="_blank" rel="noopener">arXiv:2607.06906</a></span></li>
+    <li><span class="cite-num">2</span><span>FinOps Foundation, FinOps Framework (rate optimization and workload optimization capabilities) &ndash; <a href="https://www.finops.org/framework/" target="_blank" rel="noopener">finops.org/framework</a></span></li>
+  </ul>
+</main>
+
+<nav class="article-nav">
+  <a href="page-8-manage.html">&larr; Manage</a>
+  <a href="page-10-review.html">Review &rarr;</a>
+</nav>
+
+</body>
+</html>

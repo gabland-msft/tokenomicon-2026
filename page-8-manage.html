@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manage — Token Yield Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/slides.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="site-nav-home" href="index.html">Token Yield Hub</a>
+  <a class="site-nav-cta" href="contact.html">Get in Touch</a>
+</nav>
+
+<header class="article-hero">
+  <div class="article-hero-top">
+    <div class="eyebrow">SEGMENT 8 · MANAGE</div>
+    <div class="status-tag">PART C · RUN IT</div>
+  </div>
+  <div class="inner">
+    <h1>Every Token Belongs to Someone</h1>
+    <blockquote class="claim">&ldquo;An invoice tells you what was charged. It cannot tell you what was produced, so you cannot compute yield from it.&rdquo;</blockquote>
+    <p class="subhead">
+      Managing agentic spend means attributing it while it happens: to a task, a task class and
+      a person, with enough detail to tell a price problem from a yield problem.
+    </p>
+  </div>
+</header>
+
+<main class="article-body">
+
+  <h2>Why the invoice is the wrong starting point</h2>
+  <p>
+    The monthly bill is the most reliable number most teams have, and it is the least useful one
+    for running agentic work. It aggregates by account, model and day. Yield is defined per unit
+    of work: was this task finished, was its output kept, did it matter. Those questions have
+    answers only at the level where a specific run produced a specific result. By the time spend
+    reaches an invoice, the link back to that result has usually been lost.
+  </p>
+  <p>
+    The fix is not a better invoice. It is attaching ownership to spend at the moment it occurs,
+    so that every token carries enough context to be traced back to the work it served.
+  </p>
+
+  <h2>The attribution chain</h2>
+  <p>
+    The chain runs from the smallest unit of cost to the person accountable for it. A
+    <strong>token</strong> is consumed by a <strong>call</strong> to a model. Calls make up an
+    <strong>iteration</strong> of the loop. Iterations make up a <strong>task</strong>. Tasks
+    that recur belong to a <strong>task class</strong>, and each task class has an
+    <strong>owner</strong>. If any link is missing, the chain breaks above it: spend you cannot
+    tie to a task cannot be tied to an outcome, and spend you cannot tie to a task class has
+    nobody to act on it.
+  </p>
+  <p>
+    In practice that means a small set of identifiers travelling with every call: a task ID, a
+    task-class label and an owner. This is ordinary cost-allocation practice, the same tagging
+    discipline cloud teams already apply to infrastructure. The FOCUS specification gives
+    billing data a common shape so that tags like these survive the journey from usage record to
+    cost report. What is particular to agentic work is the grain. Tagging a deployment is not
+    enough when a single deployment serves dozens of task classes with very different yields.
+  </p>
+
+  <figure class="illustration"><img src="assets/part-c/fig-c3-attribution-chain.svg" alt="Attribution chain from token to owner" style="width:100%;height:auto;max-width:960px;"><figcaption>Token to call to iteration to task to task class to owner</figcaption></figure>
+
+  <h2>Telemetry in tiers</h2>
+  <p>
+    Not all telemetry is equally easy to collect, and it helps to treat it as nested tiers, each
+    one depending on the one inside it.
+  </p>
+  <ol>
+    <li><strong>Billing.</strong> What was charged, by account and model. Available everywhere,
+      and enough for price risk only.</li>
+    <li><strong>Usage per call.</strong> Token counts by class (fresh input, cached input,
+      output, tool results), the model tier used and the attribution tags. This is where the
+      token mix from the Reframe page becomes readable.</li>
+    <li><strong>Decisions per iteration.</strong> Whether each iteration&rsquo;s output was
+      accepted or rejected, recorded when it happens rather than inferred later. This is what
+      TER counts.</li>
+    <li><strong>Outcomes per task.</strong> Whether the task finished without a human taking
+      over and whether its output was used downstream. This is where ACR and VGR come from, and
+      it often arrives days or weeks after the spend.</li>
+  </ol>
+  <p>
+    Yield needs the outer tiers. Most teams have only the first. Building outward one tier at a
+    time is a reasonable sequence, as long as the attribution tags are in place from the start,
+    because tags added later cannot be applied to spend that has already happened.
+  </p>
+
+  <figure class="illustration"><img src="assets/part-c/fig-c4-telemetry-tiers.svg" alt="Four nested telemetry tiers, billing innermost and outcomes outermost" style="width:100%;height:auto;max-width:860px;"><figcaption>Telemetry tiers nested from billing out to outcomes. The outer tier arrives late and is only partly visible</figcaption></figure>
+
+  <h2>Signals with owners</h2>
+  <p>
+    Attribution is only worth the effort if someone acts on what it shows. Each signal needs a
+    threshold that triggers attention and a named owner who knows the first move. The table below
+    is a starting shape, not a recommended configuration.
+  </p>
+
+  <figure class="illustration"><img src="assets/part-c/fig-c5-decision-table.svg" alt="Decision table of signals, thresholds and owners" style="width:100%;height:auto;max-width:820px;"><figcaption>Signal, threshold, owner. Thresholds illustrative</figcaption></figure>
+
+  <div class="callout">
+    <span class="cross tl"></span><span class="cross tr"></span>
+    <span class="cross bl"></span><span class="cross br"></span>
+    <div class="eyebrow">THE DIAGNOSTIC RULE</div>
+    <p>
+      When cost per task class spikes, look at yield for the same class over the same period.
+      <strong>A cost spike with high yield is a price event</strong>: the work is still
+      converting, it just costs more, so look at rates, model routing, token mix and cache
+      behaviour. <strong>A cost spike with low yield is a yield event</strong>: the loop is
+      spending more and keeping less, so look at rejection reasons, retries, stop rules and the
+      task definition.
+    </p>
+  </div>
+
+  <figure class="illustration"><img src="assets/part-c/fig-c6-price-vs-yield-event.svg" alt="Price event versus yield event" style="width:100%;height:auto;max-width:760px;"><figcaption>Same cost spike, two diagnoses: read yield before deciding who acts</figcaption></figure>
+
+  <p>
+    The rule matters because the two events have different owners and different fixes. A price
+    event usually belongs to whoever manages the platform and its commercial terms. A yield event
+    belongs to the owner of the task class. Sending a yield event to the platform team produces
+    a cheaper model and a worse result, which is the failure the Reframe page describes. Sending
+    a price event to the task-class owner produces a rewrite of work that was functioning.
+  </p>
+  <p>
+    Some illustrative rows: cost per task up by more than a set share week on week, with yield
+    flat or rising, goes to the platform owner as a price event. The same cost rise with yield
+    falling goes to the task-class owner as a yield event. A falling share of cached input,
+    on the Reframe page&rsquo;s reading, suggests the stable prefix is churning and goes to
+    whoever maintains the harness. A falling completion rate means more runs ending in human
+    takeover and goes back to the task-class owner to check scope. Spend running ahead of the
+    plan&rsquo;s value milestones is the situation &mu; is designed to flag, and goes to the
+    budget owner.
+  </p>
+  <p>
+    <strong>Claim status.</strong> None of these thresholds has been fitted to outcome data. The
+    rule itself follows from keeping price risk and yield risk separate. The numbers that would
+    make it fire at the right moment are still to be measured.
+  </p>
+
+  <h3>Sources</h3>
+  <ul class="citation-list">
+    <li><span class="cite-num">1</span><span>FinOps Foundation, FinOps Framework (allocation capability) &ndash; <a href="https://www.finops.org/framework/" target="_blank" rel="noopener">finops.org/framework</a></span></li>
+    <li><span class="cite-num">2</span><span>FinOps Open Cost and Usage Specification (FOCUS) &ndash; <a href="https://focus.finops.org/" target="_blank" rel="noopener">focus.finops.org</a></span></li>
+  </ul>
+</main>
+
+<nav class="article-nav">
+  <a href="page-7-plan.html">&larr; Plan</a>
+  <a href="page-9-optimize.html">Optimize &rarr;</a>
+</nav>
+
+</body>
+</html>

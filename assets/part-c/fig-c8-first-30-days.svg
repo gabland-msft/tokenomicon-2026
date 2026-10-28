@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 210" width="1200" height="210" role="img" aria-labelledby="fig-c8-first-30-days-title fig-c8-first-30-days-desc">
+<title id="fig-c8-first-30-days-title">The first 30 days</title>
+<desc id="fig-c8-first-30-days-desc">Four weeks in sequence. Week 1: tag every call and write baseline cards. Week 2: find the lowest yield per dollar. Week 3: pull one lever on that class. Week 4: compare to the baseline card and write the result down.</desc>
+<defs>
+<marker id="fig-c8-first-30-days-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4a7fb5"/></marker>
+<marker id="fig-c8-first-30-days-arrow-m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8b96a8"/></marker>
+</defs>
+<rect width="1200" height="210" fill="#fdfdfd"/>
+<rect x="40" y="30" width="250" height="150" rx="0" fill="#fdfdfd" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M34 30H46M40 24V36" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M284 30H296M290 24V36" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M34 180H46M40 174V186" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M284 180H296M290 174V186" stroke="#d7dde6" stroke-width="1.5"/>
+<text x="66" y="74" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#4a7fb5" text-anchor="start" letter-spacing="3">WEEK 1</text>
+<text x="66" y="114" font-family="Inter, sans-serif" font-size="20" font-weight="500" fill="#1a2438" text-anchor="start">Tag every call,</text>
+<text x="66" y="142" font-family="Inter, sans-serif" font-size="20" font-weight="500" fill="#1a2438" text-anchor="start">write baseline cards</text>
+<path d="M296 105.0H322" stroke="#4a7fb5" stroke-width="3" marker-end="url(#fig-c8-first-30-days-arrow)"/>
+<rect x="330" y="30" width="250" height="150" rx="0" fill="#fdfdfd" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M324 30H336M330 24V36" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M574 30H586M580 24V36" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M324 180H336M330 174V186" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M574 180H586M580 174V186" stroke="#d7dde6" stroke-width="1.5"/>
+<text x="356" y="74" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#4a7fb5" text-anchor="start" letter-spacing="3">WEEK 2</text>
+<text x="356" y="114" font-family="Inter, sans-serif" font-size="20" font-weight="500" fill="#1a2438" text-anchor="start">Find the lowest</text>
+<text x="356" y="142" font-family="Inter, sans-serif" font-size="20" font-weight="500" fill="#1a2438" text-anchor="start">yield per dollar</text>
+<path d="M586 105.0H612" stroke="#4a7fb5" stroke-width="3" marker-end="url(#fig-c8-first-30-days-arrow)"/>
+<rect x="620" y="30" width="250" height="150" rx="0" fill="#fdfdfd" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M614 30H626M620 24V36" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M864 30H876M870 24V36" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M614 180H626M620 174V186" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M864 180H876M870 174V186" stroke="#d7dde6" stroke-width="1.5"/>
+<text x="646" y="74" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#4a7fb5" text-anchor="start" letter-spacing="3">WEEK 3</text>
+<text x="646" y="114" font-family="Inter, sans-serif" font-size="20" font-weight="500" fill="#1a2438" text-anchor="start">Pull one lever</text>
+<text x="646" y="142" font-family="Inter, sans-serif" font-size="20" font-weight="500" fill="#1a2438" text-anchor="start">on that class</text>
+<path d="M876 105.0H902" stroke="#4a7fb5" stroke-width="3" marker-end="url(#fig-c8-first-30-days-arrow)"/>
+<rect x="910" y="30" width="250" height="150" rx="0" fill="#e8f1fb" stroke="#4a7fb5" stroke-width="2"/>
+<path d="M904 30H916M910 24V36" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M1154 30H1166M1160 24V36" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M904 180H916M910 174V186" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M1154 180H1166M1160 174V186" stroke="#c7dcf1" stroke-width="1.5"/>
+<text x="936" y="74" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#4a7fb5" text-anchor="start" letter-spacing="3">WEEK 4</text>
+<text x="936" y="114" font-family="Inter, sans-serif" font-size="20" font-weight="500" fill="#1a2438" text-anchor="start">Compare to the card</text>
+<text x="936" y="142" font-family="Inter, sans-serif" font-size="20" font-weight="500" fill="#1a2438" text-anchor="start">and write it down</text>
+</svg>

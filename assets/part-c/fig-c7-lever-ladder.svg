@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 970 452" width="970" height="452" role="img" aria-labelledby="fig-c7-lever-ladder-title fig-c7-lever-ladder-desc">
+<title id="fig-c7-lever-ladder-title">A ladder of levers</title>
+<desc id="fig-c7-lever-ladder-desc">Six optimisation levers ordered by proposed effect on yield, top to bottom: stop what does not convert, fix the loop, cache the stable prefix, route by task class, batch what can wait, quotas and rates. The top acts on yield risk, the bottom on price risk. Order illustrative.</desc>
+<defs>
+<marker id="fig-c7-lever-ladder-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4a7fb5"/></marker>
+<marker id="fig-c7-lever-ladder-arrow-m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8b96a8"/></marker>
+</defs>
+<rect width="970" height="452" fill="#fdfdfd"/>
+<path d="M166 412V44" stroke="#4a7fb5" stroke-width="2" marker-end="url(#fig-c7-lever-ladder-arrow)"/>
+<text x="146" y="62" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#8b96a8" text-anchor="end" letter-spacing="2.5">ACTS ON</text>
+<text x="146" y="84" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#4a7fb5" text-anchor="end" letter-spacing="2.5">YIELD</text>
+<text x="146" y="382" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#8b96a8" text-anchor="end" letter-spacing="2.5">ACTS ON</text>
+<text x="146" y="404" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#8b96a8" text-anchor="end" letter-spacing="2.5">PRICE</text>
+<rect x="210" y="40" width="700" height="52" fill="#e8f1fb"/>
+<rect x="210" y="40" width="6" height="52" fill="#4a7fb5"/>
+<text x="238" y="76" font-family="Anton, Inter, sans-serif" font-size="22" fill="#4a7fb5" text-anchor="start">01</text>
+<text x="284" y="74" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#131c30" text-anchor="start" letter-spacing="2.5">STOP WHAT DOES NOT CONVERT</text>
+<rect x="210" y="104" width="644" height="52" fill="#e8f1fb"/>
+<rect x="210" y="104" width="6" height="52" fill="#4a7fb5"/>
+<text x="238" y="140" font-family="Anton, Inter, sans-serif" font-size="22" fill="#4a7fb5" text-anchor="start">02</text>
+<text x="284" y="138" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#131c30" text-anchor="start" letter-spacing="2.5">FIX THE LOOP</text>
+<rect x="210" y="168" width="588" height="52" fill="#eef1f6"/>
+<rect x="210" y="168" width="6" height="52" fill="#7db4e6"/>
+<text x="238" y="204" font-family="Anton, Inter, sans-serif" font-size="22" fill="#4a7fb5" text-anchor="start">03</text>
+<text x="284" y="202" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#131c30" text-anchor="start" letter-spacing="2.5">CACHE THE STABLE PREFIX</text>
+<rect x="210" y="232" width="532" height="52" fill="#eef1f6"/>
+<rect x="210" y="232" width="6" height="52" fill="#7db4e6"/>
+<text x="238" y="268" font-family="Anton, Inter, sans-serif" font-size="22" fill="#4a7fb5" text-anchor="start">04</text>
+<text x="284" y="266" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#131c30" text-anchor="start" letter-spacing="2.5">ROUTE BY TASK CLASS</text>
+<rect x="210" y="296" width="476" height="52" fill="#f4f6f9"/>
+<rect x="210" y="296" width="6" height="52" fill="#d7dde6"/>
+<text x="238" y="332" font-family="Anton, Inter, sans-serif" font-size="22" fill="#8b96a8" text-anchor="start">05</text>
+<text x="284" y="330" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#3a4152" text-anchor="start" letter-spacing="2.5">BATCH WHAT CAN WAIT</text>
+<rect x="210" y="360" width="420" height="52" fill="#f4f6f9"/>
+<rect x="210" y="360" width="6" height="52" fill="#d7dde6"/>
+<text x="238" y="396" font-family="Anton, Inter, sans-serif" font-size="22" fill="#8b96a8" text-anchor="start">06</text>
+<text x="284" y="394" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#3a4152" text-anchor="start" letter-spacing="2.5">QUOTAS AND RATES</text>
+<rect x="733.5" y="386" width="196.5" height="26" fill="none" stroke="#8b96a8" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="831.75" y="401" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#8b96a8" text-anchor="middle" letter-spacing="2.5">ORDER ILLUSTRATIVE</text>
+</svg>
