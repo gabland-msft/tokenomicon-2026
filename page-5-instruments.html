@@ -23,13 +23,13 @@
   </div>
   <div class="inner">
     <h1>The Instruments You Never Had</h1>
-    <blockquote class="claim">&ldquo;The shadow price &mu; tells you what a token is worth right now. The quality sigmoid tells you where to spend it.&rdquo;</blockquote>
+    <blockquote class="claim">&ldquo;The shadow price &mu; states what a token is worth at the current point in the budget, and the quality sigmoid indicates where to spend it.&rdquo;</blockquote>
     <p class="subhead">
-      A delivery lead already decides, by feel, when one more pass at a story stops
-      being worth its cost, and when a budget conversation is coming before the
-      money actually runs out. Two numbers from constrained optimization take that
-      same judgment call and make it visible, not to replace it, but so it
-      doesn&rsquo;t live only in one person&rsquo;s head.
+      A delivery lead already judges, by experience, when one more pass at a story stops
+      being worth its cost and when a budget conversation is due before the money runs
+      out. Two quantities from constrained optimization make that same judgment explicit,
+      so that it is recorded and shared outside one person&rsquo;s head; they support the
+      judgment and do not replace it.
     </p>
   </div>
 </header>
@@ -38,61 +38,58 @@
 
   <p>
     <strong>Status: specified, not validated.</strong> Everything below is a
-    design: a mathematical specification from the underlying optimization
-    model, worked through in plain language. None of it is running against a
-    live engagement yet, and none of the thresholds mentioned are fitted to
-    production data. Treat it as how the instruments are meant to behave once
-    built, not as a report of what they currently do.
+    mathematical specification taken from the underlying optimization model and
+    worked through in plain language. It has not been run against a live
+    engagement, and none of the thresholds has been fitted to production data;
+    the page therefore describes intended behavior rather than measured results.
   </p>
 
-  <h2>A hurdle rate you already have, just not written down</h2>
+  <h2>The shadow price &mu; as an unwritten hurdle rate</h2>
   <p>
-    Call it &mu;, the shadow price of the budget constraint. It is a single
-    number designed to answer one question: what is the next token worth to this
-    engagement, right now, given how much budget is left and how much value is
-    still on the table? Early in an engagement, with plenty of runway, &mu; is
-    designed to sit low, so the answer to &ldquo;is one more attempt worth
-    it&rdquo; comes back almost always yes. As budget burns down against
-    remaining scope, &mu; is designed to rise, and to rise <em>before</em>
-    the money actually runs out, which is the point of building it. A rising
-    &mu; is meant to be the earliest computable signal that a scope or budget
-    conversation is coming, visible well ahead of the point where it would
-    otherwise show up as a surprise. That early-warning property is the
-    design goal; it hasn&rsquo;t been measured against a real engagement yet.
+    The shadow price of the budget constraint, written &mu;, is a single number
+    designed to answer one question: what the next token is worth to this
+    engagement at the current point, given the budget remaining and the value
+    still available. Early in an engagement, with ample runway, &mu; is designed
+    to sit low, so the answer to &ldquo;is one more attempt worth it&rdquo; is
+    almost always yes. As budget burns down against remaining scope, &mu; is
+    designed to rise, and to do so <em>before</em> the money runs out, which is
+    the reason for building it. A rising &mu; is intended to be the earliest
+    computable signal that a scope or budget conversation is coming, visible well
+    before the point at which the overrun would otherwise appear as a surprise.
+    This early-warning property is a design goal and has not yet been measured
+    against a real engagement.
   </p>
   <p>
-    By design, &mu; feeds directly into a stopping rule for a much more concrete
-    decision: when to stop upgrading a story&rsquo;s configuration. Every
-    additional pass on a piece of work &mdash; more context, another review
-    cycle, a stronger model tier &mdash; buys some increment of value at some
-    incremental cost. The <strong>Value of Token (VoT)</strong> rule specifies:
-    keep upgrading only while the next increment&rsquo;s value gain exceeds its
-    added cost. Before that crossing point, upgrades pay for themselves. After
-    it, the spend is gold-plating: tokens a customer will never
-    notice.
+    By design, &mu; feeds a stopping rule for a more concrete decision, namely
+    when to stop upgrading a story&rsquo;s configuration. Each additional pass on
+    a piece of work (more context, another review cycle, a stronger model tier)
+    buys an increment of value at an incremental cost, and the
+    <strong>Value of Token (VoT)</strong> rule specifies that upgrading continues
+    only while the next increment&rsquo;s value gain exceeds its added cost.
+    Upgrades before that crossing point pay for themselves; later passes spend
+    tokens on quality improvements that are not reflected in customer value.
   </p>
 
-  <h2>Quality is a weakest link, not an average</h2>
+  <h2>Quality as a weakest-link property</h2>
   <p>
-    The instinct to optimize quality by averaging it across a backlog is exactly
-    backwards. Customer adoption doesn&rsquo;t track the mean quality of the
-    stories shipped. It tips on the single worst-covered one. This is the
+    Average quality across a backlog does not represent this relationship,
+    because customer adoption depends on the single worst-covered story shipped
+    rather than tracking the mean quality of all of them. This is the
     <strong>O-ring model</strong> of quality: a chain is as strong as its weakest
-    link, and a customer experiences whichever story is broken, not the average of
-    every story around it. An optimizer that spreads a fixed quality budget evenly
-    across stories, or that reports an average quality score as if it were the
-    whole picture, will happily hide one badly broken story behind several
-    over-polished ones, and the customer only ever sees the broken one.
+    link, and a customer experiences whichever story is broken, whatever the
+    average of the stories around it. An optimizer that spreads a fixed quality
+    budget evenly across stories, or that reports an average quality score as a
+    complete summary, will hide one badly broken story behind four
+    over-polished ones, even though the broken story is the one that governs adoption.
   </p>
   <p>
-    That weakest-link relationship between spend and adoption isn&rsquo;t linear.
-    The model proposes it behaves like a sigmoid: flat at the bottom, steep in
-    the middle, flat again at the top. If that shape holds, it's what tells you
-    where the VoT stopping rule should bind, but the shape itself is a
-    working hypothesis, not a measured curve. Nobody has yet fitted where the
-    threshold and saturation points in the diagram below actually sit for a
-    given domain; that is one of the open items the closing page of this hub
-    names directly.
+    The model proposes that this weakest-link relationship between spend and
+    adoption is nonlinear and follows a sigmoid, flat at the bottom, steep in the
+    middle and flat again at the top. If that shape holds, it indicates where the
+    VoT stopping rule should bind; the shape itself is a working hypothesis and
+    has not been measured. Nobody has yet fitted where the threshold and
+    saturation points in the diagram below sit for a given domain, which is one
+    of the open items named on the closing page of this hub.
   </p>
 
   <div class="illustration">
@@ -144,39 +141,39 @@
   </div>
 
   <p>
-    <strong>Underinvestment zone</strong>, below threshold: adoption sits near zero no
-    matter how much else is polished around it. <strong>Leverage zone</strong>,
-    between threshold and saturation: this is where marginal spend actually
-    converts into adoption, and it is the only place the VoT hurdle is worth
-    clearing aggressively. <strong>Gold-plating zone</strong>, above saturation:
-    further spend buys almost nothing, no matter how satisfying the extra
-    polish feels to produce.
+    In the <strong>underinvestment zone</strong>, below the threshold, adoption
+    stays near zero however much else around the story is polished. In the
+    <strong>leverage zone</strong>, between threshold and saturation, marginal
+    spend converts into adoption, and this is the only zone in which the VoT
+    hurdle is worth clearing aggressively. In the <strong>gold-plating zone</strong>,
+    above saturation, further spend buys almost no adoption, however satisfying
+    the extra polish is to produce.
   </p>
 
   <div class="callout">
     <span class="cross tl"></span><span class="cross tr"></span>
     <span class="cross bl"></span><span class="cross br"></span>
-    <div class="eyebrow">THE SAME INSTRUMENT, A DIFFERENT DEPLOYMENT SHAPE</div>
+    <div class="eyebrow">PAY-AS-YOU-GO AND PTU DEPLOYMENTS</div>
     <p>
-      &mu; and VoT are built around pay-as-you-go pricing, where the question is
-      tokens per outcome. Move the same workload onto Provisioned Throughput Units
-      (PTU) &mdash; reserved capacity, billed whether or not you send a request
-      &mdash; and the yield question changes shape entirely: it becomes
-      utilisation of reserved capacity, not cost per token. An under-utilised PTU
-      reservation is a worse commercial outcome than an expensive pay-as-you-go
-      month, because the money is already spent either way. The instrument for
-      making the tradeoff visible doesn&rsquo;t change; what it has to measure
-      does, and it depends entirely on how the capacity underneath it was bought.
+      &mu; and VoT are built around pay-as-you-go pricing, where the quantity of
+      interest is tokens per outcome. When the same workload moves onto
+      Provisioned Throughput Units (PTU), which are reserved capacity billed
+      whether or not a request is sent, the yield question becomes one of
+      utilisation of reserved capacity rather than cost per token. An
+      under-utilised PTU reservation is a worse commercial outcome than an
+      expensive pay-as-you-go month, because the reservation money is spent
+      either way. The instrument that makes the tradeoff visible stays the same,
+      while the quantity it has to measure depends on how the underlying capacity
+      was bought.
     </p>
   </div>
 
   <p>
-    None of this replaces engineering judgment, and it isn&rsquo;t meant to. &mu;
-    and VoT don&rsquo;t decide anything on their own; they make an
-    already-existing implicit judgment call legible, to a junior engineer who
-    hasn&rsquo;t built the instinct yet, to a manager who needs to explain a
-    scope decision upward, to whoever actually holds the budget and has to sign
-    off on where it went.
+    &mu; and VoT support engineering judgment without replacing it. Their purpose
+    is to make an existing implicit judgment
+    call legible to a junior engineer who has not yet built the instinct, to a
+    manager who has to explain a scope decision upward, and to whoever holds the
+    budget and signs off on where it went.
   </p>
 
   <details class="go-deeper">
@@ -184,24 +181,24 @@
     <div class="go-deeper-body">
       <p>
         <strong>Status: specified, not validated.</strong> The definitions below
-        are the operating-rule form used in the underlying optimization framework
-        behind this. No fitted parameters or production numbers exist yet &mdash; this is
-        a mathematical specification, not a claim about measured outcomes.
+        are the operating-rule form used in the underlying optimization framework.
+        No fitted parameters or production numbers exist yet, so they are a
+        mathematical specification and make no claim about measured outcomes.
       </p>
       <p>
         <strong>&mu; as a Lagrangian shadow price.</strong> &mu; is the dual
         multiplier on the budget constraint in the engagement&rsquo;s
-        constrained-optimization formulation &mdash; one of a family of shadow
+        constrained-optimization formulation, and one of a family of shadow
         prices <span class="formula">(&mu;, &nu;<sub>k</sub>, &lambda;, &xi;)</span>
         attached respectively to the budget, per-item quality floors, deadline,
         and tail-risk constraints. It is designed to be tracked live alongside the
         optimality-gap certificate <span class="formula">z<sup>UB</sup> &minus;
         z<sup>LB</sup></span>, which distinguishes budget pressure that calls for
-        tightening constraints from pressure that&rsquo;s just an artifact of
+        tightening constraints from pressure that is only an artifact of
         integer rounding.
       </p>
       <p>
-        <strong>The other three, briefly.</strong> &mu; is the one this page
+        <strong>Other shadow prices.</strong> &mu; is the one this page
         develops in full because it has a worked stopping rule (VoT, below). The
         other three are specified in the same model but not built out here to
         the same depth:
@@ -209,39 +206,38 @@
       <ul>
         <li>
           <span class="formula">&nu;<sub>k</sub></span> is the shadow price on
-          item <span class="formula">k</span>&rsquo;s own quality floor, not the
-          engagement&rsquo;s budget as a whole &mdash; it is scoped to one story.
+          item <span class="formula">k</span>&rsquo;s own quality floor, so its
+          scope is one story within the engagement.
           The specification has it feed a two-stage response: a &ldquo;proactive
-          raise&rdquo; (escalate that item&rsquo;s configuration &mdash; more
-          review, a stronger model tier) once the item crosses an amber warning
+          raise&rdquo; (escalating that item&rsquo;s configuration with more
+          review or a stronger model tier) once the item crosses an amber warning
           threshold, and a separate response-ladder routing once it crosses a
           red threshold. The intent is the same early-warning shape as &mu;,
-          aimed at a single item instead of the whole budget.
+          applied to a single item.
         </li>
         <li>
           <span class="formula">&xi;</span> is the shadow price on the
-          tail-risk constraint &mdash; it responds to the risk of a bad
-          worst-case cost outcome, not the expected (mean) cost &mu; tracks. It
-          is defined against a CVaR (conditional value-at-risk) estimate of the
-          engagement&rsquo;s terminal aggregate cost, updated each sprint from
-          the projected terminal cost rather than that sprint&rsquo;s own spend
-          &mdash; so it is meant to catch the engagement drifting toward a bad
-          tail outcome even in a sprint where average spend looks fine.
+          tail-risk constraint and responds to the risk of a bad worst-case cost
+          outcome, whereas &mu; tracks the expected (mean) cost. It is defined
+          against a CVaR (conditional value-at-risk) estimate of the
+          engagement&rsquo;s terminal aggregate cost and is updated each sprint
+          from the projected terminal cost instead of that sprint&rsquo;s own
+          spend, which is meant to let it catch an engagement drifting toward a
+          bad tail outcome even in a sprint where average spend looks fine.
         </li>
         <li>
           <span class="formula">&lambda;</span> is the shadow price on the
           delivery deadline &mdash; the time-axis counterpart to &mu;&rsquo;s
-          budget axis. This framework names it and places it in the same dual
-          family; it doesn&rsquo;t have its own VoT-style stopping rule worked
-          out the way &mu; does, so this hub isn&rsquo;t going to claim more
-          precision for it than that.
+          budget axis. The framework names it and places it in the same dual
+          family, but no VoT-style stopping rule has been worked out for it as
+          one has for &mu;, so its treatment here goes no further than that.
         </li>
       </ul>
       <p>
         <strong>The VoT upgrade hurdle.</strong> The committed operating rule for
         &ldquo;should I upgrade this item&rsquo;s configuration&rdquo; is a
-        discrete finite-increment test, not a derivative: the controller accepts
-        an upgrade from configuration <span class="formula">a<sub>i</sub></span>
+        discrete finite-increment test rather than a derivative condition: the
+        controller accepts an upgrade from configuration <span class="formula">a<sub>i</sub></span>
         to <span class="formula">a<sub>i</sub>'</span> if and only if
       </p>
       <p class="formula">&Delta;&Pi;<sub>i</sub> &gt; h<sub>VoT,i</sub> = (1 + &mu;) &middot; &Delta;c<sub>i</sub><sup>&tau;</sup>(a<sub>i</sub>, a<sub>i</sub>')</p>
@@ -250,13 +246,13 @@
         incremental engagement value the upgrade delivers and <span class="formula">&Delta;c<sub>i</sub><sup>&tau;</sup></span>
         is its incremental price-weighted cost. At &mu; = 0 the hurdle equals bare
         incremental cost; as &mu; rises with budget pressure, the controller
-        demands a return premium above cost before committing the upgrade &mdash;
-        the hurdle tightens automatically, without anyone having to remember to
-        tighten it.
+        demands a return premium above cost before committing the upgrade, so the
+        hurdle tightens automatically and does not depend on anyone remembering
+        to tighten it.
       </p>
       <p>
-        This hurdle rate is reported alongside VoT itself so every accept/reject
-        upgrade decision has an audit trail &mdash; including diagnosing whether
+        This hurdle rate is reported alongside VoT so that every accept/reject
+        upgrade decision has an audit trail, which also supports diagnosing whether
         systematic over- or under-upgrading traces back to a miscalibrated &mu;.
       </p>
     </div>
@@ -265,12 +261,12 @@
   <div class="callout">
     <span class="cross tl"></span><span class="cross tr"></span>
     <span class="cross bl"></span><span class="cross br"></span>
-    <div class="eyebrow">WHERE THIS COMES FROM</div>
+    <div class="eyebrow">SOURCE AND CLAIM STATUS</div>
     <p>
-      &mu;, VoT, and the shadow-price family above come from my own ongoing
-      optimization research &mdash; not yet published, so there&rsquo;s nothing to
-      link to or independently verify yet. Treat the mechanics as a specified design, not a
-      claim backed by a citable source.
+      &mu;, VoT and the shadow-price family above come from my own ongoing
+      optimization research, which is not yet published, so there is no source
+      to link to or verify independently. The mechanics should be read as a
+      specified design without a citable source behind them.
     </p>
   </div>
 </main>

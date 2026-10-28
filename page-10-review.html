@@ -23,113 +23,114 @@
   </div>
   <div class="inner">
     <h1>Scale, Sustain or Stop</h1>
-    <blockquote class="claim">&ldquo;Staying inside the budget is not success. The question at review is whether the work earned more spend, the same spend or none.&rdquo;</blockquote>
+    <blockquote class="claim">&ldquo;Review determines whether the work warrants more spend, the same spend or none; budget adherence alone does not provide that evidence.&rdquo;</blockquote>
     <p class="subhead">
-      Review closes the loop. It compares what happened against what the plan said would happen,
-      makes one of three decisions per task class, and hands the result back to the next plan.
+      Review closes the loop by comparing what happened against what the plan said would happen,
+      making one of three decisions per task class and handing the result back to the next plan.
     </p>
   </div>
 </header>
 
 <main class="article-body">
 
-  <h2>Under budget is not a result</h2>
+  <h2>Budget adherence as a review criterion</h2>
   <p>
-    Most reviews of AI spend ask one question: did we stay within the allowance? A yes is
-    treated as success. But a task class can come in under budget because it ran less than
-    expected, because it was routed to a cheaper model that failed more often, or because people
-    stopped using its output. All three look the same on a spend report. None of them is good
-    news.
+    Most reviews of AI spend ask only whether spend stayed within the allowance, and treat a yes
+    as success. A task class can come in under budget because it ran less than expected, because
+    it was routed to a cheaper model that failed more often, or because people stopped using its
+    output. A spend report records all three as underspend although each indicates a different
+    operating problem.
   </p>
   <p>
-    The reverse also holds. A task class that went over budget while its yield per dollar held
-    or improved may be the best candidate for more investment. The budget is a constraint, the
-    fence from the Reframe page. Review is about what grew inside it.
+    The reverse also holds: a task class that went over budget while its yield per dollar held
+    or improved may be the best candidate for more investment. The budget is a constraint (the
+    fence from the Reframe page), and Review assesses what grew inside it.
   </p>
 
   <h2>Three decisions, each with its evidence</h2>
   <p>
-    For each task class, Review ends in one of three decisions. Each needs different evidence,
-    and the evidence should be the measures the plan committed to, not new ones chosen after
-    the results are in.
+    For each task class Review ends in one of three decisions, each needing different evidence,
+    and that evidence should come from the measures the plan committed to rather than from
+    measures chosen after the results are in.
   </p>
   <ul>
-    <li><strong>Scale.</strong> Yield per dollar at or above the planned level, holding steady
-      across several periods, with completion rates not falling as volume grows and no single
-      expensive run carrying the average. Scaling multiplies whatever the task class does, so the
-      evidence needs to show it is doing the right thing consistently.</li>
-    <li><strong>Sustain.</strong> Yield above the floor but below plan, or above plan on too
-      little data to trust. Keep running, keep the attribution in place, and name the next lever
-      to try. Sustain is a decision to keep learning, with a date for the next review.</li>
-    <li><strong>Stop.</strong> Yield below the floor for the period the plan stated, after the
-      agreed number of attempts to improve it. Or the work finishes and is kept, but the value
-      hypothesis did not hold: nobody downstream used it. Stopping needs the least evidence to
-      justify and is the hardest to carry out.</li>
+    <li><strong>Scale.</strong> Applies when yield per dollar is at or above the planned level
+      and holds steady across several periods, with completion rates not falling as volume grows
+      and no single expensive run carrying the average. Because scaling multiplies whatever the
+      task class does, the evidence has to show that it does the right thing consistently.</li>
+    <li><strong>Sustain.</strong> Applies when yield is above the floor but below plan, or above
+      plan on too little data to trust. The class keeps running with its attribution in place,
+      a named next lever to try and a date set for the next review.</li>
+    <li><strong>Stop.</strong> Applies when yield stays below the floor for the period the plan
+      stated after the agreed number of attempts to improve it, or when the work finishes and is
+      kept but the value hypothesis did not hold because nobody downstream used it. Stopping
+      requires the least evidence to justify, although existing commitments make it the hardest
+      of the three decisions to carry out.</li>
   </ul>
 
-  <figure class="illustration"><img src="assets/part-c/fig-c9-scale-sustain-stop.svg" alt="Scale, sustain or stop" style="width:100%;height:auto;max-width:860px;"><figcaption>Scale, sustain or stop, judged on yield against the plan. Staying inside the budget is not one of the tests</figcaption></figure>
+  <figure class="illustration"><img src="assets/part-c/fig-c9-scale-sustain-stop.svg" alt="Scale, sustain or stop" style="width:100%;height:auto;max-width:860px;"><figcaption>Scale, sustain or stop, judged on yield against the plan, with budget adherence excluded from the tests</figcaption></figure>
 
-  <h2>Separate the two risks before deciding</h2>
+  <h2>Separating price risk from yield risk</h2>
   <p>
-    A task class that missed its plan needs one more question before any decision: did it miss
-    on price or on yield? The diagnostic rule from the Manage page applies over a review period
-    just as it does to a single spike. If cost rose while yield held, the work is converting and
-    the price assumption broke. That is a case for the routing, caching and rate levers, and
-    rarely a reason to stop. If cost rose and yield fell, the work itself is not converting, and
-    a cheaper model will not change that.
+    Before any decision on a task class that missed its plan, the review has to establish whether
+    it missed on price or on yield, applying the diagnostic rule from the Manage page over the
+    review period in the same way it applies to a single spike. If cost rose while yield held, the
+    work is converting and the price assumption broke, which calls for the routing, caching and
+    rate levers and is rarely a reason to stop. If cost rose and yield fell, the work is not
+    converting, and a cheaper model will not change that.
   </p>
   <p>
-    Merging the two leads to the worst outcome in either direction: stopping a task class that
-    worked because its rates went up, or scaling one that does not work because a discount made
-    it look cheap.
+    Treating the two as one can stop a task class that worked because its rates went up, or
+    scale one that does not work because a discount made it look cheap.
   </p>
 
   <div class="callout">
     <span class="cross tl"></span><span class="cross tr"></span>
     <span class="cross bl"></span><span class="cross br"></span>
-    <div class="eyebrow">WHY THE STOP CONDITION WAS WRITTEN AT PLAN</div>
+    <div class="eyebrow">TIMING OF THE STOP CONDITION</div>
     <p>
       By the time a task class reaches review it has a team, a workflow and people who rely on
-      it. Arguing about what counts as failure at that point is slow and uncomfortable. The plan
-      settled the floor and the time allowed when nobody had anything to defend. Review only has
-      to check the result against it.
+      it, so settling what counts as failure at that point is slow and uncomfortable. The plan set
+      the floor and the time allowed before anyone had anything to defend, which leaves Review to
+      check the result against them.
     </p>
   </div>
 
-  <h2>Stop is a finding</h2>
+  <h2>What a stopped task class contributes</h2>
   <p>
-    A stopped task class is not wasted spend if it was stopped on evidence. It establishes that
-    a certain kind of work, done a certain way, did not convert at an acceptable rate. That is
-    information the next plan can use, and it frees budget for the classes that did convert.
-    Organisations that never stop anything end up spreading the same budget across more and more
-    work with less and less evidence about any of it.
+    Spend on a task class that was stopped on evidence still produces a finding, since the stop
+    establishes that a certain kind of work, done a certain way, did not convert at an acceptable rate; the
+    next plan can use that information, and the stop frees budget for the classes that did
+    convert. If no task class is stopped, the same budget is spread across a growing volume of
+    work while the evidence available for each class diminishes.
   </p>
 
-  <h2>Back to plan</h2>
+  <h2>Feeding the result into the next plan</h2>
   <p>
     The output of Review is the input to the next Plan: updated baseline cards, floors adjusted
     by what was observed rather than what was guessed, task classes added or removed, and the
-    next lever named for each class that is being sustained. Each turn of the loop replaces a
-    guess with a measurement. That is the slow route to the numbers the Open Problem page says
-    nobody has yet.
+    next lever named for each class that is being sustained. Each turn adds an observation to
+    the initial estimates, and repeated turns build the measurements identified as missing on
+    the Open Problem page.
   </p>
   <p>
     <strong>Claim status.</strong> This loop is specified, not yet tested at scale. The
     decisions follow from the measures defined earlier on this hub, and the thresholds that
-    would separate scale from sustain from stop for a given task class are still to be measured.
-    Running the loop is how they would be found.
+    would separate scale from sustain from stop for a given task class are still to be measured,
+    which running the loop would do.
   </p>
 
   <details class="go-deeper">
     <summary>GO DEEPER: tail concentration and the scale decision</summary>
     <div class="go-deeper-body">
       <p>
-        Agentic workloads tend to be tail-heavy: a few runs that loop far longer than the rest can
-        carry a large share of total spend. An average yield per dollar that looks healthy can
-        hide a task class whose median run converts well and whose worst runs burn most of the
-        budget. Before scaling, look at the distribution, not just the mean. If the tail is
-        driving cost, a stop rule or a cost detector on the loop is often a better next step than
-        more volume, because scaling multiplies the tail along with everything else.
+        Agentic workloads tend to be tail-heavy, with a few runs that loop far longer than the
+        rest carrying a large share of total spend, so a healthy-looking average yield per dollar
+        can hide a task class whose median run converts well and whose worst runs burn most of
+        the budget. The distribution, as well as the mean, should therefore be examined before
+        scaling. If the tail is driving cost, a stop rule or a cost detector on the loop is often
+        a better next step than more volume, because scaling multiplies the tail along with
+        everything else.
       </p>
     </div>
   </details>

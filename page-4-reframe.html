@@ -23,39 +23,36 @@
   </div>
   <div class="inner">
     <h1>The Reframe</h1>
-    <blockquote class="claim">&ldquo;Cost isn&rsquo;t the thing you&rsquo;re optimizing. It&rsquo;s a
-      fence. The real question is what your tokens yielded &mdash; and that&rsquo;s structurally
-      harder to observe.&rdquo;</blockquote>
+    <blockquote class="claim">&ldquo;Cost, quality and time constrain the optimization; token yield is the objective and is structurally harder to observe.&rdquo;</blockquote>
     <p class="subhead">
-      Cost, quality, and time are constraints on the work, not the objective of it. Confusing the
-      two produces a specific, expensive mistake: cutting price while yield keeps leaking, and
-      calling it optimization.
+      Cost, quality and time are constraints on the work, not its objective, and confusing the
+      two produces a specific, expensive mistake: cutting price while yield continues to leak,
+      and calling the result optimization.
     </p>
   </div>
 </header>
 
 <main class="article-body">
 
-  <h2>Cost is a fence, not the goal</h2>
+  <h2>Constraints and the objective</h2>
   <p>
-    The correct objective is to maximize the value a customer actually operates. Cost, quality,
-    and time are <strong>constraints</strong> on that pursuit: fences around the field, not
-    the crop growing inside it. Treating a constraint as the objective is like minimizing the
-    height of the fence instead of growing what&rsquo;s inside it: the fence gets shorter, and
-    nobody notices the field went fallow.
+    The objective is to maximize the value a customer operates, subject to
+    <strong>constraints</strong> on cost, quality and time (the fence around the field rather
+    than what grows inside it). Minimizing cost while ignoring operated value optimizes one
+    constraint and can reduce the outcome that the constraint was intended to support.
   </p>
   <p>
-    That confusion is easy to fall into because the two risks it conflates don&rsquo;t behave the
-    same way. <strong>Price risk</strong> (what did each token cost?) is metered
-    today, though not simply: the five-class, multi-surface billing structure on the previous
-    page means &ldquo;observable&rdquo; still takes real work to reconcile. <strong>Yield
-    risk</strong> (did those tokens produce the outcome? did the code ship, get adopted,
-    work correctly?) is harder still: structurally deferred, and partially inaccessible at
-    the moment spend happens. FinOps&rsquo;s own <em>Quantify Business Value</em> capability
-    already reaches toward this at the workload level. What&rsquo;s genuinely new here is
-    resolving it at the grain an agentic loop actually operates at (per task class, per
-    loop iteration, before the outcome is known), which is where TokenOps picks up the
-    thread FinOps already started.
+    The confusion arises easily because the two risks it conflates behave differently.
+    <strong>Price risk</strong> (what each token cost) is metered today, although the
+    five-class, multi-surface billing structure on the Tokens page means that
+    &ldquo;observable&rdquo; still takes real work to reconcile. <strong>Yield risk</strong>
+    (whether those tokens produced the outcome, meaning whether the code shipped, was adopted
+    and worked correctly) is harder to observe, because it is structurally deferred and
+    partially inaccessible at the moment spend happens. FinOps&rsquo;s <em>Quantify Business
+    Value</em> capability already addresses this at the workload level; the new element here is
+    resolving it at the grain at which an agentic loop operates (per task class, per loop
+    iteration, before the outcome is known), and that is where TokenOps continues the work
+    FinOps started.
   </p>
 
   <div class="illustration">
@@ -85,43 +82,42 @@
         <text x="420" y="192" text-anchor="middle" font-size="28" font-weight="700" fill="#8b96a8" opacity="0.55">?</text>
       </g>
     </svg>
-    <figcaption>Price risk is metered today. Yield risk resolves later, if at all.</figcaption>
+    <figcaption>Price risk is measured when spend occurs; yield risk can be assessed only after the outcome resolves, if it resolves.</figcaption>
   </div>
 
-  <h2>Why cheaper tokens don&rsquo;t fix a yield problem</h2>
+  <h2>Token price and conversion rate</h2>
   <p>
-    Cutting price does not fix yield. A cheaper model can save 40% on
-    tokens and still produce output that fails review and gets reworked: net cost goes
-    <em>up</em>, not down, because the saved tokens were never the expensive part. The expensive
-    part was always the spend that didn&rsquo;t convert.
+    A lower token price does not by itself fix yield. A cheaper model can save 40% on tokens and
+    still produce output that fails review and is reworked, in which case net cost goes
+    <em>up</em>, because the unit-price saving is outweighed by the spend that fails to
+    convert.
   </p>
   <p>
-    That&rsquo;s what <strong>token yield</strong> names directly: the conversion rate of spend
-    into accepted, operated outcomes. A model that&rsquo;s 40% cheaper per token and
-    converts at half the rate has made the fence shorter and the field smaller at the same time.
+    <strong>Token yield</strong> names that quantity directly as the conversion rate of spend
+    into accepted, operated outcomes. A model that is 40% cheaper per token and converts at half
+    the rate has reduced both unit price and the amount of accepted output produced per dollar.
   </p>
 
   <div class="callout">
     <span class="cross tl"></span><span class="cross tr"></span>
     <span class="cross bl"></span><span class="cross br"></span>
-    <div class="eyebrow">TIMING, NOT MEASUREMENT, IS THE PROBLEM</div>
+    <div class="eyebrow">THE TIMING OF SPEND AND YIELD</div>
     <p>
-      Spend is committed before yield is known, like a commodity bought before the
-      harvest. That&rsquo;s structural, not a dashboard gap: no amount of better instrumentation
-      after the fact changes the fact that the money went out the door first. The only lever
-      available at spend time is a leading indicator good enough to act on before the outcome
-      resolves.
+      Spend is committed before yield is known. This ordering would persist under any dashboard,
+      since instrumentation applied after the fact cannot change when the money was committed.
+      The only lever available at spend time is therefore a leading indicator good enough to act
+      on before the outcome resolves.
     </p>
   </div>
 
   <h2>A candidate leading indicator: the token mix</h2>
   <p>
-    Cost per outcome is only available after the fact. The <strong>mix</strong> of token classes
-    &mdash; cached versus fresh input, tool-result input versus output, utilization against
-    provisioned capacity &mdash; is available at the current turn, before the outcome is known.
-    My own working research proposes reading specific mix signatures as candidate
-    diagnostics of yield risk, on exactly that basis: none of them requires an outcome label to compute, which
-    is what makes them viable as leading indicators rather than post-hoc analysis.
+    Cost per outcome is available only after the fact, whereas the <strong>mix</strong> of token
+    classes (cached versus fresh input, tool-result input versus output, utilization against
+    provisioned capacity) is available at the current turn, before the outcome is known. My
+    working research proposes reading specific mix signatures as candidate diagnostics of yield
+    risk on that basis: none of them requires an outcome label to compute, so they can serve as
+    leading indicators instead of post-hoc analysis.
   </p>
 
   <div style="overflow-x:auto;">
@@ -143,7 +139,7 @@
         </tr>
         <tr>
           <td style="padding:0.7rem 0.8rem 0.7rem 0; border-bottom:1px solid #d7dde6; color:#171a1f;">Tool-result input growing faster than output</td>
-          <td style="padding:0.7rem 0 0.7rem 0.8rem; border-bottom:1px solid #d7dde6; color:#3a4152;">The agent is searching, not building</td>
+          <td style="padding:0.7rem 0 0.7rem 0.8rem; border-bottom:1px solid #d7dde6; color:#3a4152;">The agent is searching more than building</td>
         </tr>
         <tr>
           <td style="padding:0.7rem 0.8rem 0.7rem 0; border-bottom:1px solid #d7dde6; color:#171a1f;">Output rising with no state change in the environment</td>
@@ -151,32 +147,31 @@
         </tr>
         <tr>
           <td style="padding:0.7rem 0.8rem 0.7rem 0; color:#171a1f;">PTU utilization near ceiling with rising 429s</td>
-          <td style="padding:0.7rem 0 0.7rem 0.8rem; color:#3a4152;">Capacity-bound, not cost-bound: a different intervention entirely</td>
+          <td style="padding:0.7rem 0 0.7rem 0.8rem; color:#3a4152;">Capacity-bound rather than cost-bound, which calls for a different intervention</td>
         </tr>
       </tbody>
     </table>
   </div>
   <p>
-    <strong>Claim status.</strong> These signatures are proposed diagnostics. They have not been
-    characterised against outcome data, and no thresholds are asserted here. They&rsquo;re offered
-    as candidates for specification, not as a measurement already in production. That's the same
-    honesty I try to apply to my own formalism elsewhere.
+    <strong>Claim status.</strong> These signatures are proposed diagnostics that have not been
+    characterised against outcome data, and no thresholds are asserted for them; they are
+    candidates for specification, and none is yet a measurement in production. I apply the same
+    standard to my own formalism elsewhere.
   </p>
 
   <details class="go-deeper">
     <summary>GO DEEPER &mdash; the shadow price &mu; and token yield&rsquo;s formal definition</summary>
     <div class="go-deeper-body">
       <p>
-        Token yield&rsquo;s public framing stops at one symbol: &mu;. My own
-        underlying optimization framework formalizes the rest as a constrained optimization
-        over spend allocation.
-        <strong>Specified, not validated</strong>: the model below describes the framework as
-        designed, not a result confirmed against production data.
+        The public framing of token yield stops at one symbol, &mu;, and my underlying
+        optimization framework formalizes the rest as a constrained optimization over spend
+        allocation. <strong>Specified, not validated</strong>: the model below describes the
+        framework as designed and has not been confirmed against production data.
       </p>
       <p>
         <strong>Shadow price &mu;.</strong> &mu; is the dual variable (Lagrange multiplier) on the
-        budget constraint &mdash; it prices the marginal value of one more unit of spend at the
-        current allocation, and is the one symbol carried into the simplified public framing.
+        budget constraint; it prices the marginal value of one more unit of spend at the
+        current allocation and is the one symbol carried into the simplified public framing.
         <strong>Value of a Token (VoT)</strong>, <code class="formula">VoT = &Delta;&Pi;&#7522; / &Delta;c&#7522;</code>,
         is the ratio of incremental engagement value to incremental cost when upgrading an
         item&rsquo;s configuration; an upgrade is accepted only if VoT clears the hurdle
@@ -185,9 +180,9 @@
       </p>
       <p>
         <strong>Conversion framing.</strong> TER, VGR, ACR, and AES (defined on the Agentic Loop
-        page) sit downstream of this: they measure whether spend converted to accepted,
-        value-generating, autonomously-completed outcomes. That's the same spend-to-yield
-        conversion &mu; is pricing at the margin.
+        page) sit downstream of this and measure whether spend converted to accepted,
+        value-generating, autonomously completed outcomes, which is the same spend-to-yield
+        conversion that &mu; prices at the margin.
       </p>
     </div>
   </details>
