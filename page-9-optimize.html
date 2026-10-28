@@ -23,70 +23,72 @@
   </div>
   <div class="inner">
     <h1>More Outcomes per Dollar</h1>
-    <blockquote class="claim">&ldquo;Optimizing agentic work means more accepted outcomes for each dollar spent. Fewer tokens is sometimes the route there, and sometimes the way to miss it.&rdquo;</blockquote>
+    <blockquote class="claim">&ldquo;Optimizing agentic work means raising the number of accepted outcomes for each dollar spent; reducing token count serves that aim in some cases and works against it in others.&rdquo;</blockquote>
     <p class="subhead">
-      With spend attributed and signals owned, the next step is to change things. The order you
-      change them in, and how you check each change, decides whether yield goes up or only the
-      bill goes down.
+      Once spend is attributed and each signal has an owner, the next step is to change the work,
+      and the order of those changes, together with the check applied to each, decides whether
+      yield rises or only the bill falls.
     </p>
   </div>
 </header>
 
 <main class="article-body">
 
-  <h2>The wrong scoreboard</h2>
+  <h2>Choosing the measure of improvement</h2>
   <p>
-    The easiest number to improve is token count. Shorter prompts, a smaller model, a lower cap
-    on retries: each reduces spend immediately and shows up on the next report. None of them
-    says anything about whether the work still gets done. The Reframe page gave the failure
-    case: a model 40% cheaper per token that converts at half the rate leaves you paying more
-    per accepted outcome than before.
+    Token count is the easiest number to improve: shorter prompts, a smaller model or a lower cap
+    on retries each reduce spend immediately and appear on the next report, but none of them
+    indicates whether the work still gets done. The Reframe page gave the failure case, in which
+    a model 40% cheaper per token that converts at half the rate raises the cost per accepted
+    outcome above its previous level.
   </p>
   <p>
-    The scoreboard for this stage is accepted outcomes per dollar, per task class, before and
-    after a change. In the terms used across this hub, that is AES set against spend. If a change
-    lowers spend and AES holds, it is a saving. If it lowers spend and AES falls further, it is
-    a loss that happens to look good on the invoice.
+    The measure for this stage is accepted outcomes per dollar for each task class, taken before
+    and after a change, which in the terms used across this hub is AES set against spend. A
+    change that lowers spend while AES holds is a saving; a change that lowers spend while AES
+    falls by more is a loss, even though the invoice shows a reduction.
   </p>
 
-  <h2>A ladder of levers</h2>
+  <h2>Levers ordered by effect on yield</h2>
   <p>
-    The levers available are familiar engineering practice. What is less familiar is ordering
-    them by effect on yield rather than by ease. The order below is my proposal, reasoned from
-    the earlier pages rather than measured across workloads.
+    The available levers are familiar engineering practices, ordered here by their expected
+    effect on yield rather than by ease of application. This proposed order follows from the
+    earlier pages and has not been measured across workloads.
   </p>
   <ol>
-    <li><strong>Stop work that does not convert.</strong> The cheapest token is the one spent
-      on a task class you decided not to run. If a class sits below its yield floor and the
-      Manage signals call it a yield event, pausing it beats tuning it.</li>
+    <li><strong>Stop work that does not convert.</strong> A task class that is not run consumes
+      no tokens, so when a class sits below its yield floor and the Manage signals classify the
+      shortfall as a yield event, pausing the class is preferable to tuning it.</li>
     <li><strong>Fix the loop.</strong> Stop rules, context hygiene, cleaner tool outputs and
-      sub-agents that return summaries rather than transcripts. This changes how many
-      iterations a task needs and how much each one carries. One published result found a 41%
-      cost reduction from harness changes alone, with no change of model.</li>
+      sub-agents that return summaries instead of transcripts change how many iterations a task
+      needs and how much each iteration carries. One published result found a 41% cost
+      reduction from harness changes alone, with the model unchanged.</li>
     <li><strong>Cache the stable prefix.</strong> Keep system instructions and tool
       definitions fixed in order and content so that repeated input is billed at the cached
-      rate. This lowers price without touching what the model sees.</li>
+      rate, which lowers price while leaving the model's input unchanged.</li>
     <li><strong>Route by task class.</strong> Send each class to the cheapest model tier that
       holds its yield, using the Value of a Token test to decide when an upgrade is worth it.</li>
     <li><strong>Batch what can wait.</strong> Work that does not need an answer in seconds can
       often run asynchronously at a lower rate.</li>
-    <li><strong>Set quotas and negotiate rates.</strong> Useful, and the furthest from yield.
-      These change what each token costs and nothing about what it produces.</li>
+    <li><strong>Set quotas and negotiate rates.</strong> These levers are useful but sit
+      furthest from yield, since they change what each token costs and leave what it produces
+      unchanged.</li>
   </ol>
   <p>
-    The top of the ladder acts on yield risk. The bottom acts on price risk. Teams under cost
-    pressure tend to start at the bottom because those levers need no change to the work. That is
-    why they so often produce a smaller bill and an unchanged yield.
+    The top of the ladder acts on yield risk and the bottom on price risk. Under cost pressure,
+    teams tend to start with price levers because they require no change to the work, producing
+    a smaller bill without necessarily changing yield.
   </p>
 
-  <figure class="illustration"><img src="assets/part-c/fig-c7-lever-ladder.svg" alt="Six levers ordered from acting on yield to acting on price" style="width:100%;height:auto;max-width:760px;"><figcaption>The lever ladder, ordered by proposed effect on yield. Ordering illustrative, not measured</figcaption></figure>
+  <figure class="illustration"><img src="assets/part-c/fig-c7-lever-ladder.svg" alt="Six levers ordered from acting on yield to acting on price" style="width:100%;height:auto;max-width:760px;"><figcaption>The lever ladder, ordered by proposed effect on yield. The ordering is illustrative and has not been measured</figcaption></figure>
 
-  <h2>One lever, one class, one comparison</h2>
+  <h2>Testing one change at a time</h2>
   <p>
-    Each change should be small enough that its effect can be read. Pick one task class, pull
-    one lever, and compare yield per dollar for that class over a period long enough to cover
-    its normal variation. Changing three things at once across all classes produces a number
-    nobody can explain, and the Review stage will have nothing to decide with.
+    Each change should be small enough for its effect to be read: one lever applied to one task
+    class, with yield per dollar for that class compared over a period long enough to cover its
+    normal variation. Changing three things at once across all classes produces a result that
+    cannot be attributed to any of them, which leaves the Review stage without evidence to decide
+    on.
   </p>
 
   <h2>The first 30 days</h2>
@@ -95,14 +97,14 @@
     of the loop on a small scale.
   </p>
   <ul>
-    <li><strong>Week 1.</strong> Add attribution tags to every call. Pick two or three task
-      classes and write a baseline card for each.</li>
-    <li><strong>Week 2.</strong> Read the token mix and the accept/reject record per class.
-      Find the class with the lowest yield per dollar.</li>
+    <li><strong>Week 1.</strong> Add attribution tags to every call, then pick two or three
+      task classes and write a baseline card for each.</li>
+    <li><strong>Week 2.</strong> Read the token mix and the accept/reject record per class
+      to find the class with the lowest yield per dollar.</li>
     <li><strong>Week 3.</strong> Apply one lever to that class, starting as high on the ladder
-      as you can.</li>
-    <li><strong>Week 4.</strong> Compare yield per dollar against the baseline card and write
-      the result down, whichever way it went. That record is the input to Review.</li>
+      as the class allows.</li>
+    <li><strong>Week 4.</strong> Compare yield per dollar against the baseline card and record
+      the result whichever way it went, since that record is the input to Review.</li>
   </ul>
 
   <figure class="illustration"><img src="assets/part-c/fig-c8-first-30-days.svg" alt="Four weeks: tag, find, pull one lever, compare" style="width:100%;height:auto;max-width:960px;"><figcaption>The first 30 days: one small turn of the loop</figcaption></figure>
@@ -110,13 +112,13 @@
   <div class="callout">
     <span class="cross tl"></span><span class="cross tr"></span>
     <span class="cross bl"></span><span class="cross br"></span>
-    <div class="eyebrow">DO NOT OPTIMIZE THE WEAKEST LINK AWAY</div>
+    <div class="eyebrow">PROTECTING THE WEAKEST LINK</div>
     <p>
-      The Instruments page described quality as an O-ring: adoption tips on the worst-covered
-      piece of work, not the average. A saving that thins out review or test effort on the one
-      story that was already weakest can lower spend and collapse adoption at the same time.
-      Cut gold-plating, where the quality curve has flattened, and protect spend in the
-      leverage zone, where it is steep.
+      The Instruments page described quality as an O-ring, in which adoption depends on the
+      worst-covered piece of work rather than on the average, so a saving that thins out review
+      or test effort on the story that was already weakest can lower spend and reduce adoption
+      at the same time. Cuts belong in gold-plating, where the quality curve has flattened, and
+      spend in the leverage zone, where the curve is steep, should be protected.
     </p>
   </div>
 
@@ -124,14 +126,14 @@
     <summary>GO DEEPER: why the order puts price levers last</summary>
     <div class="go-deeper-body">
       <p>
-        A price lever scales every token by the same factor, so its best case is a
-        proportional saving on spend that was already converting at whatever rate it converted
-        at. A yield lever changes the conversion rate itself: fewer iterations rejected, fewer
-        tasks handed back to a human, less output that ships and goes unused. Because AES is a
-        product of three ratios, a modest improvement in the weakest ratio can move it more
-        than a large discount moves spend. That argument is arithmetic about the structure of the
-        measure. <strong>Specified, not yet measured</strong>: how large the effect is for a
-        given task class is an empirical question.
+        A price lever scales the cost of every token by the same factor, so at best it delivers
+        a proportional saving on spend whose conversion rate stays where it was. A yield lever
+        changes the conversion rate, through fewer rejected iterations, fewer tasks handed back
+        to a human and less output that ships and goes unused. Because AES is a product of three
+        ratios, a modest improvement in the weakest ratio can move AES by more than a large
+        discount moves spend, a result that follows from the arithmetic of the measure.
+        <strong>Specified, not yet measured</strong>: the size of the effect for a given task
+        class is an empirical question.
       </p>
     </div>
   </details>

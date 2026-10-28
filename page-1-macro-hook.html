@@ -23,57 +23,54 @@
   </div>
   <div class="inner">
     <h1>The Macro Hook</h1>
-    <blockquote class="claim">&ldquo;You&rsquo;re paying for AI work and you can&rsquo;t tell whether it was worth it &mdash; and that&rsquo;s not a tooling gap, it&rsquo;s a structural problem.&rdquo;</blockquote>
+    <blockquote class="claim">&ldquo;You are paying for AI work without a measure of whether it was worth the cost, because existing measures record spend without establishing value.&rdquo;</blockquote>
     <p class="subhead">
-      Before any framework or formula, there&rsquo;s a two-minute story that names the actual
-      failure, and a four-stop roadmap this hub spends the rest of its time filling in.
+      This two-minute introduction describes the measurement failure addressed by the hub and
+      sets out the four-stop roadmap developed in the remaining pages.
     </p>
   </div>
 </header>
 
 <main class="article-body">
 
-  <h2>A number nobody could defend</h2>
+  <h2>The $47,000 example</h2>
   <p>
-    A team spent <strong>$47,000</strong> on tokens in a single month. Asked whether that spend
-    was worth it, nobody on the team could answer: not because the number was hidden, but
-    because nothing about it, on its own, tells you whether the work it bought was any good. (The
-    figure is anonymized and illustrative, flagged as such here rather than presented as a real
-    engagement number.)
+    A team spent <strong>$47,000</strong> on tokens in a single month, and when asked whether that
+    spend was worth it, nobody on the team could answer. The number was visible to them, but a
+    spend total on its own carries no information about the quality of the work it bought. (The
+    figure is anonymized and illustrative, and is not a real engagement number.)
   </p>
 
-  <h2>Spend is not value</h2>
+  <h2>Cost visibility and value visibility</h2>
   <p>
-    The team wasn&rsquo;t flying blind on cost. They had good dashboards: line items by
-    model, by day, by project, exactly what a mature FinOps practice is supposed to produce. What
-    those dashboards couldn&rsquo;t show was what any of that spend actually <em>got</em> them:
-    output accepted per token, per task, per dollar. Cost visibility and value visibility are two
-    different instruments, and this hub exists because most organizations built only the first
-    one.
+    The team had good cost dashboards, with line items by model, by day and by project, which is
+    what a mature FinOps practice is expected to produce. Those dashboards could not show what the
+    spend <em>got</em> them, measured as output accepted per token, per task or per dollar. Cost
+    visibility and value visibility need two different instruments, and this hub exists because
+    most organizations have built only the first.
   </p>
 
   <div class="callout">
     <span class="cross tl"></span><span class="cross tr"></span>
     <span class="cross bl"></span><span class="cross br"></span>
-    <div class="eyebrow">THE DISTINCTION THIS PAGE IS BUILT TO PROVE OUT</div>
+    <div class="eyebrow">THE DISTINCTION BETWEEN SPEND AND VALUE</div>
     <p>
-      Spend &ne; value. A dashboard that only totals what left the wallet will always look
-      complete and will never answer the one question that matters: did the money buy anything?
-      Closing that gap is a <strong>unit&nbsp;economics</strong> problem &mdash; deciding what one
-      token, one call, one agent run is actually worth &mdash; not a monitoring problem, which is
-      only ever about counting what was spent.
+      A spend total is not a value measure: a dashboard can account for every charge without
+      showing whether the money bought useful work. Assessing what one token, one call or one
+      agent run is worth is a <strong>unit&nbsp;economics</strong> problem rather than a
+      monitoring problem, which only counts what was spent.
     </p>
   </div>
 
-  <h2>Four circles, one left blank</h2>
+  <h2>The four-theme roadmap</h2>
   <p>
-    That distinction sets the shape of everything that follows. This hub organizes around a
-    four-theme map: <strong>Tokens &rarr; Loop &rarr; Yield &rarr; ?</strong> &mdash; what a token
-    actually costs, what an agentic loop does to that cost, what yield means once cost and outcome
-    are both on the table, and a fourth theme left deliberately open (Yield itself spans two
-    segments below: the reframe and the instruments). It&rsquo;s this
-    hub&rsquo;s genuinely open question, not an oversight &mdash; each of the six segments stands on its own, so read
-    them in whatever order is useful; none of them, alone or in sequence, claims to close it.
+    That distinction sets the structure of the rest of the hub, which is organized around a
+    four-theme map, <strong>Tokens &rarr; Loop &rarr; Yield &rarr; ?</strong>, covering what a token
+    costs, what an agentic loop does to that cost, what yield means once cost and outcome are both
+    measured, and a fourth theme left open on purpose (Yield spans two segments below: the reframe
+    and the instruments). The fourth theme remains the hub&rsquo;s open question. Each of the six
+    segments stands on its own and can be read in any order, and none of them, alone or in
+    sequence, claims to resolve it.
   </p>
 
   <div class="illustration">
@@ -110,21 +107,21 @@
         <text x="490" y="140">04 · UNRESOLVED</text>
       </g>
     </svg>
-    <figcaption>The map this hub organizes around &mdash; the fourth stop is revisited on the closing page, which names what to measure without claiming to close it</figcaption>
+    <figcaption>The map this hub organizes around; the fourth stop is revisited on the closing page, which names what to measure without claiming to close it</figcaption>
   </div>
 
   <details class="go-deeper">
-    <summary>GO DEEPER &mdash; cost visibility already has an industry; yield visibility doesn&rsquo;t</summary>
+    <summary>GO DEEPER &mdash; differences between cost and yield visibility</summary>
     <div class="go-deeper-body">
       <p>
-        FinOps practices have spent years building the tooling to answer "what did we spend" with
-        real precision &mdash; by model, by team, by day, reconciled across invoicing systems.
-        That machinery is mature and it works. None of it was built to answer "what did we get,"
-        because that question needs a second axis entirely: an accepted-outcome measure sitting
-        next to the cost measure, not another way of slicing the same spend number. A team can
-        have a perfect cost dashboard and still be exactly where the $47,000 team was &mdash;
-        able to say precisely what left the wallet, with nothing to say about whether it was
-        worth it. The rest of this hub is that second axis.
+        FinOps practices have spent years building tooling that answers "what did we spend"
+        precisely, by model, by team and by day, reconciled across invoicing systems; that
+        machinery is mature. It was not designed to answer "what did we get,"
+        because that question needs a second axis: an accepted-outcome measure recorded alongside
+        the cost measure, rather than a further cut of the same spend number. A team with a complete
+        cost dashboard can therefore be in the position of the $47,000 team, able to state what
+        left the wallet and unable to say whether it was worth it. The remaining pages of this hub
+        build that second axis.
       </p>
     </div>
   </details>

@@ -23,10 +23,11 @@
   </div>
   <div class="inner">
     <h1>The Open Problem</h1>
-    <blockquote class="claim">&ldquo;The framework tells you what to measure and why. It does not yet tell you what the numbers are &mdash; because nobody has measured them.&rdquo;</blockquote>
+    <blockquote class="claim">&ldquo;The framework specifies what to measure and why; numerical estimates await measurements that have not yet been made.&rdquo;</blockquote>
     <p class="subhead">
-      This hub closes the way it opened: honestly. Everything built across the last five pages
-      is specified. None of it is validated yet, and that gap is the actual close.
+      The limits remain those stated on the opening page: everything developed across the
+      previous five pages is specified, not validated, and the measurements needed to test it
+      have not yet been made.
     </p>
   </div>
 </header>
@@ -35,47 +36,46 @@
 
   <h2>Specified, not validated</h2>
   <p>
-    The framework&rsquo;s math is specified, but no fitted
-    parameters exist yet. Every formula in this hub &mdash; the shadow price, the token
-    efficiency ratio, the yield curve &mdash; describes <em>what to measure and why</em>. None of
-    them yet describes <em>what the numbers actually are</em> for a real, running agentic
-    workload, because that requires production data nobody has collected at scale.
+    The framework&rsquo;s math is specified, but no fitted parameters exist yet. Each formula
+    in this hub (the shadow price, the token efficiency ratio, the yield curve) describes
+    <em>what to measure and why</em>, and none yet describes <em>what the numbers are</em> for a
+    real, running agentic workload, because that requires production data that nobody has
+    collected at scale.
   </p>
 
   <div class="callout">
     <span class="cross tl"></span><span class="cross tr"></span>
     <span class="cross bl"></span><span class="cross br"></span>
-    <div class="eyebrow">THE CREDIBILITY MOVE</div>
+    <div class="eyebrow">LIMITS OF EXISTING MEASUREMENTS</div>
     <p>
-      Anyone claiming they already have these numbers is
-      either working in a domain too narrow to generalize, or not being straight about what
-      "measured" means. Admitting the gap is the credible position.
+      Existing claims to these numbers either concern domains too narrow to support
+      generalization or use a different meaning of "measured"; the measurements required here
+      remain unavailable.
     </p>
   </div>
 
   <h2>The bound any viable system must satisfy</h2>
   <p>
-    This is a consequence of the math built across the whole hub, not an opinion about how
-    measurement <em>should</em> work. Any system that wants to actually measure
-    yield for an agentic workload has to clear four bars at once:
+    The four requirements below are consequences of the math developed across the hub, independent
+    of any view of how measurement <em>should</em> work, and any system that measures yield for an
+    agentic workload has to meet all four at once:
   </p>
   <ol>
     <li>decompose tokens by type and by model, rather than treating "tokens" as one commodity;</li>
     <li>separate price risk (what the platform charges) from yield risk (what the work is worth);</li>
     <li>control for tail concentration, so one expensive run doesn&rsquo;t distort the average;</li>
-    <li>make the shadow price &mu; observable, not just definable on paper.</li>
+    <li>make the shadow price &mu; observable in operation as well as definable on paper.</li>
   </ol>
 
-  <h3>The discipline behind that honesty</h3>
+  <h3>The three tiers of claim status</h3>
   <p>
-    Every claim on this hub is sorted into one of
+    Every claim on this hub sits in one of
     three tiers: <strong>documented facts</strong> (what the
-    platform actually bills, sourced directly from vendor documentation), <strong>arithmetic
+    platform bills, sourced directly from vendor documentation), <strong>arithmetic
     consequences</strong> (what necessarily follows from those facts, regardless of workload), and
     <strong>proposed mechanism and candidate diagnostics</strong> (directionally consistent
-    explanations that are not themselves a measurement). Everything in this hub sits in one of
-    those three tiers. The open problem is that almost nothing here has moved past tier one
-    into a validated number yet.
+    explanations that are not themselves a measurement). Almost nothing here has yet moved past
+    tier one into a measured number, and that is the open problem this page describes.
   </p>
 
   <div class="illustration">
@@ -94,64 +94,60 @@
         <text x="280" y="64" font-size="11" font-weight="700" fill="#4a7fb5">CANDIDATE DIAGNOSTICS</text>
       </g>
     </svg>
-    <figcaption>This hub's own claim-status discipline &mdash; widest and most certain at the base, narrowest and least certain at the top</figcaption>
+    <figcaption>The claim-status tiers used on this hub, widest and most certain at the base, narrowest and least certain at the top</figcaption>
   </div>
 
-  <h2>What's genuinely unknown</h2>
+  <h2>Quantities not yet measured</h2>
   <p>
-    Three things sit squarely outside the documented-facts tier: a healthy range for the shadow
-    price &mu;, what counts as a normal Token Efficiency Ratio, and where the quality-sigmoid
-    threshold actually sits for a given domain. All three require production data collected at
-    scale, and none of that collection has happened yet. That includes my own tracking:
-    every measurement item behind this hub is currently <strong>not started</strong>.
-    Nothing about that is being smoothed over: the only citable
-    numbers anywhere in this hub are the published external evidence cited earlier, not
-    real production numbers.
+    Three quantities lie outside the documented-facts tier: a healthy range for the shadow price
+    &mu;, the value that counts as a normal Token Efficiency Ratio, and the position of the
+    quality-sigmoid threshold for a given domain. All three require production data collected at
+    scale, and none of that collection has happened yet. The only
+    citable numbers anywhere in this hub are the published external evidence cited on earlier
+    pages, and none of them are production numbers from these workloads.
   </p>
 
   <details class="go-deeper">
     <summary>GO DEEPER &mdash; why "observable" is the hard part of the fourth bound</summary>
     <div class="go-deeper-body">
       <p>
-        Three of the four bounds above are mostly a matter of discipline: decomposing token types
-        and separating price risk from yield risk are things a team can just decide to do.
-        Making the shadow price &mu; <em>observable</em> is a different order of problem &mdash;
-        it requires per-token-class telemetry tied to task-level outcome data, at production
-        volume, across enough runs that tail-heavy agentic workloads stop distorting the average.
-        That combination doesn&rsquo;t exist as an off-the-shelf capability today. Building it is
-        the actual work behind "measuring yield," not a footnote to it.
+        Three of the four bounds above are mostly a matter of discipline, since decomposing token
+        types, separating price risk from yield risk and controlling for tail concentration are
+        practices a team can decide to adopt. Making the shadow price &mu;
+        <em>observable</em> is a harder class of problem, because it requires
+        per-token-class telemetry tied to task-level outcome data, at production volume, across
+        enough runs that tail-heavy agentic workloads stop distorting the average. That combination
+        is not available as an off-the-shelf capability today, and building it is the main body of
+        the work behind "measuring yield."
       </p>
     </div>
   </details>
 
-  <h2>What doesn't wait on the open problem</h2>
+  <h2>Governance that can start before yield is measured</h2>
   <p>
-    The measurement gap above is real, but it isn&rsquo;t the whole picture. Two pages back, three
-    billing surfaces &mdash; Copilot, Azure OpenAI, and Claude on Foundry &mdash; turned out to
-    expose the same thing this hub keeps needing: per-task-class billing and usage telemetry, not
-    just a total-spend line (see Tokens &amp; the Price You Can&rsquo;t See). One page later, the
-    Agentic Loop page uses exactly that telemetry to do something with it &mdash; a monotonic cost
-    detector that halts and escalates to a human before a budget is exceeded, an accept/reject
-    decision recorded per iteration rather than inferred after the fact from a final diff, and an
-    audit trail that attributes both to a specific task class rather than one blended average.
+    The missing measurements above leave one part of this hub unaffected. On the Tokens
+    &amp; the Price You Can&rsquo;t See page, three billing surfaces (Copilot, Azure OpenAI and
+    Claude on Foundry) were shown to expose what this hub repeatedly requires, namely
+    per-task-class billing and usage telemetry in addition to a total-spend line. The Agentic Loop
+    page that follows it puts that telemetry to use in three ways: a monotonic cost detector that
+    halts and escalates to a human before a budget is exceeded, an accept/reject decision recorded
+    per iteration rather than inferred after the fact from a final diff, and an audit trail that
+    attributes both to a specific task class rather than to one blended average.
   </p>
   <p>
-    That chain &mdash; platform telemetry, to a per-iteration record, to task-class-level
-    accountability &mdash; is what practicing tokenomics <em>with governance</em> means on this
-    hub: not a claim about which vendor is better, but a description of a mechanism that exists
-    because those three surfaces expose the data it runs on. It&rsquo;s also the one part of this
-    hub that doesn&rsquo;t wait on the open problem below. An organization doesn&rsquo;t
-    need a validated shadow price &mu; to start recording per-task-class accept/reject decisions
-    against real telemetry. That mechanism is available today, on the surfaces already described,
-    independent of whether the yield math two pages back has been fitted to production data yet.
+    On this hub, practicing tokenomics <em>with governance</em> means that chain, running from
+    platform telemetry to a per-iteration record to task-class-level accountability. The
+    mechanism relies on data exposed by the three surfaces and makes no claim about which vendor
+    is better. It also does not depend on the open problem: an organization can record
+    per-task-class accept/reject decisions against real telemetry without a fitted shadow price
+    &mu;, whether or not the yield math two pages back has been fitted to production data.
   </p>
 
-  <h2>The close</h2>
+  <h2>The remaining measurement question</h2>
   <p>
-    "How do I cut costs" is the wrong question: every dashboard in this hub's first page was
-    already built to answer it. The right one is harder and still open:
-    <strong>what would it take to actually measure yield for my team's agentic workload?</strong>
-    That's the open problem this hub ends on.
+    The cost dashboards on the opening page already address how to cut spend. The harder
+    question that remains open is
+    <strong>what it would take to measure yield for my team's agentic workload</strong>.
   </p>
 
 </main>
