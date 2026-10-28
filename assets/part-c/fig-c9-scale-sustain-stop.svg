@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 236" width="1040" height="236" role="img" aria-labelledby="fig-c9-scale-sustain-stop-title fig-c9-scale-sustain-stop-desc">
+<title id="fig-c9-scale-sustain-stop-title">Scale, sustain or stop</title>
+<desc id="fig-c9-scale-sustain-stop-desc">Three review decisions side by side, judged on yield against the plan. Scale: at or above plan, holding steady. Sustain: above the floor but below plan. Stop: below the floor after the agreed attempts.</desc>
+<defs>
+<marker id="fig-c9-scale-sustain-stop-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4a7fb5"/></marker>
+<marker id="fig-c9-scale-sustain-stop-arrow-m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8b96a8"/></marker>
+</defs>
+<rect width="1040" height="236" fill="#fdfdfd"/>
+<rect x="40" y="30" width="300" height="176" rx="0" fill="#fdfdfd" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M34 30H46M40 24V36" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M334 30H346M340 24V36" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M34 206H46M40 200V212" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M334 206H346M340 200V212" stroke="#d7dde6" stroke-width="1.5"/>
+<rect x="40" y="30" width="300" height="76" fill="#4a7fb5"/>
+<text x="190.0" y="82" font-family="Inter, sans-serif" font-size="32" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="4">SCALE</text>
+<text x="190.0" y="152" font-family="Inter, sans-serif" font-size="20" font-weight="500" fill="#1a2438" text-anchor="middle">At or above plan,</text>
+<text x="190.0" y="180" font-family="Inter, sans-serif" font-size="20" font-weight="500" fill="#1a2438" text-anchor="middle">holding steady</text>
+<rect x="370" y="30" width="300" height="176" rx="0" fill="#fdfdfd" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M364 30H376M370 24V36" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M664 30H676M670 24V36" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M364 206H376M370 200V212" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M664 206H676M670 200V212" stroke="#d7dde6" stroke-width="1.5"/>
+<rect x="370" y="30" width="300" height="76" fill="#eef1f6"/>
+<text x="520.0" y="82" font-family="Inter, sans-serif" font-size="32" font-weight="800" fill="#131c30" text-anchor="middle" letter-spacing="4">SUSTAIN</text>
+<text x="520.0" y="152" font-family="Inter, sans-serif" font-size="20" font-weight="500" fill="#1a2438" text-anchor="middle">Above the floor,</text>
+<text x="520.0" y="180" font-family="Inter, sans-serif" font-size="20" font-weight="500" fill="#1a2438" text-anchor="middle">below plan</text>
+<rect x="700" y="30" width="300" height="176" rx="0" fill="#fdfdfd" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M694 30H706M700 24V36" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M994 30H1006M1000 24V36" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M694 206H706M700 200V212" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M994 206H1006M1000 200V212" stroke="#d7dde6" stroke-width="1.5"/>
+<rect x="700" y="30" width="300" height="76" fill="#131c30"/>
+<text x="850.0" y="82" font-family="Inter, sans-serif" font-size="32" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="4">STOP</text>
+<text x="850.0" y="152" font-family="Inter, sans-serif" font-size="20" font-weight="500" fill="#1a2438" text-anchor="middle">Below the floor after</text>
+<text x="850.0" y="180" font-family="Inter, sans-serif" font-size="20" font-weight="500" fill="#1a2438" text-anchor="middle">the agreed attempts</text>
+</svg>

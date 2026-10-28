@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan — Token Yield Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/slides.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="site-nav-home" href="index.html">Token Yield Hub</a>
+  <a class="site-nav-cta" href="contact.html">Get in Touch</a>
+</nav>
+
+<header class="article-hero">
+  <div class="article-hero-top">
+    <div class="eyebrow">SEGMENT 7 · PLAN</div>
+    <div class="status-tag">PART C · RUN IT</div>
+  </div>
+  <div class="inner">
+    <h1>A Budget Is Not a Plan</h1>
+    <blockquote class="claim">&ldquo;Write down what the work will cost, what it is for, and the yield you will accept, before the first token is spent.&rdquo;</blockquote>
+    <p class="subhead">
+      The first six pages describe what to measure. This page and the three after it describe
+      how to run agentic work so that those measures get used: plan, manage, optimize, review,
+      and back to plan.
+    </p>
+  </div>
+</header>
+
+<main class="article-body">
+
+  <h2>A loop, not a launch</h2>
+  <p>
+    Most AI spend starts with a number: a monthly cap, a pilot allowance, a line in someone&rsquo;s
+    budget. That number says how much may be spent. It says nothing about what the spend is
+    supposed to buy, or how anyone would know whether it bought it. Months later the team can
+    report that it stayed inside the cap, and nobody can say whether that was good news.
+  </p>
+  <p>
+    The four pages in this part use a plain structure I find useful for avoiding that outcome.
+    <strong>Plan</strong> sets expectations before spend. <strong>Manage</strong> attributes
+    spend as it happens. <strong>Optimize</strong> changes one thing at a time and checks
+    whether yield moved. <strong>Review</strong> decides whether to scale, sustain or stop, and
+    feeds the next plan. The names are my own shorthand for a loop, not a borrowed standard.
+    Token yield, the measure from the earlier pages, runs underneath all four stations.
+  </p>
+
+  <figure class="illustration"><img src="assets/part-c/fig-c1-lifecycle-loop.svg" alt="A loop of four stations: plan, manage, optimize, review" style="width:100%;height:auto;max-width:760px;"><figcaption>Plan, manage, optimize, review: one loop, with token yield measured at every station</figcaption></figure>
+
+  <h2>What a plan has to contain</h2>
+  <p>
+    A plan for agentic work needs three things written down, and a budget is only one of them.
+  </p>
+  <ol>
+    <li><strong>A cost envelope.</strong> What you expect to spend per unit of work, and the
+      assumptions behind it: which models, what token mix, how much of the input you expect to
+      be cached.</li>
+    <li><strong>A value hypothesis.</strong> What the work is for, stated as something a person
+      outside the team could check. &ldquo;Faster delivery&rdquo; is a wish. &ldquo;Fewer
+      backlog items waiting more than a week for a first draft&rdquo; is a hypothesis.</li>
+    <li><strong>An accepted yield.</strong> The share of spend you expect to convert into
+      outcomes, and the floor below which you would change course.</li>
+  </ol>
+  <p>
+    The third item is the one that tends to be missing, and it is the one the rest of the
+    loop depends on. Without it, Review has nothing to compare against, and every result looks
+    acceptable after the fact.
+  </p>
+
+  <h2>Expected yield in three plain questions</h2>
+  <p>
+    The yield measures on the Agentic Loop page translate into three questions a planner can
+    answer before any data exists. Did the work <strong>finish</strong> without a human taking
+    over (ACR)? Was the output <strong>kept</strong> rather than discarded or reworked (TER)?
+    Did the kept output <strong>matter</strong> to someone downstream (VGR)? The product of the
+    three is the Agent Efficiency Score. A plan puts an expected value against each, a floor
+    under each, and a name against the whole thing.
+  </p>
+
+  <figure class="illustration"><img src="assets/part-c/fig-c2-baseline-card.svg" alt="A baseline card for one task class" style="width:100%;height:auto;max-width:720px;"><figcaption>A baseline card: the value, expected yield, a stop condition and one owner. Values illustrative</figcaption></figure>
+
+  <div class="callout">
+    <span class="cross tl"></span><span class="cross tr"></span>
+    <span class="cross bl"></span><span class="cross br"></span>
+    <div class="eyebrow">ILLUSTRATIVE, NOT A TARGET</div>
+    <p>
+      The numbers on a baseline card are guesses written down so they can be checked. Nobody
+      yet knows what a normal yield looks like for a given class of agentic work. Writing the
+      guess down anyway is the point: a guess you can compare against is more useful than a
+      measurement you never planned to take.
+    </p>
+  </div>
+
+  <h2>Plan price and yield separately</h2>
+  <p>
+    The Reframe page split two risks that are easy to merge. <strong>Price risk</strong> is
+    what each token costs: rates, the mix of token classes, cache behaviour. <strong>Yield
+    risk</strong> is whether the tokens produced anything worth keeping. A plan should carry a
+    separate assumption for each, because they fail for different reasons and are fixed by
+    different people. If the cost envelope assumes a cached-input share and the real share
+    comes in lower, that is a price assumption that broke. If the work finishes but nobody uses
+    it, that is a yield assumption that broke. Merging the two into one cost-per-outcome
+    forecast makes it impossible to tell later which one went wrong.
+  </p>
+
+  <h2>Pick the unit before you pick the number</h2>
+  <p>
+    Plans fail quietly when the unit is too coarse. A single yield figure for &ldquo;all of our
+    agent use&rdquo; averages a task class that works well with one that burns money, and the
+    average hides both. Plan per task class: a recognisable kind of work, such as drafting
+    tests for a changed module or triaging incoming tickets, that runs often enough to produce
+    a pattern. Each class gets its own card, its own floor and its own owner. The owner is a
+    person, not a team, so that when a signal fires on the Manage page there is someone whose
+    job it is to look.
+  </p>
+
+  <h2>Write the stop condition now</h2>
+  <p>
+    The hardest decision in the loop comes at Review, when a task class has been running for a
+    while and has people attached to it. The plan is the cheapest place to make that decision
+    easier. State in advance what result would cause you to stop: a yield floor held over a
+    stated period, after a stated number of attempts to improve it. Agreeing that rule while
+    nobody has anything to defend costs very little. Agreeing it afterwards costs a great deal.
+  </p>
+
+  <details class="go-deeper">
+    <summary>GO DEEPER: where the shadow price &mu; fits in a plan</summary>
+    <div class="go-deeper-body">
+      <p>
+        The budget in a plan is the constraint that the shadow price &mu; is defined against.
+        Early in a piece of work, with most of the budget unspent, &mu; is designed to sit low,
+        and most upgrades pass the Value of a Token test. As spend burns down faster than value
+        arrives, &mu; is designed to rise and the test tightens. A plan that records both the
+        budget and the expected rate of value delivery gives &mu; something to be computed from.
+        <strong>Specified, not yet measured</strong>: this is how the instrument is meant to
+        behave, not a result observed on production workloads.
+      </p>
+    </div>
+  </details>
+
+  <h3>Sources</h3>
+  <ul class="citation-list">
+    <li><span class="cite-num">1</span><span>FinOps Foundation, FinOps Framework (planning and estimating, budgeting, and quantifying business value capabilities) &ndash; <a href="https://www.finops.org/framework/" target="_blank" rel="noopener">finops.org/framework</a></span></li>
+  </ul>
+</main>
+
+<nav class="article-nav">
+  <a href="page-6-open-problem.html">&larr; The Open Problem</a>
+  <a href="page-8-manage.html">Manage &rarr;</a>
+</nav>
+
+</body>
+</html>

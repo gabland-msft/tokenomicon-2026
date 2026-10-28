@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" width="1000" height="400" role="img" aria-labelledby="fig-c6-price-vs-yield-event-title fig-c6-price-vs-yield-event-desc">
+<title id="fig-c6-price-vs-yield-event-title">Price event or yield event</title>
+<desc id="fig-c6-price-vs-yield-event-desc">Two panels. Left, solid: cost up while yield holds is a price event; the work is still converting, so fix rates, routing and cache; it goes to the platform owner. Right, dashed: cost up while yield falls is a yield event; the loop is spending more and keeping less, so fix the work; it goes to the task-class owner.</desc>
+<defs>
+<marker id="fig-c6-price-vs-yield-event-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4a7fb5"/></marker>
+<marker id="fig-c6-price-vs-yield-event-arrow-m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8b96a8"/></marker>
+</defs>
+<rect width="1000" height="400" fill="#fdfdfd"/>
+<rect x="60" y="40" width="420" height="320" rx="0" fill="#e8f1fb" stroke="#4a7fb5" stroke-width="2.5"/>
+<path d="M54 40H66M60 34V46" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M474 40H486M480 34V46" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M54 360H66M60 354V366" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M474 360H486M480 354V366" stroke="#c7dcf1" stroke-width="1.5"/>
+<text x="270.0" y="106" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#4a7fb5" text-anchor="middle" letter-spacing="3.5">COST UP · YIELD HOLDS</text>
+<text x="270.0" y="160" font-family="Inter, sans-serif" font-size="40" font-weight="800" fill="#131c30" text-anchor="middle">PRICE EVENT</text>
+<text x="270.0" y="210" font-family="Inter, sans-serif" font-size="21" fill="#3a4152" text-anchor="middle">still converting:</text>
+<text x="270.0" y="240" font-family="Inter, sans-serif" font-size="21" fill="#3a4152" text-anchor="middle">fix rates, routing, cache</text>
+<line x1="120" y1="276" x2="420" y2="276" stroke="#c7dcf1" stroke-width="1.5" stroke-dasharray="6 6"/>
+<text x="270.0" y="318" font-family="Inter, sans-serif" font-size="19" font-weight="700" fill="#4a7fb5" text-anchor="middle">→ platform owner</text>
+<rect x="520" y="40" width="420" height="320" rx="0" fill="#fdfdfd" stroke="#8b96a8" stroke-width="2.5" stroke-dasharray="8 6"/>
+<text x="730.0" y="106" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#8b96a8" text-anchor="middle" letter-spacing="3.5">COST UP · YIELD FALLS</text>
+<text x="730.0" y="160" font-family="Inter, sans-serif" font-size="40" font-weight="800" fill="#131c30" text-anchor="middle">YIELD EVENT</text>
+<text x="730.0" y="210" font-family="Inter, sans-serif" font-size="21" fill="#3a4152" text-anchor="middle">spending more, keeping less:</text>
+<text x="730.0" y="240" font-family="Inter, sans-serif" font-size="21" fill="#3a4152" text-anchor="middle">fix the work</text>
+<line x1="580" y1="276" x2="880" y2="276" stroke="#d7dde6" stroke-width="1.5" stroke-dasharray="6 6"/>
+<text x="730.0" y="318" font-family="Inter, sans-serif" font-size="19" font-weight="700" fill="#1a2438" text-anchor="middle">→ task-class owner</text>
+</svg>
