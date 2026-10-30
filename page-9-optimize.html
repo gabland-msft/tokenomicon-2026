@@ -23,7 +23,7 @@
   </div>
   <div class="inner">
     <h1>More Outcomes per Dollar</h1>
-    <blockquote class="claim">&ldquo;Optimizing agentic work means raising the number of accepted outcomes for each dollar spent; reducing token count serves that aim in some cases and works against it in others.&rdquo;</blockquote>
+    <blockquote class="claim">&ldquo;Optimizing agentic work means raising yield per dollar spent; reducing token count serves that aim in some cases and works against it in others.&rdquo;</blockquote>
     <p class="subhead">
       Once spend is attributed and each signal has an owner, the next step is to change the work,
       and the order of those changes, together with the check applied to each, decides whether
@@ -43,7 +43,7 @@
     outcome above its previous level.
   </p>
   <p>
-    The measure for this stage is accepted outcomes per dollar for each task class, taken before
+    The measure for this stage is yield per dollar (accepted outcomes against spend) for each task class, taken before
     and after a change, which in the terms used across this hub is AES set against spend. A
     change that lowers spend while AES holds is a saving; a change that lowers spend while AES
     falls by more is a loss, even though the invoice shows a reduction.
@@ -59,7 +59,7 @@
     <li><strong>Stop work that does not convert.</strong> A task class that is not run consumes
       no tokens, so when a class sits below its yield floor and the Manage signals classify the
       shortfall as a yield event, pausing the class is preferable to tuning it.</li>
-    <li><strong>Fix the loop.</strong> Stop rules, context hygiene, cleaner tool outputs and
+    <li><strong>Fix the agent loop.</strong> Stop rules, context hygiene, cleaner tool outputs and
       sub-agents that return summaries instead of transcripts change how many iterations a task
       needs and how much each iteration carries. One published result found a 41% cost
       reduction from harness changes alone, with the model unchanged.</li>
@@ -67,7 +67,7 @@
       definitions fixed in order and content so that repeated input is billed at the cached
       rate, which lowers price while leaving the model's input unchanged.</li>
     <li><strong>Route by task class.</strong> Send each class to the cheapest model tier that
-      holds its yield, using the Value of a Token test to decide when an upgrade is worth it.</li>
+      holds its yield, using the Value of Token test to decide when an upgrade is worth it.</li>
     <li><strong>Batch what can wait.</strong> Work that does not need an answer in seconds can
       often run asynchronously at a lower rate.</li>
     <li><strong>Set quotas and negotiate rates.</strong> These levers are useful but sit
@@ -94,7 +94,7 @@
   <h2>The first 30 days</h2>
   <p>
     For a team starting from an invoice and nothing else, a month is enough to complete one turn
-    of the loop on a small scale.
+    of the operating loop on a small scale.
   </p>
   <ul>
     <li><strong>Week 1.</strong> Add attribution tags to every call, then pick two or three
@@ -107,7 +107,7 @@
       the result whichever way it went, since that record is the input to Review.</li>
   </ul>
 
-  <figure class="illustration"><img src="assets/part-c/fig-c8-first-30-days.svg" alt="Four weeks: tag, find, pull one lever, compare" style="width:100%;height:auto;max-width:960px;"><figcaption>The first 30 days: one small turn of the loop</figcaption></figure>
+  <figure class="illustration"><img src="assets/part-c/fig-c8-first-30-days.svg" alt="Four weeks: tag, find, pull one lever, compare" style="width:100%;height:auto;max-width:960px;"><figcaption>The first 30 days: one small turn of the operating loop</figcaption></figure>
 
   <div class="callout">
     <span class="cross tl"></span><span class="cross tr"></span>
@@ -132,7 +132,7 @@
         to a human and less output that ships and goes unused. Because AES is a product of three
         ratios, a modest improvement in the weakest ratio can move AES by more than a large
         discount moves spend, a result that follows from the arithmetic of the measure.
-        <strong>Specified, not yet measured</strong>: the size of the effect for a given task
+        <strong>Specified, not yet validated</strong>: the size of the effect for a given task
         class is an empirical question.
       </p>
     </div>

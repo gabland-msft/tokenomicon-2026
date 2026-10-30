@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" width="1000" height="400" role="img" aria-labelledby="fig-c6-price-vs-yield-event-title fig-c6-price-vs-yield-event-desc">
 <title id="fig-c6-price-vs-yield-event-title">Price event or yield event</title>
-<desc id="fig-c6-price-vs-yield-event-desc">Two panels. Left, solid: cost up while yield holds is a price event; the work is still converting, so fix rates, routing and cache; it goes to the platform owner. Right, dashed: cost up while yield falls is a yield event; the loop is spending more and keeping less, so fix the work; it goes to the task-class owner.</desc>
+<desc id="fig-c6-price-vs-yield-event-desc">Two panels. Left, solid: cost up while yield holds is a price event; the work is still converting, so fix rates, routing and cache; it goes to the platform owner. Right, dashed: cost up while yield falls is a yield event; the work is spending more and keeping less, so fix the work; it goes to the task-class owner.</desc>
 <defs>
 <marker id="fig-c6-price-vs-yield-event-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4a7fb5"/></marker>
 <marker id="fig-c6-price-vs-yield-event-arrow-m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8b96a8"/></marker>

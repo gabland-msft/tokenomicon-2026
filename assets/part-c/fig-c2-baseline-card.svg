@@ -1,53 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" width="960" height="470" role="img" aria-labelledby="fig-c2-baseline-card-title fig-c2-baseline-card-desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 550" width="960" height="550" role="img" aria-labelledby="fig-c2-baseline-card-title fig-c2-baseline-card-desc">
 <title id="fig-c2-baseline-card-title">A baseline card</title>
-<desc id="fig-c2-baseline-card-desc">A baseline card for one task class, written before spend: the value hypothesis, expected yield as finished, kept and mattered (illustrative 0.9, 0.8, 0.7), a stop condition (yield below 0.4 for four weeks, illustrative), and one named owner.</desc>
+<desc id="fig-c2-baseline-card-desc">A baseline card for one task class, written before spend: the value hypothesis, cost per task with price assumptions stated, expected yield as finished, kept and mattered (illustrative 0.9, 0.8, 0.7), a stop condition (yield below 0.4 for four weeks, illustrative), and one named owner.</desc>
 <defs>
 <marker id="fig-c2-baseline-card-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4a7fb5"/></marker>
 <marker id="fig-c2-baseline-card-arrow-m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8b96a8"/></marker>
 </defs>
-<rect width="960" height="470" fill="#fdfdfd"/>
-<rect x="40" y="30" width="880" height="410" rx="0" fill="#fdfdfd" stroke="#d7dde6" stroke-width="1.5"/>
+<rect width="960" height="550" fill="#fdfdfd"/>
+<rect x="40" y="30" width="880" height="490" rx="0" fill="#fdfdfd" stroke="#d7dde6" stroke-width="1.5"/>
 <path d="M34 30H46M40 24V36" stroke="#d7dde6" stroke-width="1.5"/>
 <path d="M914 30H926M920 24V36" stroke="#d7dde6" stroke-width="1.5"/>
-<path d="M34 440H46M40 434V446" stroke="#d7dde6" stroke-width="1.5"/>
-<path d="M914 440H926M920 434V446" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M34 520H46M40 514V526" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M914 520H926M920 514V526" stroke="#d7dde6" stroke-width="1.5"/>
 <text x="80" y="80" font-family="Inter, sans-serif" font-size="15" font-weight="800" fill="#131c30" text-anchor="start" letter-spacing="3.5">BASELINE CARD</text>
 <text x="258.0" y="80" font-family="Inter, sans-serif" font-size="16" fill="#8b96a8" text-anchor="start">one task class</text>
 <rect x="742.5" y="60" width="137.5" height="26" fill="none" stroke="#8b96a8" stroke-width="1.2" stroke-dasharray="4 3"/>
 <text x="811.25" y="75" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#8b96a8" text-anchor="middle" letter-spacing="2.5">ILLUSTRATIVE</text>
 <line x1="64" y1="110" x2="896" y2="110" stroke="#d7dde6" stroke-width="1.5" stroke-dasharray="6 6"/>
 <line x1="64" y1="190" x2="896" y2="190" stroke="#d7dde6" stroke-width="1.5" stroke-dasharray="6 6"/>
-<line x1="64" y1="300" x2="896" y2="300" stroke="#d7dde6" stroke-width="1.5" stroke-dasharray="6 6"/>
-<line x1="64" y1="370" x2="896" y2="370" stroke="#d7dde6" stroke-width="1.5" stroke-dasharray="6 6"/>
+<line x1="64" y1="270" x2="896" y2="270" stroke="#d7dde6" stroke-width="1.5" stroke-dasharray="6 6"/>
+<line x1="64" y1="380" x2="896" y2="380" stroke="#d7dde6" stroke-width="1.5" stroke-dasharray="6 6"/>
+<line x1="64" y1="450" x2="896" y2="450" stroke="#d7dde6" stroke-width="1.5" stroke-dasharray="6 6"/>
 <text x="80" y="158" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#4a7fb5" text-anchor="start" letter-spacing="2.5">VALUE</text>
 <text x="260" y="158" font-family="Inter, sans-serif" font-size="21" font-weight="600" fill="#1a2438" text-anchor="start">Fewer backlog items waiting a week for a draft</text>
-<text x="80" y="252" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#4a7fb5" text-anchor="start" letter-spacing="2.5">EXPECTED YIELD</text>
-<rect x="260.0" y="210" width="194.66666666666666" height="70" rx="0" fill="#e8f1fb" stroke="#c7dcf1" stroke-width="1.5"/>
-<path d="M254.0 210H266.0M260.0 204V216" stroke="#c7dcf1" stroke-width="1.5"/>
-<path d="M448.66666666666663 210H460.66666666666663M454.66666666666663 204V216" stroke="#c7dcf1" stroke-width="1.5"/>
-<path d="M254.0 280H266.0M260.0 274V286" stroke="#c7dcf1" stroke-width="1.5"/>
-<path d="M448.66666666666663 280H460.66666666666663M454.66666666666663 274V286" stroke="#c7dcf1" stroke-width="1.5"/>
-<text x="282.0" y="252" font-family="Inter, sans-serif" font-size="15" font-weight="800" fill="#131c30" text-anchor="start" letter-spacing="2.5">FINISHED</text>
-<text x="432.66666666666663" y="256" font-family="Anton, Inter, sans-serif" font-size="30" fill="#4a7fb5" text-anchor="end">0.9</text>
-<rect x="472.66666666666663" y="210" width="194.66666666666666" height="70" rx="0" fill="#e8f1fb" stroke="#c7dcf1" stroke-width="1.5"/>
-<path d="M466.66666666666663 210H478.66666666666663M472.66666666666663 204V216" stroke="#c7dcf1" stroke-width="1.5"/>
-<path d="M661.3333333333333 210H673.3333333333333M667.3333333333333 204V216" stroke="#c7dcf1" stroke-width="1.5"/>
-<path d="M466.66666666666663 280H478.66666666666663M472.66666666666663 274V286" stroke="#c7dcf1" stroke-width="1.5"/>
-<path d="M661.3333333333333 280H673.3333333333333M667.3333333333333 274V286" stroke="#c7dcf1" stroke-width="1.5"/>
-<text x="494.66666666666663" y="252" font-family="Inter, sans-serif" font-size="15" font-weight="800" fill="#131c30" text-anchor="start" letter-spacing="2.5">KEPT</text>
-<text x="645.3333333333333" y="256" font-family="Anton, Inter, sans-serif" font-size="30" fill="#4a7fb5" text-anchor="end">0.8</text>
-<rect x="685.3333333333333" y="210" width="194.66666666666666" height="70" rx="0" fill="#e8f1fb" stroke="#c7dcf1" stroke-width="1.5"/>
-<path d="M679.3333333333333 210H691.3333333333333M685.3333333333333 204V216" stroke="#c7dcf1" stroke-width="1.5"/>
-<path d="M873.9999999999999 210H885.9999999999999M879.9999999999999 204V216" stroke="#c7dcf1" stroke-width="1.5"/>
-<path d="M679.3333333333333 280H691.3333333333333M685.3333333333333 274V286" stroke="#c7dcf1" stroke-width="1.5"/>
-<path d="M873.9999999999999 280H885.9999999999999M879.9999999999999 274V286" stroke="#c7dcf1" stroke-width="1.5"/>
-<text x="707.3333333333333" y="252" font-family="Inter, sans-serif" font-size="15" font-weight="800" fill="#131c30" text-anchor="start" letter-spacing="2.5">MATTERED</text>
-<text x="857.9999999999999" y="256" font-family="Anton, Inter, sans-serif" font-size="30" fill="#4a7fb5" text-anchor="end">0.7</text>
-<text x="80" y="344" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#4a7fb5" text-anchor="start" letter-spacing="2.5">STOP IF</text>
-<text x="260" y="344" font-family="Inter, sans-serif" font-size="21" font-weight="600" fill="#1a2438" text-anchor="start">yield below 0.4 for four weeks</text>
-<text x="80" y="414" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#4a7fb5" text-anchor="start" letter-spacing="2.5">OWNER</text>
-<circle cx="276" cy="407" r="16" fill="#eef1f6" stroke="#d7dde6" stroke-width="1.5"/>
-<circle cx="276" cy="402" r="5" fill="#8b96a8"/>
-<path d="M266.5 417a9.5 8 0 0 1 19 0" fill="#8b96a8"/>
-<text x="306" y="414" font-family="Inter, sans-serif" font-size="21" font-weight="600" fill="#1a2438" text-anchor="start">One named person, not a team</text>
+<text x="80" y="238" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#4a7fb5" text-anchor="start" letter-spacing="2.5">COST PER TASK</text>
+<text x="260" y="238" font-family="Inter, sans-serif" font-size="21" font-weight="600" fill="#1a2438" text-anchor="start">Expected spend, with the price assumptions stated</text>
+<text x="80" y="332" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#4a7fb5" text-anchor="start" letter-spacing="2.5">EXPECTED YIELD</text>
+<rect x="260.0" y="290" width="194.66666666666666" height="70" rx="0" fill="#e8f1fb" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M254.0 290H266.0M260.0 284V296" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M448.66666666666663 290H460.66666666666663M454.66666666666663 284V296" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M254.0 360H266.0M260.0 354V366" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M448.66666666666663 360H460.66666666666663M454.66666666666663 354V366" stroke="#c7dcf1" stroke-width="1.5"/>
+<text x="282.0" y="332" font-family="Inter, sans-serif" font-size="15" font-weight="800" fill="#131c30" text-anchor="start" letter-spacing="2.5">FINISHED</text>
+<text x="432.66666666666663" y="336" font-family="Anton, Inter, sans-serif" font-size="30" fill="#4a7fb5" text-anchor="end">0.9</text>
+<rect x="472.66666666666663" y="290" width="194.66666666666666" height="70" rx="0" fill="#e8f1fb" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M466.66666666666663 290H478.66666666666663M472.66666666666663 284V296" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M661.3333333333333 290H673.3333333333333M667.3333333333333 284V296" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M466.66666666666663 360H478.66666666666663M472.66666666666663 354V366" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M661.3333333333333 360H673.3333333333333M667.3333333333333 354V366" stroke="#c7dcf1" stroke-width="1.5"/>
+<text x="494.66666666666663" y="332" font-family="Inter, sans-serif" font-size="15" font-weight="800" fill="#131c30" text-anchor="start" letter-spacing="2.5">KEPT</text>
+<text x="645.3333333333333" y="336" font-family="Anton, Inter, sans-serif" font-size="30" fill="#4a7fb5" text-anchor="end">0.8</text>
+<rect x="685.3333333333333" y="290" width="194.66666666666666" height="70" rx="0" fill="#e8f1fb" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M679.3333333333333 290H691.3333333333333M685.3333333333333 284V296" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M873.9999999999999 290H885.9999999999999M879.9999999999999 284V296" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M679.3333333333333 360H691.3333333333333M685.3333333333333 354V366" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M873.9999999999999 360H885.9999999999999M879.9999999999999 354V366" stroke="#c7dcf1" stroke-width="1.5"/>
+<text x="707.3333333333333" y="332" font-family="Inter, sans-serif" font-size="15" font-weight="800" fill="#131c30" text-anchor="start" letter-spacing="2.5">MATTERED</text>
+<text x="857.9999999999999" y="336" font-family="Anton, Inter, sans-serif" font-size="30" fill="#4a7fb5" text-anchor="end">0.7</text>
+<text x="80" y="424" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#4a7fb5" text-anchor="start" letter-spacing="2.5">STOP IF</text>
+<text x="260" y="424" font-family="Inter, sans-serif" font-size="21" font-weight="600" fill="#1a2438" text-anchor="start">yield below 0.4 for four weeks</text>
+<text x="80" y="494" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#4a7fb5" text-anchor="start" letter-spacing="2.5">OWNER</text>
+<circle cx="276" cy="487" r="16" fill="#eef1f6" stroke="#d7dde6" stroke-width="1.5"/>
+<circle cx="276" cy="482" r="5" fill="#8b96a8"/>
+<path d="M266.5 497a9.5 8 0 0 1 19 0" fill="#8b96a8"/>
+<text x="306" y="494" font-family="Inter, sans-serif" font-size="21" font-weight="600" fill="#1a2438" text-anchor="start">One named person, not a team</text>
 </svg>
