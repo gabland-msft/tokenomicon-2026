@@ -73,6 +73,11 @@
   .toc-intro { margin-bottom: clamp(1.75rem, 4vw, 3rem); }
   .toc-intro .eyebrow { color: var(--accent-blue-deep); margin-bottom: 0.75rem; }
   .toc-intro h2 { font-size: clamp(1.9rem, 2.5vw + 1rem, 2.8rem); }
+  .session-map { margin: 0 0 clamp(1.5rem, 3vw, 2.25rem); padding: 1rem 1.25rem; border: 1px solid var(--border); border-left: 3px solid var(--accent-blue-deep); background: #fff; }
+  .session-map .eyebrow { color: var(--accent-blue-deep); margin-bottom: 0.4rem; }
+  .session-map p { margin: 0 0 0.5rem; font-size: 0.9rem; line-height: 1.5; color: #4b5366; }
+  .session-map ol { margin: 0; padding-left: 1.25rem; font-size: 0.9rem; line-height: 1.6; color: #4b5366; }
+  .session-map a { color: var(--accent-blue-deep); }
   .toc-part {
     border-top: 1px solid var(--ink);
     padding-top: 1rem;
@@ -154,7 +159,12 @@
   /* Wide screens: part heading in a left column, rows on the right, and
      title + description side by side so each row reads as one line. */
   @media (min-width: 900px) {
-    .toc-part {
+    .session-map { margin: 0 0 clamp(1.5rem, 3vw, 2.25rem); padding: 1rem 1.25rem; border: 1px solid var(--border); border-left: 3px solid var(--accent-blue-deep); background: #fff; }
+  .session-map .eyebrow { color: var(--accent-blue-deep); margin-bottom: 0.4rem; }
+  .session-map p { margin: 0 0 0.5rem; font-size: 0.9rem; line-height: 1.5; color: #4b5366; }
+  .session-map ol { margin: 0; padding-left: 1.25rem; font-size: 0.9rem; line-height: 1.6; color: #4b5366; }
+  .session-map a { color: var(--accent-blue-deep); }
+  .toc-part {
       display: grid;
       grid-template-columns: 15rem minmax(0, 1fr);
       column-gap: 3rem;
@@ -199,7 +209,7 @@
         &ldquo;TokenOps maximizes the fraction of spend that converts into accepted, valuable, autonomously-completed outcomes; that composite conversion rate is token yield, the metric tracked across this hub.&rdquo;
       </blockquote>
       <div class="eyebrow">— DEFINITION USED THROUGHOUT THE SITE</div>
-      <p class="hero-formal">Formally, token yield = <strong>Agent Efficiency Score (AES)</strong> = TER &times; VGR &times; ACR, which differs from raw acceptance. <a href="page-3-agentic-loop.html">The Agentic Loop</a> explains why accepted output alone is insufficient.</p>
+      <p class="hero-formal">Formally, token yield = <strong>Agent Efficiency Score (AES)</strong> = ACR &times; TER &times; VGR, which differs from raw acceptance. <a href="page-3-agentic-loop.html">The Agent Loop</a> explains why accepted output alone is insufficient.</p>
     </div>
   </div>
 
@@ -225,6 +235,17 @@
       <h2 id="toc-title">Pick a starting point.</h2>
     </div>
 
+    <aside class="session-map" aria-labelledby="session-map-title">
+      <div class="eyebrow" id="session-map-title">From the Ignite session</div>
+      <p>If you arrived from &ldquo;From AI Ambition to Value at Scale&rdquo; at Microsoft Ignite 2026, the four parts of the session map onto these pages:</p>
+      <ol>
+        <li><strong>Price is not yield</strong>: pages <a href="page-1-macro-hook.html">01</a> to <a href="page-3-agentic-loop.html">03</a>.</li>
+        <li><strong>Yield has a shape</strong>: pages <a href="page-4-reframe.html">04</a> to <a href="page-6-open-problem.html">06</a>.</li>
+        <li><strong>Run it as an operating loop</strong> (Plan, Manage, Optimize, Review): pages <a href="page-7-plan.html">07</a> to <a href="page-10-review.html">10</a>.</li>
+        <li><strong>Start Monday</strong>: the first 30 days, on <a href="page-9-optimize.html">page 09</a>.</li>
+      </ol>
+    </aside>
+
     <section class="toc-part" aria-labelledby="part-understand">
       <div class="toc-part-head">
         <span class="eyebrow toc-part-label">Part 1</span>
@@ -234,7 +255,7 @@
       <ol class="toc-list">
         <li><a class="toc-row" href="page-1-macro-hook.html"><span class="toc-num">01</span><span class="toc-text"><span class="toc-title">Macro Hook</span><span class="toc-desc">Paying for AI work without knowing whether it was worth it.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
         <li><a class="toc-row" href="page-2-tokens.html"><span class="toc-num">02</span><span class="toc-text"><span class="toc-title">Tokens &amp; the Price You Can&rsquo;t See</span><span class="toc-desc">Five token types, each billed at its own price.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
-        <li><a class="toc-row" href="page-3-agentic-loop.html"><span class="toc-num">03</span><span class="toc-text"><span class="toc-title">The Agentic Loop</span><span class="toc-desc">How the agentic loop multiplies cost.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
+        <li><a class="toc-row" href="page-3-agentic-loop.html"><span class="toc-num">03</span><span class="toc-text"><span class="toc-title">The Agent Loop</span><span class="toc-desc">How the agent loop multiplies cost.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
         <li><a class="toc-row" href="page-4-reframe.html"><span class="toc-num">04</span><span class="toc-text"><span class="toc-title">The Reframe</span><span class="toc-desc">Cost as a constraint to stay within rather than the objective.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
         <li><a class="toc-row" href="page-5-instruments.html"><span class="toc-num">05</span><span class="toc-text"><span class="toc-title">The Instruments You Never Had</span><span class="toc-desc">A live estimate of whether one more attempt is worth its cost.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
         <li><a class="toc-row" href="page-6-open-problem.html"><span class="toc-num">06</span><span class="toc-text"><span class="toc-title">The Open Problem</span><span class="toc-desc">What to measure and why, and what has not yet been measured.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
@@ -250,7 +271,7 @@
       <ol class="toc-list">
         <li><a class="toc-row" href="page-7-plan.html"><span class="toc-num">07</span><span class="toc-text"><span class="toc-title">Plan</span><span class="toc-desc">Write down cost, value and acceptable yield before you spend.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
         <li><a class="toc-row" href="page-8-manage.html"><span class="toc-num">08</span><span class="toc-text"><span class="toc-title">Manage</span><span class="toc-desc">Every token has an owner, and an invoice alone cannot report yield.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
-        <li><a class="toc-row" href="page-9-optimize.html"><span class="toc-num">09</span><span class="toc-text"><span class="toc-title">Optimize</span><span class="toc-desc">More accepted outcomes per dollar, rather than fewer tokens.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
+        <li><a class="toc-row" href="page-9-optimize.html"><span class="toc-num">09</span><span class="toc-text"><span class="toc-title">Optimize</span><span class="toc-desc">More yield per dollar, rather than fewer tokens.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
         <li><a class="toc-row" href="page-10-review.html"><span class="toc-num">10</span><span class="toc-text"><span class="toc-title">Review</span><span class="toc-desc">Scale, sustain or stop, decided on evidence rather than on budget.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
       </ol>
     </section>
