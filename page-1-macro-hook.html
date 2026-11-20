@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Macro Hook — Token Yield Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/slides.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="site-nav-home" href="index.html">Token Yield Hub</a>
+  <a class="site-nav-cta" href="contact.html">Get in Touch</a>
+</nav>
+
+<header class="article-hero">
+  <div class="article-hero-top">
+    <div class="eyebrow">SEGMENT 0 · HOOK</div>
+    <div class="status-tag">MACRO HOOK</div>
+  </div>
+  <div class="inner">
+    <h1>The Macro Hook</h1>
+    <blockquote class="claim">&ldquo;You are paying for AI work without a measure of whether it was worth the cost, because existing measures record spend without establishing value.&rdquo;</blockquote>
+    <p class="subhead">
+      This two-minute introduction describes the measurement failure addressed by the hub and
+      sets out the four-stop roadmap developed in the remaining pages.
+    </p>
+  </div>
+</header>
+
+<main class="article-body">
+
+  <h2>The $47,000 example</h2>
+  <p>
+    A team spent <strong>$47,000</strong> on tokens in a single month, and when asked whether that
+    spend was worth it, nobody on the team could answer. The number was visible to them, but a
+    spend total on its own carries no information about the quality of the work it bought. (The
+    figure is anonymized and illustrative, and is not a real engagement number.)
+  </p>
+
+  <h2>Cost visibility and value visibility</h2>
+  <p>
+    The team had good cost dashboards, with line items by model, by day and by project, which is
+    what a mature FinOps practice is expected to produce. Those dashboards could not show what the
+    spend <em>got</em> them, measured as output accepted per token, per task or per dollar. Cost
+    visibility and value visibility need two different instruments, and this hub exists because
+    most organizations have built only the first.
+  </p>
+
+  <div class="callout">
+    <span class="cross tl"></span><span class="cross tr"></span>
+    <span class="cross bl"></span><span class="cross br"></span>
+    <div class="eyebrow">THE DISTINCTION BETWEEN SPEND AND VALUE</div>
+    <p>
+      A spend total is not a value measure: a dashboard can account for every charge without
+      showing whether the money bought useful work. Assessing what one token, one call or one
+      agent run is worth is a <strong>unit&nbsp;economics</strong> problem rather than a
+      monitoring problem, which only counts what was spent.
+    </p>
+  </div>
+
+  <h2>The four-theme roadmap</h2>
+  <p>
+    That distinction sets the structure of the rest of the hub, which is organized around a
+    four-theme map, <strong>Tokens &rarr; Loop &rarr; Yield &rarr; ?</strong>, covering what a token
+    costs, what an agent loop does to that cost, what yield means once cost and outcome are both
+    measured, and a fourth theme left open on purpose (Yield spans two segments below: the reframe
+    and the instruments). The fourth theme remains the hub&rsquo;s open question. Each of the six
+    segments stands on its own and can be read in any order, and none of them, alone or in
+    sequence, claims to resolve it.
+  </p>
+
+  <div class="illustration">
+    <svg viewBox="0 0 560 170" role="img" aria-labelledby="hook-illust-title hook-illust-desc">
+      <title id="hook-illust-title">The four-stop roadmap: Tokens, Loop, Yield, and an open question</title>
+      <desc id="hook-illust-desc">Four connected circles labeled Tokens, Loop, Yield, and a fourth left as a dashed, unfilled outline with a question mark, representing the site's roadmap.</desc>
+      <g fill="none" stroke="#8b96a8" stroke-width="1.5">
+        <line x1="112" y1="72" x2="168" y2="72"></line>
+        <line x1="252" y1="72" x2="308" y2="72"></line>
+        <line x1="392" y1="72" x2="448" y2="72"></line>
+      </g>
+      <g fill="#8b96a8">
+        <path d="M 168 72 L 158 67 L 158 77 Z"></path>
+        <path d="M 308 72 L 298 67 L 298 77 Z"></path>
+        <path d="M 448 72 L 438 67 L 438 77 Z"></path>
+      </g>
+      <g font-family="Inter, sans-serif" font-weight="700" text-anchor="middle">
+        <circle cx="70" cy="72" r="40" fill="#4a7fb5"></circle>
+        <text x="70" y="78" font-size="14" fill="#fdfdfd">TOKENS</text>
+
+        <circle cx="210" cy="72" r="40" fill="#7db4e6"></circle>
+        <text x="210" y="78" font-size="14" fill="#131c30">LOOP</text>
+
+        <circle cx="350" cy="72" r="40" fill="#131c30"></circle>
+        <text x="350" y="78" font-size="14" fill="#fdfdfd">YIELD</text>
+
+        <circle cx="490" cy="72" r="40" fill="none" stroke="#8b96a8" stroke-width="1.5" stroke-dasharray="4 4"></circle>
+        <text x="490" y="82" font-size="22" fill="#8b96a8">?</text>
+      </g>
+      <g font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#3a4152" text-anchor="middle">
+        <text x="70" y="140">01 · WHAT IT COSTS</text>
+        <text x="210" y="140">02 · WHAT THE LOOP DOES</text>
+        <text x="350" y="140">03 · WHAT IT'S WORTH</text>
+        <text x="490" y="140">04 · UNRESOLVED</text>
+      </g>
+    </svg>
+    <figcaption>The map this hub organizes around; the fourth stop is revisited on the closing page, which names what to measure without claiming to close it</figcaption>
+  </div>
+
+  <details class="go-deeper">
+    <summary>GO DEEPER &mdash; differences between cost and yield visibility</summary>
+    <div class="go-deeper-body">
+      <p>
+        FinOps practices have spent years building tooling that answers "what did we spend"
+        precisely, by model, by team and by day, reconciled across invoicing systems; that
+        machinery is mature. It was not designed to answer "what did we get,"
+        because that question needs a second axis: an accepted-outcome measure recorded alongside
+        the cost measure, rather than a further cut of the same spend number. A team with a complete
+        cost dashboard can therefore be in the position of the $47,000 team, able to state what
+        left the wallet and unable to say whether it was worth it. The remaining pages of this hub
+        build that second axis.
+      </p>
+    </div>
+  </details>
+
+</main>
+
+<nav class="article-nav">
+  <a href="index.html">&larr; Home</a>
+  <a href="page-2-tokens.html">Tokens &amp; the Price You Can't See &rarr;</a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1030 372" width="1030" height="372" role="img" aria-labelledby="fig-c5-decision-table-title fig-c5-decision-table-desc">
+<title id="fig-c5-decision-table-title">Signals with owners</title>
+<desc id="fig-c5-decision-table-desc">A decision table with columns signal, threshold and owner. Cost per task up with yield holding, over 20% week on week, goes to the platform owner. The same rise with yield falling goes to the task-class owner. Cached-input share below 60% goes to the harness owner. Spend 25% ahead of value milestones goes to the budget owner. Thresholds illustrative.</desc>
+<defs>
+<marker id="fig-c5-decision-table-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4a7fb5"/></marker>
+<marker id="fig-c5-decision-table-arrow-m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8b96a8"/></marker>
+</defs>
+<rect width="1030" height="372" fill="#fdfdfd"/>
+<rect x="40" y="30" width="950" height="48" fill="#131c30"/>
+<text x="64" y="61" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#ffffff" text-anchor="start" letter-spacing="3">SIGNAL</text>
+<text x="464" y="61" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#ffffff" text-anchor="start" letter-spacing="3">THRESHOLD</text>
+<text x="764" y="61" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#ffffff" text-anchor="start" letter-spacing="3">OWNER</text>
+<text x="720" y="60" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#9fb4cf" text-anchor="end" letter-spacing="2">ILLUSTRATIVE</text>
+<text x="64" y="119" font-family="Inter, sans-serif" font-size="20" font-weight="600" fill="#1a2438" text-anchor="start">Cost per task up, yield holding</text>
+<text x="464" y="119" font-family="Inter, sans-serif" font-size="20" fill="#3a4152" text-anchor="start">+20% week on week</text>
+<text x="764" y="119" font-family="Inter, sans-serif" font-size="20" font-weight="600" fill="#1a2438" text-anchor="start">Platform owner</text>
+<line x1="40" y1="144" x2="990" y2="144" stroke="#d7dde6" stroke-width="1"/>
+<rect x="40" y="144" width="950" height="66" fill="#eef1f6"/>
+<text x="64" y="185" font-family="Inter, sans-serif" font-size="20" font-weight="600" fill="#1a2438" text-anchor="start">Cost per task up, yield falling</text>
+<text x="464" y="185" font-family="Inter, sans-serif" font-size="20" fill="#3a4152" text-anchor="start">+20% week on week</text>
+<text x="764" y="185" font-family="Inter, sans-serif" font-size="20" font-weight="600" fill="#1a2438" text-anchor="start">Task-class owner</text>
+<line x1="40" y1="210" x2="990" y2="210" stroke="#d7dde6" stroke-width="1"/>
+<text x="64" y="251" font-family="Inter, sans-serif" font-size="20" font-weight="600" fill="#1a2438" text-anchor="start">Cached-input share falling</text>
+<text x="464" y="251" font-family="Inter, sans-serif" font-size="20" fill="#3a4152" text-anchor="start">below 60%</text>
+<text x="764" y="251" font-family="Inter, sans-serif" font-size="20" font-weight="600" fill="#1a2438" text-anchor="start">Harness owner</text>
+<line x1="40" y1="276" x2="990" y2="276" stroke="#d7dde6" stroke-width="1"/>
+<rect x="40" y="276" width="950" height="66" fill="#eef1f6"/>
+<text x="64" y="317" font-family="Inter, sans-serif" font-size="20" font-weight="600" fill="#1a2438" text-anchor="start">Spend ahead of value</text>
+<text x="464" y="317" font-family="Inter, sans-serif" font-size="20" fill="#3a4152" text-anchor="start">25% over plan</text>
+<text x="764" y="317" font-family="Inter, sans-serif" font-size="20" font-weight="600" fill="#1a2438" text-anchor="start">Budget owner</text>
+<line x1="40" y1="342" x2="990" y2="342" stroke="#d7dde6" stroke-width="1"/>
+<rect x="40" y="30" width="950" height="312" fill="none" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M34 30H46M40 24V36" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M984 30H996M990 24V36" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M34 342H46M40 336V348" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M984 342H996M990 336V348" stroke="#d7dde6" stroke-width="1.5"/>
+</svg>

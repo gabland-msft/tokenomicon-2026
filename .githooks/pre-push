@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# Pre-push content guard. Blocks the push if the outgoing diff matches any
+# pattern in denylist-generic.txt (committed) or denylist-local.txt
+# (gitignored, machine-local — never pushed).
+#
+# Setup after cloning: git config core.hooksPath .githooks
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel)"
+generic_list="$repo_root/.githooks/denylist-generic.txt"
+local_list="$repo_root/.githooks/denylist-local.txt"
+
+patterns=()
+for f in "$generic_list" "$local_list"; do
+  if [ -f "$f" ]; then
+    while IFS= read -r line; do
+      [ -z "$line" ] && continue
+      [[ "$line" == \#* ]] && continue
+      patterns+=("$line")
+    done < "$f"
+  fi
+done
+
+if [ "${#patterns[@]}" -eq 0 ]; then
+  exit 0
+fi
+
+zero_sha="0000000000000000000000000000000000000000"
+found_any=0
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [ "$local_sha" = "$zero_sha" ] && continue  # branch deletion, nothing to scan
+
+  if [ "$remote_sha" = "$zero_sha" ]; then
+    range_diff=$(git diff --unified=0 "$(git hash-object -t tree /dev/null)" "$local_sha" 2>/dev/null || true)
+  else
+    range_diff=$(git diff --unified=0 "$remote_sha" "$local_sha" 2>/dev/null || true)
+  fi
+
+  for pat in "${patterns[@]}"; do
+    if grep -Eiq -- "$pat" <<<"$range_diff"; then
+      echo "BLOCKED: outgoing push to $remote_ref matches denylist pattern: $pat" >&2
+      found_any=1
+    fi
+  done
+done
+
+if [ "$found_any" -eq 1 ]; then
+  echo "" >&2
+  echo "Push aborted by .githooks/pre-push. Remove the matching content before pushing." >&2
+  echo "(Emergency override: git push --no-verify — only if you are certain this is a false positive.)" >&2
+  exit 1
+fi
+
+exit 0

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Open Problem — Token Yield Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/slides.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="site-nav-home" href="index.html">Token Yield Hub</a>
+  <a class="site-nav-cta" href="contact.html">Get in Touch</a>
+</nav>
+
+<header class="article-hero">
+  <div class="article-hero-top">
+    <div class="eyebrow">SEGMENT 5 · CLOSE</div>
+    <div class="status-tag">THE OPEN PROBLEM</div>
+  </div>
+  <div class="inner">
+    <h1>The Open Problem</h1>
+    <blockquote class="claim">&ldquo;The framework specifies what to measure and why; numerical estimates come from the measurements this page describes.&rdquo;</blockquote>
+    <p class="subhead">
+      Everything developed across the previous five pages follows from documented platform
+      billing and arithmetic, with the proposed mechanisms marked as such; this page sets out
+      the measurements that would calibrate them.
+    </p>
+  </div>
+</header>
+
+<main class="article-body">
+
+  <h2>What the framework establishes and what remains to be measured</h2>
+  <p>
+    The framework&rsquo;s math is fully specified, and fitting its parameters is the next step. Each formula
+    in this hub (the shadow price, the token efficiency ratio, the yield curve) describes
+    <em>what to measure and why</em>, and none yet describes <em>what the numbers are</em> for a
+    real, running agentic workload, because that requires production data collected at
+    scale.
+  </p>
+
+  <div class="callout">
+    <span class="cross tl"></span><span class="cross tr"></span>
+    <span class="cross bl"></span><span class="cross br"></span>
+    <div class="eyebrow">LIMITS OF EXISTING MEASUREMENTS</div>
+    <p>
+      Existing claims to these numbers either concern domains too narrow to support
+      generalization or use a different meaning of "measured"; the measurements required here
+      remain unavailable.
+    </p>
+  </div>
+
+  <h2>The bound any viable system must satisfy</h2>
+  <p>
+    The four requirements below are consequences of the math developed across the hub, independent
+    of any view of how measurement <em>should</em> work, and any system that measures yield for an
+    agentic workload has to meet all four at once:
+  </p>
+  <ol>
+    <li>decompose tokens by type and by model, rather than treating "tokens" as one commodity;</li>
+    <li>separate price risk (what the platform charges) from yield risk (what the work is worth);</li>
+    <li>control for tail concentration, so one expensive run doesn&rsquo;t distort the average;</li>
+    <li>make the shadow price &mu; observable in operation as well as definable on paper.</li>
+  </ol>
+
+  <h3>The three tiers of claim status</h3>
+  <p>
+    Every claim on this hub sits in one of
+    three tiers: <strong>documented facts</strong> (what the
+    platform bills, sourced directly from vendor documentation), <strong>arithmetic
+    consequences</strong> (what necessarily follows from those facts, regardless of workload), and
+    <strong>proposed mechanism and candidate diagnostics</strong> (directionally consistent
+    explanations that are not themselves a measurement). The hub&rsquo;s numbers sit in the first two tiers; measuring the third tier on
+    production workloads is the open problem this page describes.
+  </p>
+
+  <div class="illustration">
+    <svg viewBox="0 0 560 230" role="img" aria-labelledby="oq-illust-title oq-illust-desc">
+      <title id="oq-illust-title">Three tiers of claim status, widest and most certain at the base</title>
+      <desc id="oq-illust-desc">A three-tier stacked diagram: a wide solid base labeled documented facts, a narrower middle band labeled arithmetic consequences, and a narrow dashed top band labeled proposed mechanism and candidate diagnostics.</desc>
+      <g font-family="Inter, sans-serif" text-anchor="middle">
+        <rect x="60" y="150" width="440" height="52" fill="#131c30"></rect>
+        <text x="280" y="181" font-size="14" font-weight="700" fill="#fdfdfd">DOCUMENTED FACTS</text>
+
+        <rect x="120" y="88" width="320" height="52" fill="#4a7fb5"></rect>
+        <text x="280" y="119" font-size="13" font-weight="700" fill="#fdfdfd">ARITHMETIC CONSEQUENCES</text>
+
+        <rect x="170" y="26" width="220" height="52" fill="#e8f1fb" stroke="#7db4e6" stroke-width="1.5" stroke-dasharray="4 4"></rect>
+        <text x="280" y="49" font-size="11" font-weight="700" fill="#4a7fb5">PROPOSED MECHANISM &amp;</text>
+        <text x="280" y="64" font-size="11" font-weight="700" fill="#4a7fb5">CANDIDATE DIAGNOSTICS</text>
+      </g>
+    </svg>
+    <figcaption>The claim-status tiers used on this hub, widest and most certain at the base, narrowest and least certain at the top</figcaption>
+  </div>
+
+  <h2>Quantities to be measured</h2>
+  <p>
+    Three quantities lie outside the documented-facts tier: a healthy range for the shadow price
+    &mu;, the value that counts as a normal Token Efficiency Ratio, and the position of the
+    quality-sigmoid threshold for a given domain. All three require production data collected at
+    scale, which is the first thing running the operating loop produces. The citable
+    numbers in this hub are the published external evidence and vendor documentation cited on
+    earlier pages.
+  </p>
+
+  <details class="go-deeper">
+    <summary>GO DEEPER &mdash; why "observable" is the hard part of the fourth bound</summary>
+    <div class="go-deeper-body">
+      <p>
+        Three of the four bounds above are mostly a matter of discipline, since decomposing token
+        types, separating price risk from yield risk and controlling for tail concentration are
+        practices a team can decide to adopt. Making the shadow price &mu;
+        <em>observable</em> is a harder class of problem, because it requires
+        per-token-class telemetry tied to task-level outcome data, at production volume, across
+        enough runs that tail-heavy agentic workloads stop distorting the average. That combination
+        is not available as an off-the-shelf capability today, and building it is the main body of
+        the work behind "measuring yield."
+      </p>
+    </div>
+  </details>
+
+  <h2>Governance that can start before yield is measured</h2>
+  <p>
+    The missing measurements above leave one part of this hub unaffected. On the Tokens
+    &amp; the Price You Can&rsquo;t See page, three billing surfaces (Copilot, Azure OpenAI and
+    Claude on Foundry) were shown to expose what this hub repeatedly requires, namely
+    per-task-class billing and usage telemetry in addition to a total-spend line. The Agent Loop
+    page that follows it puts that telemetry to use in three ways: a monotonic cost detector that
+    halts and escalates to a human before a budget is exceeded, an accept/reject decision recorded
+    per iteration rather than inferred after the fact from a final diff, and an audit trail that
+    attributes both to a specific task class rather than to one blended average.
+  </p>
+  <p>
+    On this hub, practicing tokenomics <em>with governance</em> means that chain, running from
+    platform telemetry to a per-iteration record to task-class-level accountability. The
+    mechanism relies on data exposed by the three surfaces and makes no claim about which vendor
+    is better. It also does not depend on the open problem: an organization can record
+    per-task-class accept/reject decisions against real telemetry without a fitted shadow price
+    &mu;, whether or not the yield math two pages back has been fitted to production data.
+  </p>
+
+  <h2>The remaining measurement question</h2>
+  <p>
+    The cost dashboards on the opening page already address how to cut spend. The harder
+    question that remains open is
+    <strong>what it would take to measure yield for my team's agentic workload</strong>.
+  </p>
+
+</main>
+
+<nav class="article-nav">
+  <a href="page-5-instruments.html">&larr; The Instruments You Never Had</a>
+  <a href="page-7-plan.html">Plan &rarr;</a>
+</nav>
+
+</body>
+</html>

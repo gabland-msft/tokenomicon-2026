@@ -1,0 +1,21 @@
+# Generic sensitive-content patterns (extended-regex, one per line).
+# Safe to commit — contains no personal identifiers, only generic classes.
+# Add machine-specific real names/handles/org terms to denylist-local.txt
+# instead (gitignored, never pushed).
+
+# Email addresses
+[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}
+
+# Common corp/tenant domains
+@microsoft\.com
+microsoft\.onmicrosoft\.com
+
+# Private key / credential material
+-----BEGIN [A-Z ]*PRIVATE KEY-----
+AKIA[0-9A-Z]{16}
+ghp_[A-Za-z0-9]{36}
+gho_[A-Za-z0-9]{36}
+xox[baprs]-[0-9A-Za-z-]{10,}
+
+# Generic "enterprise managed" / internal-policy language
+[Ee]nterprise [Mm]anaged [Uu]ser

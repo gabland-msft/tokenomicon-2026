@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 400" width="1080" height="400" role="img" aria-labelledby="fig-c4-telemetry-tiers-title fig-c4-telemetry-tiers-desc">
+<title id="fig-c4-telemetry-tiers-title">Telemetry in nested tiers</title>
+<desc id="fig-c4-telemetry-tiers-desc">Four nested telemetry tiers. Innermost and always available: billing by account, enough for price risk only. Around it: usage per call, then decisions per iteration. Outermost, drawn dashed because it arrives late and is only partly observable: outcomes per task.</desc>
+<defs>
+<marker id="fig-c4-telemetry-tiers-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4a7fb5"/></marker>
+<marker id="fig-c4-telemetry-tiers-arrow-m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8b96a8"/></marker>
+</defs>
+<rect width="1080" height="400" fill="#fdfdfd"/>
+<rect x="40" y="30" width="1000" height="340" rx="0" fill="none" stroke="#8b96a8" stroke-width="1.5" stroke-dasharray="8 6"/>
+<text x="66" y="74" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#8b96a8" text-anchor="start" letter-spacing="2.5">OUTCOMES</text>
+<text x="66" y="102" font-family="Inter, sans-serif" font-size="18" fill="#8b96a8" text-anchor="start">per task</text>
+<rect x="250" y="60" width="764" height="280" rx="0" fill="#eef1f6" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M244 60H256M250 54V66" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M1008 60H1020M1014 54V66" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M244 340H256M250 334V346" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M1008 340H1020M1014 334V346" stroke="#d7dde6" stroke-width="1.5"/>
+<text x="276" y="104" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#131c30" text-anchor="start" letter-spacing="2.5">DECISIONS</text>
+<text x="276" y="132" font-family="Inter, sans-serif" font-size="18" fill="#3a4152" text-anchor="start">per iteration</text>
+<rect x="460" y="90" width="528" height="220" rx="0" fill="#fdfdfd" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M454 90H466M460 84V96" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M982 90H994M988 84V96" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M454 310H466M460 304V316" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M982 310H994M988 304V316" stroke="#d7dde6" stroke-width="1.5"/>
+<text x="486" y="134" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#131c30" text-anchor="start" letter-spacing="2.5">USAGE</text>
+<text x="486" y="162" font-family="Inter, sans-serif" font-size="18" fill="#3a4152" text-anchor="start">per call</text>
+<rect x="670" y="120" width="292" height="160" rx="0" fill="#e8f1fb" stroke="#4a7fb5" stroke-width="2"/>
+<path d="M664 120H676M670 114V126" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M956 120H968M962 114V126" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M664 280H676M670 274V286" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M956 280H968M962 274V286" stroke="#c7dcf1" stroke-width="1.5"/>
+<text x="696" y="164" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#131c30" text-anchor="start" letter-spacing="2.5">BILLING</text>
+<text x="696" y="192" font-family="Inter, sans-serif" font-size="18" fill="#3a4152" text-anchor="start">by account</text>
+<circle cx="916" cy="238" r="20" fill="#4a7fb5"/><path d="M907.0 238l6.0 6.0l12.0 -12.4" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="696" y="246" font-family="Inter, sans-serif" font-size="16" fill="#8b96a8" text-anchor="start">price risk only</text>
+<text x="115.0" y="336" font-family="Inter, sans-serif" font-size="44" font-weight="800" fill="#c3cad6" text-anchor="middle">?</text>
+</svg>

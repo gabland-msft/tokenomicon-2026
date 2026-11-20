@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1216 230" width="1216" height="230" role="img" aria-labelledby="fig-c3-attribution-chain-title fig-c3-attribution-chain-desc">
+<title id="fig-c3-attribution-chain-title">The attribution chain</title>
+<desc id="fig-c3-attribution-chain-desc">A chain from token to call to iteration to task to task class to owner. A bracket under the whole chain notes that every call carries three tags: task ID, task class and owner.</desc>
+<defs>
+<marker id="fig-c3-attribution-chain-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4a7fb5"/></marker>
+<marker id="fig-c3-attribution-chain-arrow-m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8b96a8"/></marker>
+</defs>
+<rect width="1216" height="230" fill="#fdfdfd"/>
+<rect x="40" y="36" width="156" height="76" rx="0" fill="#fdfdfd" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M34 36H46M40 30V42" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M190 36H202M196 30V42" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M34 112H46M40 106V118" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M190 112H202M196 106V118" stroke="#d7dde6" stroke-width="1.5"/>
+<text x="118.0" y="81.0" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#131c30" text-anchor="middle" letter-spacing="2">TOKEN</text>
+<path d="M202 74.0H228" stroke="#4a7fb5" stroke-width="3" marker-end="url(#fig-c3-attribution-chain-arrow)"/>
+<rect x="236" y="36" width="156" height="76" rx="0" fill="#fdfdfd" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M230 36H242M236 30V42" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M386 36H398M392 30V42" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M230 112H242M236 106V118" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M386 112H398M392 106V118" stroke="#d7dde6" stroke-width="1.5"/>
+<text x="314.0" y="81.0" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#131c30" text-anchor="middle" letter-spacing="2">CALL</text>
+<path d="M398 74.0H424" stroke="#4a7fb5" stroke-width="3" marker-end="url(#fig-c3-attribution-chain-arrow)"/>
+<rect x="432" y="36" width="156" height="76" rx="0" fill="#fdfdfd" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M426 36H438M432 30V42" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M582 36H594M588 30V42" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M426 112H438M432 106V118" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M582 112H594M588 106V118" stroke="#d7dde6" stroke-width="1.5"/>
+<text x="510.0" y="81.0" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#131c30" text-anchor="middle" letter-spacing="2">ITERATION</text>
+<path d="M594 74.0H620" stroke="#4a7fb5" stroke-width="3" marker-end="url(#fig-c3-attribution-chain-arrow)"/>
+<rect x="628" y="36" width="156" height="76" rx="0" fill="#fdfdfd" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M622 36H634M628 30V42" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M778 36H790M784 30V42" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M622 112H634M628 106V118" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M778 112H790M784 106V118" stroke="#d7dde6" stroke-width="1.5"/>
+<text x="706.0" y="81.0" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#131c30" text-anchor="middle" letter-spacing="2">TASK</text>
+<path d="M790 74.0H816" stroke="#4a7fb5" stroke-width="3" marker-end="url(#fig-c3-attribution-chain-arrow)"/>
+<rect x="824" y="36" width="156" height="76" rx="0" fill="#fdfdfd" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M818 36H830M824 30V42" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M974 36H986M980 30V42" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M818 112H830M824 106V118" stroke="#d7dde6" stroke-width="1.5"/>
+<path d="M974 112H986M980 106V118" stroke="#d7dde6" stroke-width="1.5"/>
+<text x="902.0" y="81.0" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#131c30" text-anchor="middle" letter-spacing="2">TASK CLASS</text>
+<path d="M986 74.0H1012" stroke="#4a7fb5" stroke-width="3" marker-end="url(#fig-c3-attribution-chain-arrow)"/>
+<rect x="1020" y="36" width="156" height="76" rx="0" fill="#e8f1fb" stroke="#4a7fb5" stroke-width="2"/>
+<path d="M1014 36H1026M1020 30V42" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M1170 36H1182M1176 30V42" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M1014 112H1026M1020 106V118" stroke="#c7dcf1" stroke-width="1.5"/>
+<path d="M1170 112H1182M1176 106V118" stroke="#c7dcf1" stroke-width="1.5"/>
+<text x="1098.0" y="81.0" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#131c30" text-anchor="middle" letter-spacing="2">OWNER</text>
+<path d="M40 142V156H1176V142" fill="none" stroke="#8b96a8" stroke-width="1.5"/>
+<text x="608.0" y="196" font-family="Inter, sans-serif" font-size="20" font-weight="500" fill="#3a4152" text-anchor="middle">Tags on every call: task ID, task class, owner</text>
+</svg>

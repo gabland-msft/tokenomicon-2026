@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Yield Hub — Unit Economics of Agentic AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/slides.css">
+<style>
+  /* Hero: two-column layout splits lead copy (headline+hook) from the
+     pull-quote instead of stacking four text blocks vertically. The old
+     single-column stack needed .slide-main's overflow-y:auto scroll
+     fallback even at realistic desktop window heights (500-800px once
+     browser chrome is subtracted) — a visible scrollbar inside a hero is
+     a real design defect, not just a safety net working as intended.
+     Splitting the content horizontally roughly halves the vertical space
+     either column needs, so the fallback should now essentially never
+     engage in practice while still existing for genuinely extreme cases.
+     Overrides slide-main's shared `display:flex` for this instance only —
+     scoped to this page's hero, the shared single-column component is
+     untouched for contact.html and any future slide that doesn't need it. */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    column-gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+    /* align-items only positions each column's own content within the
+       row; on tall viewports the row itself was left top-anchored inside
+       slide-main's full flex-1 height, dumping all the slack below the
+       content as one lopsided gap. align-content centers the row itself
+       within that height instead, so leftover space (an intentional,
+       expected side effect of a two-column layout using less total height
+       than the old single-column stack) reads as balanced breathing room
+       on either side, not a mistake. safe center: same reasoning as
+       .slide-main's own fix — falls back to start-alignment rather than
+       an unreachable overflow if content ever exceeds the box. */
+    align-content: safe center;
+  }
+  .hero-quote {
+    border-left: 2px solid rgba(255,255,255,0.22);
+    padding-left: clamp(1.1rem, 2vw, 2rem);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.5rem, 1.5vh, 0.9rem);
+  }
+  .hero-formal {
+    font-size: clamp(0.8rem, 0.5vw + 0.7rem, 0.9rem);
+    line-height: 1.5;
+    opacity: 0.85;
+    margin: 0;
+  }
+  .hero-formal a { color: inherit; }
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; row-gap: clamp(1rem, 3vh, 1.5rem); }
+    .hero-quote {
+      border-left: none;
+      padding-left: 0;
+      border-top: 1px solid rgba(255,255,255,0.18);
+      padding-top: clamp(1rem, 3vh, 1.5rem);
+    }
+  }
+  /* Contents: an editorial table of contents in normal document flow.
+     Deliberately NOT a .slide: no min-height, no inner overflow container,
+     so the section is exactly as tall as its content at every width. */
+  .toc {
+    background: var(--white);
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.25rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem);
+  }
+  .toc { scroll-margin-top: var(--nav-h); }
+  .toc-inner { max-width: 1040px; margin: 0 auto; }
+  .toc-intro { margin-bottom: clamp(1.75rem, 4vw, 3rem); }
+  .toc-intro .eyebrow { color: var(--accent-blue-deep); margin-bottom: 0.75rem; }
+  .toc-intro h2 { font-size: clamp(1.9rem, 2.5vw + 1rem, 2.8rem); }
+  .session-map { margin: 0 0 clamp(1.5rem, 3vw, 2.25rem); padding: 1rem 1.25rem; border: 1px solid var(--border); border-left: 3px solid var(--accent-blue-deep); background: #fff; }
+  .session-map .eyebrow { color: var(--accent-blue-deep); margin-bottom: 0.4rem; }
+  .session-map p { margin: 0 0 0.5rem; font-size: 0.9rem; line-height: 1.5; color: #4b5366; }
+  .session-map ol { margin: 0; padding-left: 1.25rem; font-size: 0.9rem; line-height: 1.6; color: #4b5366; }
+  .session-map a { color: var(--accent-blue-deep); }
+  .toc-part {
+    border-top: 1px solid var(--ink);
+    padding-top: 1rem;
+    margin-bottom: clamp(2.25rem, 5vw, 3.5rem);
+  }
+  .toc-part-head { margin-bottom: 0.5rem; }
+  .toc-part-label { display: block; margin-bottom: 0.4rem; }
+  .toc-part-head h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -0.005em;
+  }
+  .toc-kicker {
+    margin: 0.35rem 0 0;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: var(--gray);
+  }
+  .toc-kicker .sep { color: var(--accent-blue-deep); padding: 0 0.15em; }
+  .toc-list { list-style: none; margin: 0; padding: 0; }
+  .toc-list li + li { border-top: 1px solid var(--border); }
+  .toc-row {
+    display: grid;
+    grid-template-columns: 2.6rem minmax(0, 1fr) 1.25rem;
+    column-gap: 0.9rem;
+    align-items: baseline;
+    min-height: 44px;
+    padding: 1rem 0;
+    color: inherit;
+    text-decoration: none;
+  }
+  .toc-num {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.35rem;
+    line-height: 1;
+    color: var(--accent-blue-deep);
+  }
+  .toc-text { display: flex; flex-direction: column; gap: 0.2rem; }
+  .toc-title { font-weight: 700; font-size: 1rem; line-height: 1.35; }
+  .toc-desc { font-size: 0.9rem; line-height: 1.5; color: #4b5366; }
+  .toc-arrow {
+    justify-self: end;
+    color: var(--gray);
+    transition: transform .15s ease, color .15s ease;
+  }
+  .toc-row:hover .toc-title,
+  .toc-row:focus-visible .toc-title { color: var(--accent-blue-deep); }
+  .toc-row:hover .toc-arrow,
+  .toc-row:focus-visible .toc-arrow { color: var(--accent-blue-deep); transform: translateX(3px); }
+  .toc-row:focus-visible { outline: 2px solid var(--accent-blue-deep); outline-offset: 2px; }
+  .toc-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .toc-footer p { margin: 0; font-size: 0.9rem; color: #4b5366; }
+  .toc-cta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 1.2rem;
+    border-radius: 3px;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity .15s ease;
+  }
+  .toc-cta:hover { opacity: 0.85; }
+  /* Wide screens: part heading in a left column, rows on the right, and
+     title + description side by side so each row reads as one line. */
+  @media (min-width: 900px) {
+    .session-map { margin: 0 0 clamp(1.5rem, 3vw, 2.25rem); padding: 1rem 1.25rem; border: 1px solid var(--border); border-left: 3px solid var(--accent-blue-deep); background: #fff; }
+  .session-map .eyebrow { color: var(--accent-blue-deep); margin-bottom: 0.4rem; }
+  .session-map p { margin: 0 0 0.5rem; font-size: 0.9rem; line-height: 1.5; color: #4b5366; }
+  .session-map ol { margin: 0; padding-left: 1.25rem; font-size: 0.9rem; line-height: 1.6; color: #4b5366; }
+  .session-map a { color: var(--accent-blue-deep); }
+  .toc-part {
+      display: grid;
+      grid-template-columns: 15rem minmax(0, 1fr);
+      column-gap: 3rem;
+    }
+    .toc-part-head { margin-bottom: 0; padding-top: 1rem; }
+    .toc-list { border-top: 0; }
+    .toc-row { grid-template-columns: 3rem minmax(0, 1fr) 1.25rem; padding: 1.1rem 0; }
+    .toc-text { display: grid; grid-template-columns: minmax(0, 17rem) minmax(0, 1fr); column-gap: 1.5rem; align-items: baseline; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="site-nav-home" href="index.html">Token Yield Hub</a>
+  <a class="site-nav-cta" href="contact.html">Get in Touch</a>
+</nav>
+
+<header class="slide slide--navy">
+  <div class="slide-top">
+    <div class="eyebrow">TOKEN YIELD HUB<br>TOKENOMICS</div>
+    <div class="roadmap">
+      <span class="roadmap-step">Tokens</span>
+      <span class="roadmap-arrow">&rarr;</span>
+      <span class="roadmap-step">Loop</span>
+      <span class="roadmap-arrow">&rarr;</span>
+      <span class="roadmap-step">Yield</span>
+      <span class="roadmap-arrow">&rarr;</span>
+      <span class="roadmap-step">?</span>
+      <span class="roadmap-arrow">&rarr;</span>
+      <span class="roadmap-step">Run it</span>
+    </div>
+  </div>
+
+  <div class="slide-main hero-grid">
+    <div class="hero-lead">
+      <h1>Unit Economics of Agentic AI</h1>
+      <p class="subhead">Organizations pay for AI work without being able to tell whether it was worth the cost: current measures record spend rather than yield, and better spend tooling alone will not resolve that limitation.</p>
+    </div>
+    <div class="hero-quote">
+      <blockquote class="claim">
+        &ldquo;TokenOps maximizes the fraction of spend that converts into accepted, valuable, autonomously-completed outcomes; that composite conversion rate is token yield, the metric tracked across this hub.&rdquo;
+      </blockquote>
+      <div class="eyebrow">— DEFINITION USED THROUGHOUT THE SITE</div>
+      <p class="hero-formal">Formally, token yield = <strong>Agent Efficiency Score (AES)</strong> = ACR &times; TER &times; VGR, which differs from raw acceptance. <a href="page-3-agentic-loop.html">The Agent Loop</a> explains why accepted output alone is insufficient.</p>
+    </div>
+  </div>
+
+  <div class="scroll-cue" aria-hidden="true">
+    <span>Ten pages, two parts</span>
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5l6 6 6-6"/></svg>
+  </div>
+
+  <div class="slide-footer">
+    <div>
+      <div class="byline-name">Gareth Bland</div>
+      <div class="byline-org">Personal site — views are his own, not Microsoft's.</div>
+      <div class="byline-org">Built with AI assistance — the ideas and the thinking behind them are his own.</div>
+    </div>
+    <div>01</div>
+  </div>
+</header>
+
+<main class="toc" aria-labelledby="toc-title">
+  <div class="toc-inner">
+    <div class="toc-intro">
+      <div class="eyebrow">Contents</div>
+      <h2 id="toc-title">Pick a starting point.</h2>
+    </div>
+
+    <aside class="session-map" aria-labelledby="session-map-title">
+      <div class="eyebrow" id="session-map-title">From the Ignite session</div>
+      <p>If you arrived from &ldquo;From AI Ambition to Value at Scale&rdquo; at Microsoft Ignite 2026, the four parts of the session map onto these pages:</p>
+      <ol>
+        <li><strong>Price is not yield</strong>: pages <a href="page-1-macro-hook.html">01</a> to <a href="page-3-agentic-loop.html">03</a>.</li>
+        <li><strong>Yield has a shape</strong>: pages <a href="page-4-reframe.html">04</a> to <a href="page-6-open-problem.html">06</a>.</li>
+        <li><strong>Run it as an operating loop</strong> (Plan, Control, Optimize, Review): pages <a href="page-7-plan.html">07</a> to <a href="page-10-review.html">10</a>.</li>
+        <li><strong>Start Monday</strong>: the first 30 days, on <a href="page-9-optimize.html">page 09</a>.</li>
+      </ol>
+    </aside>
+
+    <section class="toc-part" aria-labelledby="part-understand">
+      <div class="toc-part-head">
+        <span class="eyebrow toc-part-label">Part 1</span>
+        <h3 id="part-understand">Understand it</h3>
+        <p class="toc-kicker">From tokens to yield.</p>
+      </div>
+      <ol class="toc-list">
+        <li><a class="toc-row" href="page-1-macro-hook.html"><span class="toc-num">01</span><span class="toc-text"><span class="toc-title">Macro Hook</span><span class="toc-desc">Paying for AI work without knowing whether it was worth it.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
+        <li><a class="toc-row" href="page-2-tokens.html"><span class="toc-num">02</span><span class="toc-text"><span class="toc-title">Tokens &amp; the Price You Can&rsquo;t See</span><span class="toc-desc">Five token types, each billed at its own price.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
+        <li><a class="toc-row" href="page-3-agentic-loop.html"><span class="toc-num">03</span><span class="toc-text"><span class="toc-title">The Agent Loop</span><span class="toc-desc">How the agent loop multiplies cost.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
+        <li><a class="toc-row" href="page-4-reframe.html"><span class="toc-num">04</span><span class="toc-text"><span class="toc-title">The Reframe</span><span class="toc-desc">Cost as a constraint to stay within rather than the objective.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
+        <li><a class="toc-row" href="page-5-instruments.html"><span class="toc-num">05</span><span class="toc-text"><span class="toc-title">The Instruments You Never Had</span><span class="toc-desc">A live estimate of whether one more attempt is worth its cost.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
+        <li><a class="toc-row" href="page-6-open-problem.html"><span class="toc-num">06</span><span class="toc-text"><span class="toc-title">The Open Problem</span><span class="toc-desc">What to measure and why, and what the first measurements will calibrate.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
+      </ol>
+    </section>
+
+    <section class="toc-part" aria-labelledby="part-run">
+      <div class="toc-part-head">
+        <span class="eyebrow toc-part-label">Part 2</span>
+        <h3 id="part-run">Run it</h3>
+        <p class="toc-kicker">Plan<span class="sep">&rarr;</span>Control<span class="sep">&rarr;</span>Optimize<span class="sep">&rarr;</span>Review<span class="sep">&#8635;</span></p>
+      </div>
+      <ol class="toc-list">
+        <li><a class="toc-row" href="page-7-plan.html"><span class="toc-num">07</span><span class="toc-text"><span class="toc-title">Plan</span><span class="toc-desc">Write down cost, value and acceptable yield before you spend.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
+        <li><a class="toc-row" href="page-8-manage.html"><span class="toc-num">08</span><span class="toc-text"><span class="toc-title">Control</span><span class="toc-desc">Every token has an owner, and an invoice alone cannot report yield.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
+        <li><a class="toc-row" href="page-9-optimize.html"><span class="toc-num">09</span><span class="toc-text"><span class="toc-title">Optimize</span><span class="toc-desc">More yield per dollar, rather than fewer tokens.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
+        <li><a class="toc-row" href="page-10-review.html"><span class="toc-num">10</span><span class="toc-text"><span class="toc-title">Review</span><span class="toc-desc">Scale, sustain or stop, decided on evidence rather than on budget.</span></span><span class="toc-arrow" aria-hidden="true">&rarr;</span></a></li>
+      </ol>
+    </section>
+
+    <footer class="toc-footer">
+      <p>To apply this to your own spend:</p>
+      <a class="toc-cta" href="contact.html">Who to talk to &rarr;</a>
+    </footer>
+  </div>
+</main>
+
+</body>
+</html>
