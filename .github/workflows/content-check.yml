@@ -1,0 +1,59 @@
+name: content-check
+
+on:
+  pull_request:
+    branches: [prod]
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generic secret scan (gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Denylist content scan
+        env:
+          SENSITIVE_DENYLIST: ${{ secrets.SENSITIVE_DENYLIST }}
+        run: |
+          set -euo pipefail
+          diff_content="$(git diff --unified=0 "origin/${{ github.base_ref }}"...HEAD)"
+
+          fail=0
+
+          # Generic, publicly-committed patterns
+          while IFS= read -r line; do
+            [ -z "$line" ] && continue
+            case "$line" in \#*) continue ;; esac
+            if grep -Eiq -- "$line" <<<"$diff_content"; then
+              echo "::error::Diff matches generic denylist pattern: $line"
+              fail=1
+            fi
+          done < .githooks/denylist-generic.txt
+
+          # Personal denylist, injected only as a masked secret — never
+          # committed to the repo.
+          if [ -n "${SENSITIVE_DENYLIST:-}" ]; then
+            while IFS= read -r line; do
+              [ -z "$line" ] && continue
+              case "$line" in \#*) continue ;; esac
+              if grep -Eiq -- "$line" <<<"$diff_content"; then
+                echo "::error::Diff matches personal denylist pattern"
+                fail=1
+              fi
+            done <<< "$SENSITIVE_DENYLIST"
+          fi
+
+          if [ "$fail" -eq 1 ]; then
+            echo "Content check failed — sensitive content detected in this PR's diff."
+            exit 1
+          fi
+
+          echo "Content check passed."
